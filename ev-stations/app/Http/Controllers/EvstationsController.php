@@ -161,6 +161,10 @@ class EvstationsController extends Controller
     public function edit(Evstations $evstations)
     {
         //
+        $city =  City::find($city->id);
+        
+        $evstations = Evstations::all();
+        return view('admin.evstation.edit',compact('city','evstations'));
     }
 
     /**
