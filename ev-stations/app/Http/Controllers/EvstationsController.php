@@ -147,8 +147,14 @@ class EvstationsController extends Controller
     public function show(Evstations $evstations)
     {
         //
+        $chargertypes = Chargertype::all();
+        $companylist=Company::all();
+        $countrylist=Country::all();
+        $statelist=State::all();
+        $citylist=City::all();
+        $automatedstatus=AutomatedStatus::all();
         $evstations=Evstations::all();
-        return view('admin.evstations.edit',compact('evstations'));
+        return view('admin.evstations.edit',compact('countrylist','statelist','citylist','chargertypes','companylist','automatedstatus'));
 
 
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AutomatedStatus;
 use Illuminate\Http\Request;
+use Gate;
+use Brian2694\Toastr\Facades\Toastr;
 
 class AutomatedStatusController extends Controller
 {
@@ -15,6 +17,11 @@ class AutomatedStatusController extends Controller
     public function index()
     {
         //
+        if(!Gate::allows('isAdmin')){
+            abort(401);
+        }
+        $automatedstatus= AutomatedStatus::paginate(15);
+        return view('admin.automatedstatus.index',compact('automatedstatus'));
     }
 
     /**

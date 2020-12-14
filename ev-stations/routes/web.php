@@ -123,6 +123,10 @@ Route::get('dashboard','DashboardController@index')->name('dashboard');
 Route::resource('evstation','EvstationsController');
 Route::get('evstation/search',            [ 'as'=>'evstation.search',      'uses' => 'EvstationsController@search']);
 
+###########
+Route::resource('automatedstatus','AutomatedStatusController');
+Route::get('automatedstatus/search',            [ 'as'=>'automatedstatus.search',      'uses' => 'AutomatedStatusController@search']);
+
 //      Route::get('city',               [ 'as'=>'city',              'uses' => 'CityController@index']);
 //      Route::get('city/create',        [ 'as'=>'city.create',       'uses' => 'CityController@create']);
 //      Route::post('city/store',        [ 'as'=>'city.store',        'uses' => 'CityController@store']);
