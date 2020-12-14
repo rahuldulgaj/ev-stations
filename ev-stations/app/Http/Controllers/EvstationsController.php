@@ -184,5 +184,10 @@ class EvstationsController extends Controller
     public function destroy(Evstations $evstations)
     {
         //
+        $evstations = Evstations::find($evstations->id);
+
+        $evstations->delete();
+        Toastr::success('message', 'Evstations deleted successfully.');
+        return back();
     }
 }
