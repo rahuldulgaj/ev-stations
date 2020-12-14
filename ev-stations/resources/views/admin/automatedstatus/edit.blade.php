@@ -21,7 +21,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('role')}}">User</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('automatedstatus.index')}}">User</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -32,16 +32,16 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('role.update',$roles->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('automatedstatus.update',$automatedstatus->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             {{--@method('PUT')--}}
                             <div class="card-body">
                                 <h4 class="card-title">ADD Role</h4>
 
                                 <div class="form-group row">
-                                    <label for="rolename" class="col-sm-3 text-right control-label col-form-label">Role name</label>
+                                    <label for="rolename" class="col-sm-3 text-right control-label col-form-label">Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="rolename" class="form-control" id="rolename" value="{{$roles->rolename}}" >
+                                        <input type="text" name="name" class="form-control" id="name" value="{{$automatedstatus->name}}" >
                                     </div>
                                 </div>
                                
@@ -49,8 +49,8 @@
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
                                     <div class="col-sm-9">
                                         <select type="text" name="status" class="form-control" id="status" placeholder="Status">
-                                            <option value="1" {{ $roles->status=='1' ? 'selected' : '' }}>Active</option>
-                                            <option value="2" {{ $roles->status=='2' ? 'selected' : '' }}>Deactive</option>
+                                            <option value="1" {{ $automatedstatus->status=='1' ? 'selected' : '' }}>Active</option>
+                                            <option value="2" {{ $automatedstatus->status=='2' ? 'selected' : '' }}>Deactive</option>
                                         </select>
                                     </div>
                                     </div>

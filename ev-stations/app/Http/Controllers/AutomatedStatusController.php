@@ -32,6 +32,11 @@ class AutomatedStatusController extends Controller
     public function create()
     {
         //
+        if(!Gate::allows('isAdmin')){
+            abort(401);
+        }
+       // $statelist = State::all();
+        return view('admin.automatedstatus.create');
     }
 
     /**
@@ -43,6 +48,23 @@ class AutomatedStatusController extends Controller
     public function store(Request $request)
     {
         //
+        if(!Gate::allows('isAdmin')){
+            abort(401);
+        }
+        $request -> validate([
+            'name' => 'required|unique:automated_status|max:255',
+            'status' => 'required',
+    ]);
+        
+      
+        $automatedStatus = new AutomatedStatus();
+        $automatedStatus->name = $request->name; 
+        $automatedStatus->status = $request->status;
+      //  $automatedStatus->slug= str_slug($request->name);
+      //  $automatedStatus->status = $request ->status == 'active'?1:0;
+        $automatedStatus-> save();
+        Toastr::success('Automated Status successfully added!','Success');
+        return redirect()->route('automatedstatus.index');
     }
 
     /**
@@ -54,6 +76,9 @@ class AutomatedStatusController extends Controller
     public function show(AutomatedStatus $automatedStatus)
     {
         //
+        $automatedstatus = AutomatedStatus::find($automatedStatus->id)->first();
+        return view('admin.automatedstatus.show',compact('automatedstatus'));
+
     }
 
     /**
@@ -65,6 +90,9 @@ class AutomatedStatusController extends Controller
     public function edit(AutomatedStatus $automatedStatus)
     {
         //
+        $automatedstatus = AutomatedStatus::where('id', $automatedStatus->id)->first();
+        return view('admin.automatedStatus.edit',compact('automatedstatus'));
+
     }
 
     /**
@@ -77,6 +105,23 @@ class AutomatedStatusController extends Controller
     public function update(Request $request, AutomatedStatus $automatedStatus)
     {
         //
+        if(!Gate::allows('isAdmin')){
+            abort(401);
+        }
+        $request -> validate([
+            'name' => 'required|max:255',
+            'status' => 'required',
+    ]);
+        
+      
+    $automatedStatus = AutomatedStatus::find($automatedStatus->id);
+        $automatedStatus->name = $request->name; 
+        $automatedStatus->status = $request->status;
+      //  $automatedStatus->slug= str_slug($request->name);
+      //  $automatedStatus->status = $request ->status == 'active'?1:0;
+        $automatedStatus-> save();
+        Toastr::success('Automated Status successfully added!','Success');
+        return redirect()->route('automatedstatus.index');
     }
 
     /**

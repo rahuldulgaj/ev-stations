@@ -22,7 +22,7 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('role')}}">Role</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('automatedstatus.index')}}">Role</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -36,14 +36,14 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                        <form action="{{route('role.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('automatedstatus.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role name</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Automated Status name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="rolename" class="form-control" id="rolename" placeholder="Enter Role Name">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Automated Status">
                                     </div>
                                 </div>
                              
