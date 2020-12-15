@@ -23,7 +23,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('role')}}">Role</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('role.index')}}">Role</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -55,7 +55,7 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('role')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a href="{{route('role.index')}}" class="btn btn-md btn-danger">Clear</a>
                     <a class="btn btn-md btn-info " href="{{ route('role.create') }}" ><i class="fa fa-plus"> </i>Add Role</a>
                 </div>
             </div>

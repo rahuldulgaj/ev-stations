@@ -32,7 +32,8 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('automatedstatus.update',$automatedstatus->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                  
+                        <form action="{{route('automatedstatus.update',$automatedStatus->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             {{--@method('PUT')--}}
                             <div class="card-body">

@@ -76,8 +76,9 @@ class AutomatedStatusController extends Controller
     public function show(AutomatedStatus $automatedStatus)
     {
         //
-        $automatedstatus = AutomatedStatus::find($automatedStatus->id)->first();
-        return view('admin.automatedstatus.show',compact('automatedstatus'));
+        $automatedStatus = AutomatedStatus::find($automatedStatus->id)->first();
+       dd($automatedStatus);
+        return view('admin.automatedstatus.show',compact('automatedStatus'));
 
     }
 
@@ -90,8 +91,9 @@ class AutomatedStatusController extends Controller
     public function edit(AutomatedStatus $automatedStatus)
     {
         //
-        $automatedstatus = AutomatedStatus::where('id', $automatedStatus->id)->first();
-        return view('admin.automatedStatus.edit',compact('automatedstatus'));
+        dd($automatedStatus);
+        $automatedStatus = AutomatedStatus::where('id', $automatedStatus->id)->firstOrFail();
+        return view('admin.automatedstatus.edit',compact('automatedStatus'));
 
     }
 

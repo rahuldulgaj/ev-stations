@@ -134,14 +134,16 @@ Route::get('automatedstatus/search',            [ 'as'=>'automatedstatus.search'
 //      Route::post('city/update/{id}',  [ 'as'=>'city.update',       'uses' => 'CityController@update']);
 //      Route::get('city/delete/{id}',   [ 'as'=>'city.delete',       'uses' => 'CityController@delete']);
 //  ##########Role##
- Route::get('role',               [ 'as'=>'role',              'uses' => 'RoleController@index']);
- Route::get('role/create',        [ 'as'=>'role.create',       'uses' => 'RoleController@create']);
- Route::post('role/store',        [ 'as'=>'role.store',        'uses' => 'RoleController@store']);
- Route::get('role/edit/{id}',     [ 'as'=>'role.edit',         'uses' => 'RoleController@edit']);
- Route::post('role/update/{id}',  [ 'as'=>'role.update',       'uses' => 'RoleController@update']);
- Route::get('role/delete/{id}',   [ 'as'=>'role.delete',       'uses' => 'RoleController@delete']);
+Route::resource('role','RoleController');
+
+//  Route::get('role',               [ 'as'=>'role',              'uses' => 'RoleController@index']);
+//  Route::get('role/create',        [ 'as'=>'role.create',       'uses' => 'RoleController@create']);
+//  Route::post('role/store',        [ 'as'=>'role.store',        'uses' => 'RoleController@store']);
+//  Route::get('role/edit/{id}',     [ 'as'=>'role.edit',         'uses' => 'RoleController@edit']);
+//  Route::post('role/update/{id}',  [ 'as'=>'role.update',       'uses' => 'RoleController@update']);
+//  Route::get('role/delete/{id}',   [ 'as'=>'role.delete',       'uses' => 'RoleController@delete']);
  Route::get('role/search',            [ 'as'=>'role.search',      'uses' => 'RoleController@search']);
- Route::get('/role/{id}', 'RoleController@roleshow')->name('role.show');
+ //Route::get('/role/{id}', 'RoleController@roleshow')->name('role.show');
 
  ###############USER####
  Route::get('user',                   [ 'as'=>'user',                 'uses' => 'UserController@index']);

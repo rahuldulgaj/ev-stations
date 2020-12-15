@@ -71,7 +71,7 @@ class RoleController extends Controller
       //  $role->status = $request ->status == 'active'?1:0;
         $role -> save();
         Toastr::success('Role successfully added!','Success');
-        return redirect()->route('role');
+        return redirect()->route('role.index');
 
     }
 
@@ -129,7 +129,7 @@ class RoleController extends Controller
         $role->status = $request->status;
         $role -> save();
         Toastr::success('Role successfully added!','Success');
-        return redirect()->route('role');
+        return redirect()->route('role.index');
 
     }
 

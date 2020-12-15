@@ -82,12 +82,14 @@
   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">System management:</h6>
-      <a class="collapse-item" href="{{route('role')}}">Role</a>
+      <a class="collapse-item" href="{{route('role.index')}}">Role</a>
      <a class="collapse-item" href="{{route('company.index')}}">Company</a>
       <a class="collapse-item" href="{{route('country.index')}}">Country</a>
       <a class="collapse-item" href="{{route('state.index')}}">State</a>
       <a class="collapse-item" href="{{route('city.index')}}">City</a>
       <a class="collapse-item" href="{{route('chargertype.index')}}">Charger Type</a>
+      <a class="collapse-item" href="{{route('automatedstatus.index')}}">Automated Type</a>
+
       <!-- <a class="collapse-item" href="#">Shift</a> -->
 
     </div>
