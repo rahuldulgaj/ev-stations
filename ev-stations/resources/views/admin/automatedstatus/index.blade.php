@@ -165,9 +165,10 @@
                                             <td>Deactive</td>
                                          @endif
                                         <td>
+                                       
                                 <a href="{{route('automatedstatus.edit',$automated->id)}}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{route('automatedstatus.show',$automated->id)}}" class="btn btn-success btn-sm waves-effect">View</a>
-                                 <form id="delete-form-{{ $automated->id }}" action="{{route('automatedstatus.destroy',$automated->id)}}" method="put">
+                                 <form id="delete-form-{{ $automated->id }}" action="{{route('automatedstatus.destroy', $automated->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $automated->id }})" class="btn btn-sm btn-danger">Delete</button>
