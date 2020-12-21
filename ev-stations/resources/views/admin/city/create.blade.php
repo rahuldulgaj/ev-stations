@@ -2,6 +2,7 @@
 
 @section('content')
 
+@livewireStyles
 
     <div class="page-wrapper">
         @if ($errors->any())
@@ -38,8 +39,13 @@
                     <div class="card shadow mb-4">
                         <form action="{{route('city.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
+
+
+
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
+
+                                @livewire('country-state')
                                 <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">City Name</label>
                                     <div class="col-sm-9">
@@ -52,9 +58,9 @@
                                         <input type="text" name="citycode" class="form-control" id="citycode" placeholder="Enter City Code">
                                     </div>
                                 </div>
-
-                                <div class="form-group row">
-                 
+                             
+                    
+                    <!-- <div class="form-group row">
                     <label class="col-sm-3 text-right control-label col-form-label">Select State</label>
                               <div class="col-sm-9">
                                 <select name="state_id" class="form-control show-tick">
@@ -64,7 +70,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            </div>
+                            </div> -->
 
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
@@ -99,7 +105,7 @@
             </div>
         </div>
         
-
+        @livewireScripts
         <footer class="footer text-center">
             All Rights Reserved by Brainydx Pvt. Ltd. Designed and Developed by <a href="https://Brainydx.com/">Brainydx</a>.
         </footer>

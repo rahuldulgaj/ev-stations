@@ -1,9 +1,7 @@
 @extends('theme.default')
 
 @section('title', 'Show Automated')
-
 @push('styles')
-
 
 @endpush
 
@@ -27,7 +25,7 @@
                 <div class="header">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <strong>Name : </strong>
+                            <strong>Name: </strong>
                             <span class="right">  {{$automatedStatus->name}}</span>
                         </li>
                        

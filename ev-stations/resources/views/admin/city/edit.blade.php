@@ -2,6 +2,7 @@
 
 @section('content')
 
+@livewireStyles
 
     <div class="page-wrapper">
         @if ($errors->any())
@@ -35,11 +36,11 @@
                         <form action="{{route('city.update',$city->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
-                         
+                      
                             <div class="card-body">
                                 <h4 class="card-title">ADD CITY</h4>
-
-                                
+                                @livewire('country-state',['city'=>$city])
+                               
                                 <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">City Name</label>
                                     <div class="col-sm-9">
@@ -49,21 +50,21 @@
                                 <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">city Code</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="citycode" class="form-control" id="citycode" value="{{$city->citycode}}" >
+                               <input type="text" name="citycode" class="form-control" id="citycode" value="{{$city->citycode}}" >
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                  <label class="col-sm-3 text-right control-label col-form-label">Select State</label>
                            <div class="col-sm-9">
                              <select name="state_id" class="form-control show-tick">
                                  <option value="" disabled selected>Choose State</option>
                                  @foreach($statelist as $state)
-                                     <option value="{{$state->id}}"    {{ $state->id ==$city->state_id ? 'selected' : '' }} >{{$state->name}}</option>
+                    <option value="{{$state->id}}"    {{ $state->id ==$city->state_id ? 'selected' : '' }} >{{$state->name}}</option>
                                  @endforeach
                              </select>
                          </div>
-                         </div>
+                         </div> -->
                          
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
@@ -89,7 +90,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
+        @livewireScripts
+
         <footer class="footer text-center">
             All Rights Reserved by BrainyDx. Designed and Developed by <a href="#">Brainydx</a>.
         </footer>
