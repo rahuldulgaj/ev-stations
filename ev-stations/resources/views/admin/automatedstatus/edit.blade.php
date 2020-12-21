@@ -35,14 +35,14 @@
                   
                         <form action="{{route('automatedstatus.update',$automatedStatus->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
-                            {{--@method('PUT')--}}
+                            @method('PUT')
                             <div class="card-body">
-                                <h4 class="card-title">ADD Role</h4>
+                                <h4 class="card-title">ADD Automated S</h4>
 
                                 <div class="form-group row">
                                     <label for="rolename" class="col-sm-3 text-right control-label col-form-label">Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" id="name" value="{{$automatedstatus->name}}" >
+                                        <input type="text" name="name" class="form-control" id="name" value="{{$automatedStatus->name}}" >
                                     </div>
                                 </div>
                                
@@ -50,8 +50,8 @@
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
                                     <div class="col-sm-9">
                                         <select type="text" name="status" class="form-control" id="status" placeholder="Status">
-                                            <option value="1" {{ $automatedstatus->status=='1' ? 'selected' : '' }}>Active</option>
-                                            <option value="2" {{ $automatedstatus->status=='2' ? 'selected' : '' }}>Deactive</option>
+                                            <option value="1" {{ $automatedStatus->status=='1' ? 'selected' : '' }}>Active</option>
+                                            <option value="2" {{ $automatedStatus->status=='2' ? 'selected' : '' }}>Deactive</option>
                                         </select>
                                     </div>
                                     </div>

@@ -1,6 +1,6 @@
 @extends('theme.default')
 
-@section('title', 'Show Role')
+@section('title', 'Show Automated')
 
 @push('styles')
 
@@ -17,27 +17,23 @@
             <div class="card">
 
                 <div class="header bg-indigo">
-                    <h2>SHOW ROLE</h2>
+                    <h2>SHOW Automated Status</h2>
                 </div>
 
                 <div class="header">
-                    <h2>
-                        {{$role->rolename}}
-                        <br>
-                        <small>Posted By <strong>{{$role->rolename}}</strong> on {{$role->created_at->toFormattedDateString()}}</small>
-                    </h2>
+
                 </div>
 
                 <div class="header">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <strong>Role Name : </strong>
-                            <span class="right">  {{$role->rolename}}</span>
+                            <strong>Name : </strong>
+                            <span class="right">  {{$automatedStatus->name}}</span>
                         </li>
                        
                         <li class="list-group-item">
-                            <strong>Role Status : </strong>
-                            <span class="right">{{$role->status}}</span>
+                            <strong>Status : </strong>
+                            <span class="right">{{$automatedStatus->status}}</span>
                         </li>
                       
                     </ul>

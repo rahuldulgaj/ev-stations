@@ -48,7 +48,7 @@
                 <div class="form-group row">
                     <!-- <label class="col-sm-3 text-right control-label col-form-label"></label> -->
                     <div class="col-sm-8">
-                        <input type="text" name="search" class="form-control" id="firstname" placeholder="automatedstatus name">
+                        <input type="text" name="search" class="form-control" id="firstname" placeholder="Automatedstatus name">
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
                     <a href="{{route('automatedstatus.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('automatedstatus.create') }}" ><i class="fa fa-plus"> </i>Add Role</a>
+                    <a class="btn btn-md btn-info " href="{{ route('automatedstatus.create') }}" ><i class="fa fa-plus"> </i>Add Status</a>
                 </div>
             </div>
         </form>
@@ -85,7 +85,7 @@
                   <thead>
                     <tr role="row">
                     <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sno: activate to sort column descending" style="width: 58px;">Sno</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Role Name</th>
+                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Name</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Created Date</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 67px;">Status</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 67px;">Action</th>
@@ -94,7 +94,7 @@
 
                   <tfoot>
                     <tr><th rowspan="1" colspan="1">Sno</th>
-                    <th rowspan="1" colspan="1">Role Name</th>
+                    <th rowspan="1" colspan="1">Name</th>
                    <th rowspan="1" colspan="1">Created  Date</th>
                    <th rowspan="1" colspan="1">Status</th>
                    <th rowspan="1" colspan="1">Action</th></tr>

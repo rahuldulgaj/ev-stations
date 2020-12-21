@@ -20,7 +20,7 @@ class AutomatedStatusController extends Controller
         if(!Gate::allows('isAdmin')){
             abort(401);
         }
-        $automatedstatus= AutomatedStatus::paginate(15);
+        $automatedstatus= AutomatedStatus::simplePaginate(15);
         return view('admin.automatedstatus.index',compact('automatedstatus'));
     }
 
@@ -73,11 +73,10 @@ class AutomatedStatusController extends Controller
      * @param  \App\AutomatedStatus  $automatedStatus
      * @return \Illuminate\Http\Response
      */
-    public function show(AutomatedStatus $automatedStatus)
+    public function show(AutomatedStatus $automatedstatus)
     {
         //
-        $automatedStatus = AutomatedStatus::find($automatedStatus->id)->first();
-       dd($automatedStatus);
+        $automatedStatus = AutomatedStatus::where('id', $automatedstatus->id)->first();
         return view('admin.automatedstatus.show',compact('automatedStatus'));
 
     }
@@ -88,11 +87,13 @@ class AutomatedStatusController extends Controller
      * @param  \App\AutomatedStatus  $automatedStatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(AutomatedStatus $automatedStatus)
+    public function edit(AutomatedStatus $automatedstatus)
     {
         //
-        dd($automatedStatus);
-        $automatedStatus = AutomatedStatus::where('id', $automatedStatus->id)->firstOrFail();
+        //dd($automatedStatus);
+        $automatedStatus =  AutomatedStatus::find($automatedstatus->id);
+       // dd($automatedstatus);
+//$automatedStatus = AutomatedStatus::where('automated_status.id', $automatedStatus->id)->first();
         return view('admin.automatedstatus.edit',compact('automatedStatus'));
 
     }
@@ -104,7 +105,7 @@ class AutomatedStatusController extends Controller
      * @param  \App\AutomatedStatus  $automatedStatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AutomatedStatus $automatedStatus)
+    public function update(Request $request, AutomatedStatus $automatedstatus)
     {
         //
         if(!Gate::allows('isAdmin')){
@@ -116,12 +117,12 @@ class AutomatedStatusController extends Controller
     ]);
         
       
-    $automatedStatus = AutomatedStatus::find($automatedStatus->id);
-        $automatedStatus->name = $request->name; 
-        $automatedStatus->status = $request->status;
+    $automatedstatus = AutomatedStatus::find($automatedstatus->id);
+        $automatedstatus->name = $request->name; 
+        $automatedstatus->status = $request->status;
       //  $automatedStatus->slug= str_slug($request->name);
       //  $automatedStatus->status = $request ->status == 'active'?1:0;
-        $automatedStatus-> save();
+        $automatedstatus-> save();
         Toastr::success('Automated Status successfully added!','Success');
         return redirect()->route('automatedstatus.index');
     }
@@ -132,7 +133,7 @@ class AutomatedStatusController extends Controller
      * @param  \App\AutomatedStatus  $automatedStatus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(AutomatedStatus $automatedStatus)
+    public function destroy(AutomatedStatus $automatedstatus)
     {
         //
     }
