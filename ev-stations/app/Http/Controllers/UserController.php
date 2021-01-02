@@ -105,17 +105,16 @@ class UserController extends Controller
                    
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
-        $user->role = $request->role;
+        $user->role_id = $request->role_id;
         $user->email = $request->email;
         $user->mobile = $request->mobile;
         $user->alternatecontact = $request->alternatecontact;
         $user->address = $request->address;
         $user->gender = $request->gender;
         $user->join_date = $request->join_date;
-        $user->city = $request->city;
-        $user->state = $request->state;
-        $user->company = $request->company;
-        $user->role = $request->role;
+        $user->city_id = $request->city_id;
+        $user->state_id = $request->state_id;
+        $user->company_id = $request->company_id;
         $user->image    = $imagename;
         $user->status = $request->status;
         $user->password = bcrypt($request->password);

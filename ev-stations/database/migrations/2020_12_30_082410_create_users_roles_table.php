@@ -21,7 +21,7 @@ class CreateUsersRolesTable extends Migration
          //SETTING THE PRIMARY KEYS
            $table->primary(['user_id','role_id']);
         });
-
+      
     }
 
     /**

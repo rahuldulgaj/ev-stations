@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('firstname',128);
             $table->string('lastname',128);
             $table->string('email',128)->unique();
-            $table->string('username');
+            $table->string('username')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('role_id')->unsigned()->nullable();
@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('alternatecontact')->nullable();
             $table->string('address');
             $table->string('gender');
+            $table->bigInteger('country_id')->unsigned()->nullable();
             $table->bigInteger('state_id')->unsigned()->nullable();
             $table->bigInteger('city_id')->unsigned()->nullable();
             $table->bigInteger('company_id')->unsigned()->nullable();

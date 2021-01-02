@@ -18,10 +18,11 @@ class CreateStatesTable extends Migration
             $table->string('name');
             $table->string('state_slug')->unique();
             $table->bigInteger('statecode')->unique();
-            $table->bigInteger('country_id');
+            $table->bigInteger('country_id')->unsigned()->nullable();
             $table->string('status');
             $table->timestamps();
         });
+      
     }
 
     /**

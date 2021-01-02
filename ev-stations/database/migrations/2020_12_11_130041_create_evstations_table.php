@@ -28,11 +28,11 @@ class CreateEvstationsTable extends Migration
             $table->bigInteger('alternatecontact');
             $table->bigInteger('usagetype');
             $table->bigInteger('automated_status');
-            $table->bigInteger('country_id')->nullable();
-            $table->unsignedInteger('state_id')->nullable();
-            $table->unsignedInteger('city_id')->nullable();
-            $table->unsignedInteger('company_id')->nullable();
-            $table->unsignedInteger('time_slot_id')->nullable();
+            $table->bigInteger('country_id')->unsigned()->nullable();
+            $table->bigInteger('state_id')->unsigned()->nullable();
+            $table->bigInteger('city_id')->unsigned()->nullable();
+            $table->bigInteger('company_id')->unsigned()->nullable();
+            $table->bigInteger('time_slot_id')->unsigned()->nullable();
             $table->text('image')->nullable();
           //  $table->date('join_date')->nullable();
             $table->boolean('status')->nullable();
