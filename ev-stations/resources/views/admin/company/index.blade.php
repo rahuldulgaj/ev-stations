@@ -17,13 +17,13 @@
     <div class="col-lg-12">
 
         <!-- <h1 class="page-header">My Users</h1> -->
-        <h4 class="page-title">Charger Types Management</h4>
+        <h4 class="page-title">Company Management</h4>
     </div>
     <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('chargertype.index')}}">Charger Types</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.company.index')}}">Company</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -42,21 +42,21 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('chargertype.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.company.search')}}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
                     <!-- <label class="col-sm-3 text-right control-label col-form-label"></label> -->
                     <div class="col-sm-8">
-                        <input type="text" name="search" class="form-control" id="firstname" placeholder="Charger Type Name">
+                        <input type="text" name="search" class="form-control" id="firstname" placeholder="Comapny Name">
                     </div>
                 </div>
             </div>
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('chargertype.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('chargertype.create') }}" ><i class="fa fa-plus"> </i>Add Charger Type</a>
+                    <a href="{{route('admin.company.index')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a class="btn btn-md btn-info " href="{{ route('admin.company.create') }}" ><i class="fa fa-plus"> </i>Add Company </a>
                 </div>
             </div>
         </form>
@@ -87,8 +87,6 @@
                     <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sno: activate to sort column descending" style="width: 58px;">Sno</th>
                     <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Name</th>
                     <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Code</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Company</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Image</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Created Date</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 67px;">Status</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 67px;">Action</th>
@@ -99,8 +97,6 @@
                     <tr><th rowspan="1" colspan="1">Sno</th>
                     <th rowspan="1" colspan="1">Name</th>
                     <th rowspan="1" colspan="1">Code</th>
-                    <th rowspan="1" colspan="1">Company</th>
-                    <th rowspan="1" colspan="1">Image</th>
                    <th rowspan="1" colspan="1">Created  Date</th>
                    <th rowspan="1" colspan="1">Status</th>
                    <th rowspan="1" colspan="1">Action</th></tr>
@@ -159,16 +155,14 @@
                     
                     
                     
-                  @foreach($chargertypes as $chargertype)
+                  @foreach($companies as $company)
                  
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
-                                        <td class="sorting_1">{{$chargertype->name}}</td>
-                                        <td class="sorting_1">{{$chargertype->ct_code}}</td>
-                                        <td class="sorting_1">{{$chargertype->ct_company}}</td>
-                                        <td class="sorting_1"><img src="{{ url('storage/uploads/gallery/chargertype/'.$chargertype->image) }}" alt="" title="" /></td>
-                                        <td class="sorting_1">{{$chargertype->created_at}}</td>
-                                        @if($chargertype->status== '1')
+                                        <td class="sorting_1">{{$company->name}}</td>
+                                        <td class="sorting_1">{{$company->companycode}}</td>
+                                        <td class="sorting_1">{{$company->created_at}}</td>
+                                        @if($company->status== '1')
                                             <td>Active</td>
                                         @else
                                             <td>Deactive</td>
@@ -176,13 +170,13 @@
                                         <td>
                                       
  
-                                            <a href="{{route('chargertype.edit',$chargertype->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('chargertype.show',$chargertype->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
+                                            <a href="{{route('admin.company.edit',$company->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{route('admin.company.show',$company->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
-                                            <form id="delete-form-{{ $chargertype->id }}" action="{{route('chargertype.destroy',$chargertype->id)}}" method="put">
+                                            <form id="delete-form-{{ $company->id }}" action="{{route('admin.company.destroy',$company->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="deletePost({{ $chargertype->id }})" class="btn btn-sm btn-danger">Delete</button>
+                                                <button type="button" onclick="deletePost({{ $company->id }})" class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -199,7 +193,7 @@
                 <div class="row"><div class="col-sm-12 col-md-5">
                 <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination">
          <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
-                          {{ $chargertypes->links() }}
+                          {{ $companies->links() }}
                             </a></li>
                </ul></div></div></div></div>
               </div>

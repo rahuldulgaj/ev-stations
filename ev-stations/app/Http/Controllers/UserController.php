@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Brian2694\Toastr\Facades\Toastr;
 use App\User;
 use Carbon\Carbon;
+use App\Role;
 
 use Gate;
 use Illuminate\Http\Request;
@@ -19,15 +20,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        if(!Gate::allows('isAdmin')){
-            abort(401);
-        }
-        // $users = User::withCount(['leave', 'leave as approve_leave_count' => function($query){
-        //     $query->where('is_approved',true);
-        // }])->paginate(15);
-        $users=User::paginate(15);
-
+        // if(!Gate::allows('isAdmin')){
+        //     abort(401);
+        // }
+     
+        $users = User::where('status','1')->paginate(15);
+        
+       // dd($users->hasRole('admin','editor')); // and so on
         return view('admin.user.index',compact('users'));
+
     }
 
     /**

@@ -194,10 +194,18 @@
               </a> 
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{route('profile')}}">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+              @if ( auth()->user()->role->id == 1)
+                <a class="dropdown-item" href="{{route('admin.profile')}}">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
+                @elseif ( auth()->user()->role->id == 2)
+                <a class="dropdown-item" href="{{route('subadmin.profile')}}">
+                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                 </a>
+              
+                @endif
                 <!-- <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings

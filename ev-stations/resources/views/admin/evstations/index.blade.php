@@ -22,7 +22,7 @@
     <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page"><a href="{{route('evstation.index')}}">EV Station</a></li>
                                 </ol>
                             </nav>
@@ -176,10 +176,10 @@
                                         <td>
                                       
  
-                                            <a href="{{route('evstation.edit',$evstation->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('evstation.show',$evstation->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
-                                          
-                                            <form id="delete-form-{{ $evstation->id }}" action="{{route('evstation.destroy',$evstation->id)}}" method="put">
+                                <a href="{{route('evstation.edit',$evstation->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{route('evstation.show',$evstation->id)}}" class="btn btn-success btn-sm waves-effect">View</a>
+                                <a href="{{route('evstation.show',$evstation->id)}}" class="btn btn-success btn-sm waves-effect">Add Slot</a>
+                                <form id="delete-form-{{ $evstation->id }}" action="{{route('evstation.destroy',$evstation->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $evstation->id }})" class="btn btn-sm btn-danger">Delete</button>

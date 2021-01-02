@@ -22,8 +22,8 @@
     <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('chargertype.index')}}">Charger Types</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.chargertype.index')}}">Charger Types</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -42,7 +42,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('chargertype.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.chargertype.search')}}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
@@ -55,8 +55,8 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('chargertype.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('chargertype.create') }}" ><i class="fa fa-plus"> </i>Add Charger Type</a>
+                    <a href="{{route('admin.chargertype.index')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a class="btn btn-md btn-info " href="{{ route('admin.chargertype.create') }}" ><i class="fa fa-plus"> </i>Add Charger Type</a>
                 </div>
             </div>
         </form>
@@ -176,10 +176,10 @@
                                         <td>
                                       
  
-                                            <a href="{{route('chargertype.edit',$chargertype->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('chargertype.show',$chargertype->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
+                                            <a href="{{route('admin.chargertype.edit',$chargertype->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{route('admin.chargertype.show',$chargertype->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
-                                            <form id="delete-form-{{ $chargertype->id }}" action="{{route('chargertype.destroy',$chargertype->id)}}" method="put">
+                                            <form id="delete-form-{{ $chargertype->id }}" action="{{route('admin.chargertype.destroy',$chargertype->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $chargertype->id }})" class="btn btn-sm btn-danger">Delete</button>

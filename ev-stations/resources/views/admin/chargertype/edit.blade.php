@@ -20,8 +20,8 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('chargertype.index')}}">User</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.chargertype.index')}}">User</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('chargertype.update',$chargertypes->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.chargertype.update',$chargertypes->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
                          

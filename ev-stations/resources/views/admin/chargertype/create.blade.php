@@ -21,8 +21,8 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('chargertype.index')}}">Charger Types</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.chargertype.index')}}">Charger Types</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                        <form action="{{route('chargertype.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.chargertype.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->

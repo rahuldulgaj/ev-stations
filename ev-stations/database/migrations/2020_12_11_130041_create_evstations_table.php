@@ -16,8 +16,8 @@ class CreateEvstationsTable extends Migration
         Schema::create('evstations', function (Blueprint $table) {
             $table->id();
             $table->string('name',128);
-            $table->string('evs_slug',128);
-            $table->string('evs_code',128);
+            $table->string('evslug',128);
+            $table->string('evcode',128);
             $table->string('ownername',128);
             $table->string('address',128)->unique();
             $table->string('username');
@@ -26,12 +26,13 @@ class CreateEvstationsTable extends Migration
             $table->string('lat_lang')->nullable();
             $table->bigInteger('mobile')->unique();
             $table->bigInteger('alternatecontact');
-            $table->string('usagetype');
-            $table->string('automated_status');
-            $table->string('country_id')->nullable();
-            $table->string('state_id')->nullable();
-            $table->string('city_id')->nullable();
-            $table->string('company_id')->nullable();
+            $table->bigInteger('usagetype');
+            $table->bigInteger('automated_status');
+            $table->bigInteger('country_id')->nullable();
+            $table->unsignedInteger('state_id')->nullable();
+            $table->unsignedInteger('city_id')->nullable();
+            $table->unsignedInteger('company_id')->nullable();
+            $table->unsignedInteger('time_slot_id')->nullable();
             $table->text('image')->nullable();
           //  $table->date('join_date')->nullable();
             $table->boolean('status')->nullable();

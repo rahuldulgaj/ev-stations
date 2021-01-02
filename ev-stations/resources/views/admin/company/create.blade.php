@@ -21,8 +21,8 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('chargertype.index')}}">Charger Types</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.company.index')}}">Company</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -36,38 +36,29 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                        <form action="{{route('chargertype.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.company.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Charger Name</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Company Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Charger Type Name">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Company Name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Charger Type Code</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Company Code</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="ct_code" class="form-control" id="ct_code" placeholder="Enter Chargertype Code">
+                                        <input type="text" name="companycode" class="form-control" id="companycode" placeholder="Enter Company Code">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">Charger Type Company</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="ct_company" class="form-control" id="ct_company" placeholder="Enter Chargertype Company Code">
+                                        <input type="text" name="ct_company" class="form-control" id="ct_company" placeholder="Enter Company Code">
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">File Upload</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-file">
-                                            <input type="file" name="image" class="custom-file-input ">
-                                            <label class="custom-file-label">Choose file...</label>
-                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> -->
+                              
                               
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>

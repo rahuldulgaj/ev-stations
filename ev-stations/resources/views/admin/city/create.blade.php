@@ -22,8 +22,8 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('city.index')}}">City</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.city.index')}}">City</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                        <form action="{{route('city.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.city.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
 
 
@@ -45,7 +45,7 @@
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
 
-                                @livewire('country-state')
+                                @livewire('country-state',['country', 'state'])
                                 <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">City Name</label>
                                     <div class="col-sm-9">

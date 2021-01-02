@@ -20,8 +20,8 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('chargertype.index')}}">User</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.company.index')}}">Company</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -32,49 +32,38 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('chargertype.update',$chargertypes->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.company.update',$company->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
                          
                             <div class="card-body">
-                                <h4 class="card-title">ADD State</h4>
-
-                                
+                                <!-- <h4 class="card-title">ADD Company</h4> -->
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Charger Name</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Company Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" id="chargertype" value="{{$chargertypes->name}}" >
+                                        <input type="text" name="name" class="form-control" id="chargertype" value="{{$company->name}}" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Charger Code</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Company Code</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="ct_code" class="form-control" id="ct_code" value="{{$chargertypes->ct_code}}" >
+                                        <input type="text" name="companycode" class="form-control" id="companycode" value="{{$company->companycode}}" >
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">Charger Company</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="ct_company" class="form-control" id="ct_company" value="{{$chargertypes->ct_company}}" >
+                                        <input type="text" name="ct_company" class="form-control" id="ct_company" value="{{$company->ct_company}}" >
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">File Upload</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-file">
-                                            <input type="file" name="image" value="{{$chargertypes->image}}" class="custom-file-input ">
-                                            <label class="custom-file-label">Choose file...</label>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                </div> -->
+                              
 
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
                                     <div class="col-sm-9">
                                         <select type="text" name="status" class="form-control" id="status" placeholder="Status">
-                                            <option value="1" {{ $chargertypes->status=='1' ? 'selected' : '' }}>Active</option>
-                                            <option value="2" {{ $chargertypes->status=='2' ? 'selected' : '' }}>Deactive</option>
+                                            <option value="1" {{ $company->status=='1' ? 'selected' : '' }}>Active</option>
+                                            <option value="2" {{ $company->status=='2' ? 'selected' : '' }}>Deactive</option>
                                         </select>
                                     </div>
                                     </div>

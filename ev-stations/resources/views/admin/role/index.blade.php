@@ -22,8 +22,8 @@
     <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('role.index')}}">Role</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.role.index')}}">Role</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -42,7 +42,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('role.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.role.search')}}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
@@ -55,8 +55,8 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('role.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('role.create') }}" ><i class="fa fa-plus"> </i>Add Role</a>
+                    <a href="{{route('admin.role.index')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a class="btn btn-md btn-info " href="{{ route('admin.role.create') }}" ><i class="fa fa-plus"> </i>Add Role</a>
                 </div>
             </div>
         </form>
@@ -157,7 +157,7 @@
                  
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
-                                        <td class="sorting_1">{{$role->rolename}}</td>
+                                        <td class="sorting_1">{{$role->name}}</td>
                                         <td class="sorting_1">{{$role->created_at}}</td>
                                         @if($role->status== '1')
                                             <td>Active</td>
@@ -166,8 +166,8 @@
                                          @endif
                                         <td>
                                             
-                                            <a href="{{route('role.edit',$role->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('role.show',$role->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
+                                            <a href="{{route('admin.role.edit',$role->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{route('admin.role.show',$role->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
                                             <form id="delete-form-{{ $role->id }}" action="{{route('user.delete',$role->id)}}" method="put">
                                                 @csrf

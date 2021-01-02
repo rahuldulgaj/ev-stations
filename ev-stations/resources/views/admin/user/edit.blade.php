@@ -20,7 +20,7 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page"><a href="{{route('user')}}">User</a></li>
                             </ol>
                         </nav>
@@ -32,9 +32,9 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('user.update',$user->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                            @csrf
-                            {{--@method('PUT')--}}
+                        <form action="{{route('admin.user.update',$user->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        @csrf
+                            {{ method_field('PUT') }}
                             <div class="card-body">
                                 <h4 class="card-title">ADD USER</h4>
 
@@ -117,15 +117,15 @@
                                   
                                     <label for="state" class="col-sm-2 text-right control-label col-form-label">State</label>
                                     <div class="col-sm-2">
-                                        <input type="text"  name="state" class="form-control" id="state" value="{{$user->state}}">
+                                        <input type="text"  name="state_id" class="form-control" id="state" value="{{$user->state->id}}">
                                     </div>
                                     <label for="lname" class="col-sm-2 text-right control-label col-form-label">City</label>
                                     <div class="col-sm-2">
-                                        <input type="text"  name="city" class="form-control" id="city" value="{{$user->city}}">
+                                        <input type="text"  name="city_id" class="form-control" id="city" value="{{$user->city->id}}">
                                     </div>
                                     <label for="lname" class="col-sm-2 text-right control-label col-form-label">Company Name</label>
                                     <div class="col-sm-2">
-                                        <input type="text"  name="company" class="form-control" id="company" value="{{$user->company}}">
+                                        <input type="text"  name="company_id" class="form-control" id="company" value="{{$user->company->id}}">
                                     </div>
                                    
                                 </div>
@@ -141,18 +141,18 @@
                                     <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role</label>
                                     <div class="col-sm-9">
-                                        <select type="text" name="role" class="form-control" id="lname">
-                                            <option  value="admin" {{ $user->role=='admin' ? 'selected' : '' }}>Admin</option>
-                                            <option value="employee" {{ $user->role=='employee' ? 'selected' : '' }}>Employee</option>
+                                        <select type="text" name="role_id" class="form-control" id="lname">
+                                            <option  value="1" {{ $user->role_id=='1' ? 'selected' : '' }}>Admin</option>
+                                            <option value="2" {{ $user->role_id=='2' ? 'selected' : '' }}>Sub Admin</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="joindate" class="col-sm-3 text-right control-label col-form-label">Join date</label>
                                     <div class="col-sm-9">
                                         <input type="date" name="join_date" class="form-control" id="join_date" value="{{$user->join_date}}">
                                     </div>
-                                </div>
+                                </div> -->
                                 </div>
                             
                             <div class="border-top">

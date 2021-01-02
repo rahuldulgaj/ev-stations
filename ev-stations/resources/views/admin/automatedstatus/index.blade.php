@@ -22,8 +22,8 @@
     <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('automatedstatus.index')}}">Automatedstatus</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.automatedstatus.index')}}">Automatedstatus</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -42,7 +42,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('automatedstatus.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.automatedstatus.search')}}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
@@ -55,8 +55,8 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('automatedstatus.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('automatedstatus.create') }}" ><i class="fa fa-plus"> </i>Add Status</a>
+                    <a href="{{route('admin.automatedstatus.index')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a class="btn btn-md btn-info " href="{{ route('admin.automatedstatus.create') }}" ><i class="fa fa-plus"> </i>Add Status</a>
                 </div>
             </div>
         </form>
@@ -166,9 +166,9 @@
                                          @endif
                                         <td>
                                        
-                                <a href="{{route('automatedstatus.edit',$automated->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{route('automatedstatus.show',$automated->id)}}" class="btn btn-success btn-sm waves-effect">View</a>
-                                 <form id="delete-form-{{ $automated->id }}" action="{{route('automatedstatus.destroy', $automated->id)}}" method="put">
+                                <a href="{{route('admin.automatedstatus.edit',$automated->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{route('admin.automatedstatus.show',$automated->id)}}" class="btn btn-success btn-sm waves-effect">View</a>
+                                 <form id="delete-form-{{ $automated->id }}" action="{{route('admin.automatedstatus.destroy', $automated->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $automated->id }})" class="btn btn-sm btn-danger">Delete</button>

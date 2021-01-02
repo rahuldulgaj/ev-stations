@@ -17,7 +17,15 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-  <a class="nav-link" href="{{route('dashboard')}}">
+@if ( auth()->user()->role->id == 1)
+  <a class="nav-link" href="{{route('admin.dashboard')}}">
+  @endif
+  @if ( auth()->user()->role->id == 2)
+  <a class="nav-link" href="{{route('subadmin.dashboard')}}">
+  @endif
+  @if ( auth()->user()->role->id == 3)
+  <a class="nav-link" href="{{route('agent.dashboard')}}">
+  @endif
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Dashboard</span></a>
 </li>
@@ -29,8 +37,7 @@
 <div class="sidebar-heading">
   Interface
 </div>
-@can('isAdmin')
-
+@if ( auth()->user()->role->id == 1)
 <!-- Nav Item - Pages Collapse Menu -->
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -40,16 +47,17 @@
   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">User Management</h6>
-      <a class="collapse-item" href="{{route('user')}}">User</a>
+      <a class="collapse-item" href="{{route('admin.user.index')}}">User</a>
 <!-- 
       <a class="collapse-item" href="buttons.html">Buttons</a>
       <a class="collapse-item" href="cards.html">Cards</a> -->
     </div>
   </div>
-</li>  
-                @endcan
-                @can('isAdmin')
+</li> 
 
+                @endif
+
+                @if ( auth()->user()->role->id == 1)
 <!-- Nav Item - Pages Collapse Menu -->
   {{-- <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwos" aria-expanded="true" aria-controls="collapseTwos">
@@ -59,20 +67,16 @@
   <div id="collapseTwos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Employee Management</h6>
-      <a class="collapse-item" href="{{route('user')}}">User</a>
+      <a class="collapse-item" href="{{route('admin.user.index')}}">User</a>
 <!-- 
       <a class="collapse-item" href="buttons.html">Buttons</a>
       <a class="collapse-item" href="cards.html">Cards</a> -->
     </div>
   </div>
 </li>  --}}
-                @endcan
-
-
-
-
-                @can('isAdmin')
-
+@endif
+               
+                @if ( auth()->user()->role->id == 1)
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -82,21 +86,20 @@
   <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">System management:</h6>
-      <a class="collapse-item" href="{{route('role.index')}}">Role</a>
-     <a class="collapse-item" href="{{route('company.index')}}">Company</a>
-      <a class="collapse-item" href="{{route('country.index')}}">Country</a>
-      <a class="collapse-item" href="{{route('state.index')}}">State</a>
-      <a class="collapse-item" href="{{route('city.index')}}">City</a>
-      <a class="collapse-item" href="{{route('chargertype.index')}}">Charger Type</a>
-      <a class="collapse-item" href="{{route('automatedstatus.index')}}">Automated Type</a>
+      <a class="collapse-item" href="{{route('admin.role.index')}}">Role</a>
+     <a class="collapse-item" href="{{route('admin.company.index')}}">Company</a>
+      <a class="collapse-item" href="{{route('admin.country.index')}}">Country</a>
+      <a class="collapse-item" href="{{route('admin.state.index')}}">State</a>
+      <a class="collapse-item" href="{{route('admin.city.index')}}">City</a>
+      <a class="collapse-item" href="{{route('admin.chargertype.index')}}">Charger Type</a>
+      <a class="collapse-item" href="{{route('admin.automatedstatus.index')}}">Automated Type</a>
 
       <!-- <a class="collapse-item" href="#">Shift</a> -->
 
     </div>
   </div>
 </li>
-@endcan
-
+@endif
 
 <hr class="sidebar-divider">
 
@@ -112,11 +115,14 @@
   <div id="collapseUtilities_ev_station" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">EV Station</h6>
-      @can('isAdmin')
-      <a class="collapse-item" href="{{route('evstation.index')}}">EV Station</a>
-      @endcan
-
-      <!-- <a class="collapse-item"  href="{{route('evstation.index')}}"> EV</a> -->
+     
+      @if ( auth()->user()->role->id == 1)
+      <a class="collapse-item" href="{{route('admin.evstation.index')}}">EV Station</a>
+      @endif
+      @if ( auth()->user()->role->id == 2)
+      <a class="collapse-item" href="{{route('admin.evstation.index')}}">EV Station</a>
+      @endif
+      <!-- <a class="collapse-item"  href="{{route('admin.evstation.index')}}"> EV</a> -->
     
 
     </div>
@@ -137,10 +143,11 @@
   <div id="collapseUtilities_leave" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Connector Management:</h6>
+      @if ( auth()->user()->role->id == 2)
       @can('isEmployee')
       <a class="collapse-item" href="#">Apply Connector</a>
       @endcan
-
+      @endif
       <a class="collapse-item"  href="#">Connector list</a>
       <a class="collapse-item"  href="#">Leave Calender</a>
 
@@ -169,10 +176,11 @@
   <div id="collapseUtilities_event" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Connector Management:</h6>
+      @if ( auth()->user()->role->id == 1)
       @can('isAdmin')
       <a class="collapse-item" href="#">Create Connector </a>
       @endcan
-
+      @endif
       <a class="collapse-item"  href="#"> Connector</a>
     
 
@@ -180,6 +188,7 @@
   </div>
 </li>
 <hr class="sidebar-divider">
+@if ( auth()->user()->role->id == 1)
 @can('isAdmin')
 
 <!-- Nav Item - Utilities Collapse Menu -->
@@ -200,7 +209,7 @@
   </div>
 </li>
 @endcan
-
+@endif
 
 <!-- Heading -->
 <!-- <div class="sidebar-heading">

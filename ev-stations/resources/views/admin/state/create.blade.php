@@ -21,8 +21,8 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('state.index')}}">State</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.state.index')}}">State</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -36,10 +36,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                        <form action="{{route('state.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.state.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
+                                <div class="form-group row">
+                 
+                 <label class="col-sm-3 text-right control-label col-form-label">Select Country</label>
+                           <div class="col-sm-9">
+                             <select name="country_id" class="form-control show-tick">
+                                 <option value="" disabled selected>Choose Country</option>
+                                 @foreach($countrylist as $country)
+                                     <option value="{{$country->id}}">{{$country->name}}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                         </div>
                                 <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">State Name</label>
                                     <div class="col-sm-9">
@@ -53,18 +65,7 @@
                                     </div>
                                 </div>
                                
-                                <div class="form-group row">
-                 
-                    <label class="col-sm-3 text-right control-label col-form-label">Select Country</label>
-                              <div class="col-sm-9">
-                                <select name="country_id" class="form-control show-tick">
-                                    <option value="" disabled selected>Choose Country</option>
-                                    @foreach($countrylist as $country)
-                                        <option value="{{$country->id}}">{{$country->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            </div>
+                               
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
                                     <div class="col-sm-9">

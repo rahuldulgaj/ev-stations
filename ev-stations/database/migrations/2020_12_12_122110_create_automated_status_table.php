@@ -16,6 +16,7 @@ class CreateAutomatedStatusTable extends Migration
         Schema::create('automated_status', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->boolean('status')->nullable();
             $table->timestamps();
         });

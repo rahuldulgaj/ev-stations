@@ -22,8 +22,8 @@
     <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('country.index')}}">Country</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.country.index')}}">Country</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -42,7 +42,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('country.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.country.search')}}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
@@ -55,8 +55,8 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('country.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('country.create') }}" ><i class="fa fa-plus"> </i>Add country</a>
+                    <a href="{{route('admin.country.index')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a class="btn btn-md btn-info " href="{{ route('admin.country.create') }}" ><i class="fa fa-plus"> </i>Add country</a>
                 </div>
             </div>
         </form>
@@ -170,10 +170,10 @@
                                         <td>
                                       
  
-                                            <a href="{{route('country.edit',$country->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('country.show',$country->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
+                                            <a href="{{route('admin.country.edit',$country->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{route('admin.country.show',$country->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
-                                            <form id="delete-form-{{ $country->id }}" action="{{route('country.destroy',$country->id)}}" method="put">
+                                            <form id="delete-form-{{ $country->id }}" action="{{route('admin.country.destroy',$country->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $country->id }})" class="btn btn-sm btn-danger">Delete</button>

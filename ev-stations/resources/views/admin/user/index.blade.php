@@ -5,7 +5,6 @@
 @section('content')
  <!-- Begin Page Content -->
  <div class="container-fluid">
-
 <!-- Page Heading -->
 <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">Users</h1>
@@ -22,8 +21,8 @@
     <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('user')}}">User</a></li>
+                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.user.index')}}">User</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -55,8 +54,8 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('user')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('user.create') }}" ><i class="fa fa-plus"> </i>Add User</a>
+                    <a href="{{route('admin.user.index')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a class="btn btn-md btn-info " href="{{ route('admin.user.create') }}" ><i class="fa fa-plus"> </i>Add User</a>
                 </div>
             </div>
         </form>
@@ -95,7 +94,7 @@
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="State: activate to sort column ascending" style="width: 31px;">State</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="City: activate to sort column ascending" style="width: 31px;">City</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Company: activate to sort column ascending" style="width: 31px;">Company</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Joining date</th>
+                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Create Date</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 67px;">Status</th>
                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 67px;">Action</th>
                     </tr>
@@ -112,9 +111,9 @@
                     <th rowspan="1" colspan="1">State</th>
                     <th rowspan="1" colspan="1">City</th>
                     <th rowspan="1" colspan="1">Company</th>
-                   <th rowspan="1" colspan="1">Joining  date</th>
-                   <th rowspan="1" colspan="1">Status</th>
-                   <th rowspan="1" colspan="1">Action</th></tr>
+                    <th rowspan="1" colspan="1">Create Date</th>
+                    <th rowspan="1" colspan="1">Status</th>
+                    <th rowspan="1" colspan="1">Action</th></tr>
                   </tfoot>
                   <tbody>
                     
@@ -168,8 +167,7 @@
                     
                     
                     
-                    
-                    
+                       
                   @foreach($users as $user)
                   <?php $userslug  = str_slug($user->username);?>
                                     <tr role="row" class="odd">
@@ -178,12 +176,12 @@
                                         <td class="sorting_1">{{$user->lastname}}</td>
                                         <td class="sorting_1">{{$user->username}}</td>
                                         <td><img src="{{ asset('uploads/gallery/'.$userslug.'/'. $user->image) }}" width="80px" height="80px" alt="Image"> </td>
-                                        <td>{{$user->role}}</td>
+                                        <td>{{$user->role->name}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>{{$user->state}}</td>
-                                        <td>{{$user->city}}</td>
-                                        <td>{{$user->company}}</td>
-                                        <td>{{$user->join_date}}</td>
+                                        <td>{{$user->state->name}}</td>
+                                        <td>{{$user->city->name}}</td>
+                                        <td>{{$user->company->name}}</td>
+                                        <td>{{$user->created_at}}</td>
 
                                         @if($user->status== '1')
                                             <td>Active</td>
@@ -192,8 +190,8 @@
                                          @endif
                                         <td>
                                             
-                                            <a href="{{route('user.edit',$user->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('user.show',$user->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
+                                            <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{route('admin.user.show',$user->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
                                             <form id="delete-form-{{ $user->id }}" action="{{route('user.delete',$user->id)}}" method="put">
                                                 @csrf
@@ -221,7 +219,5 @@
               </div>
             </div>
           </div>
+          
 @endsection
-
-
-

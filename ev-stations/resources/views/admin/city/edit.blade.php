@@ -21,8 +21,8 @@
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('city.index')}}">User</a></li>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.city.index')}}">User</a></li>
                             </ol>
                         </nav>
                     </div>
@@ -33,14 +33,17 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('city.update',$city->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.city.update',$city->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
                       
                             <div class="card-body">
                                 <h4 class="card-title">ADD CITY</h4>
-                                @livewire('country-state',['city'=>$city])
-                               
+             
+
+                                <div class="flex flex-col justify-around h-full">
+    @livewire('country-state', ['country'=>$city->country_id , 'state'=>$city->state_id])
+</div>
                                 <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">City Name</label>
                                     <div class="col-sm-9">

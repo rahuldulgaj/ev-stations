@@ -10,36 +10,47 @@ use App\State;
 
 class CountryState extends Component
 {
-    public $countries;
+   
     public $states;
     public $cities;
- 
+    public $city;
+    public $country;
+    public $state;
 
 
     public $selectedCountry = NULL;
     public $selectedState = NULL;
 
-    public function mount()
+    // public function mount()
+    // {
+    //     $this->countries = Country::all();
+    //     $this->states = collect();
+    //     $this->cities = collect();
+        
+    // }
+    public function mount($country, $state)
     {
-        $this->countries = Country::all();
-        $this->states = collect();
-        $this->cities = collect();
-      
+       
+        //$this->countries= Country::where('id', $this->country)->get();
+        $this->country=$country;
+        $this->state=$state;
     }
 
+    
     public function render()
     {
         if(!empty($this->country)) {
-            $this->cities = City::where('country_id', $this->country)->get();
+            $this->states = State::where('country_id', $this->country)->get();
         }
-        return view('livewire.country-state');
+        return view('livewire.country-state')
+            ->withCountries(Country::orderBy('name')->get());
     }
 
-    public function updatedSelectedCountry($country)
-    {
-        $this->states = State::where('country_id', $country)->get();
-        $this->selectedState = NULL;
-    }
+    // public function updatedSelectedCountry($country)
+    // {
+    //     $this->states = State::where('country_id', $country)->get();
+    //     $this->selectedState = NULL;
+    // }
 
     // public function updatedSelectedState($state)
     // {
