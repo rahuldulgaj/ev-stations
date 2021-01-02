@@ -22,8 +22,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->bigInteger('role_id')->unsigned()->nullable();
-         
-          //  $table->boolean('role_id')->nullable();
             $table->boolean('status')->nullable();
             $table->bigInteger('mobile')->unique();
             $table->bigInteger('alternatecontact')->nullable();
@@ -35,17 +33,10 @@ class CreateUsersTable extends Migration
             $table->text('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
+           
          
         });
-       Schema::table('users', function($table) {
-            //FORE IGN KEY CONSTRAINTS
-           // $table->foreign('role_id')->references('id')->on('roles')->unsigned();
-           $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
-            $table->foreign('state_id')->references('id')->on('states')->unsigned()->onDelete('cascade');
-            $table->foreign('city_id')->references('id')->on('cities')->unsigned()->onDelete('cascade');
-            $table->foreign('company_id')->references('id')->on('companies')->unsigned()->onDelete('cascade');
-        });
+
       
     }
 
@@ -56,9 +47,10 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function($table) {
-            $table->dropIfExists('users');
-            $table->dropIfExists('users_role_id_foreign');
+        Schema::table('users', function(Blueprint $table)
+    {
+        $table->dropForeign('users_role_id_foreign'); 
     });
+    Schema::dropIfExists('users');
 }
 }

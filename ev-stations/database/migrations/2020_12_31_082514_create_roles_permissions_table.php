@@ -21,16 +21,13 @@ class CreateRolesPermissionsTable extends Migration
 
             //SETTING THE PRIMARY KEYS
             $table->primary(['role_id','permission_id']);
-
-          
         });
         Schema::table('roles_permissions', function($table) {
             //FOREIGN KEY CONSTRAINTS
        $table->foreign('role_id')->references('id')->on('roles');
        $table->foreign('permission_id')->references('id')->on('permissions');
-
-           
        });
+
     }
 
     /**

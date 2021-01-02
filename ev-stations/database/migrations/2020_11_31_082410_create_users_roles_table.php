@@ -21,13 +21,7 @@ class CreateUsersRolesTable extends Migration
          //SETTING THE PRIMARY KEYS
            $table->primary(['user_id','role_id']);
         });
-        Schema::table('users_roles', function($table) {
-            //FOREIGN KEY CONSTRAINTS
-            $table->foreign('user_id')->references('id')->on('users')->unsigned()->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles')->unsigned()->onDelete('cascade');
- 
-            
-        });
+
     }
 
     /**
