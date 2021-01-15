@@ -6,6 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Amenities;
 use Illuminate\Http\Request;
 
+use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 class AmenitiesController extends Controller
 {
     /**
@@ -47,25 +53,26 @@ class AmenitiesController extends Controller
             'image'     => 'required|image|mimes:jpeg,jpg,png'
     ]);
         
-      
+    $image = $request->file('image');
+    $slug =str_slug($request->name);
+    if(isset($image)){
+        $currentDate = Carbon::now()->toDateString();
+        $imagecs = 'amenities-'.$slug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+        if(!Storage::disk('public')->exists('amenities')){
+            Storage::disk('public')->makeDirectory('amenities');
+        }
+        $amenitiesimg = Image::make($image)->resize(150,150)->stream();
+        Storage::disk('public')->put('amenities/'.$imagecs, $amenitiesimg);
+
+    }else{
+        $imagecs = 'default.png';
+    }
         $amenities = new Amenities();
         $amenities->name = $request->name; 
         $amenities->status = $request->status;
-        $amenities->slug= str_slug($request->name);
-        $image = $request->file('image');
-        if(isset($image)){
-            $currentDate = Carbon::now()->toDateString();
-            $imagecs = 'amenities-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-
-            if(!Storage::disk('public')->exists('amenities')){
-                Storage::disk('public')->makeDirectory('amenities');
-            }
-            $amenitiesimg = Image::make($image)->resize(150,150)->stream();
-            Storage::disk('public')->put('amenities/'.$imagecs, $amenitiesimg);
-
-        }else{
-            $imagecs = 'default.png';
-        }
+        $amenities->slug= $slug;
+        $amenities->image    = $imagecs;
         $amenities-> save();
         Toastr::success('Amenities successfully added!','Success');
         return redirect()->route('admin.amenities.index');
@@ -90,9 +97,11 @@ class AmenitiesController extends Controller
      * @param  \App\Amenities  $amenities
      * @return \Illuminate\Http\Response
      */
-    public function edit(Amenities $amenities)
+    public function edit($id)
     {
         //
+        $amenities =  Amenities::find($id);
+        return view('admin.amenities.edit',compact('amenities'));
     }
 
     /**
@@ -102,9 +111,38 @@ class AmenitiesController extends Controller
      * @param  \App\Amenities  $amenities
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Amenities $amenities)
+    public function update(Request $request, $id)
     {
         //
+        $request -> validate([
+            'name' => 'required|max:255',
+            'status' => 'required',
+            'image'     => 'required|image|mimes:jpeg,jpg,png'
+    ]);
+        
+     $image = $request->file('image');
+     $slug =str_slug($request->name);
+    if(isset($image)){
+        $currentDate = Carbon::now()->toDateString();
+        $imagecs = 'amenities-'.$slug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+        if(!Storage::disk('public')->exists('amenities')){
+            Storage::disk('public')->makeDirectory('amenities');
+        }
+        $amenitiesimg = Image::make($image)->resize(150,150)->stream();
+        Storage::disk('public')->put('amenities/'.$imagecs, $amenitiesimg);
+
+    }else{
+        $imagecs = $amenities->image;
+    }
+        $amenities = Amenities::find($id);
+        $amenities->name = $request->name; 
+        $amenities->status = $request->status;
+        $amenities->slug= $slug;
+        $amenities->image    = $imagecs;
+        $amenities-> save();
+        Toastr::success('Amenities successfully added!','Success');
+        return redirect()->route('admin.amenities.index');
     }
 
     /**
@@ -113,8 +151,17 @@ class AmenitiesController extends Controller
      * @param  \App\Amenities  $amenities
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Amenities $amenities)
+    public function destroy($id)
     {
         //
+        $amenities =  Amenities::find($id);
+        $amenities -> delete();
+        Toastr::error('Amenities successfully deleted!','Deleted');
+        return redirect()->route('admin.amenities.index');
+    }
+
+    public function search(Request $request){
+        $amenities =Amenities::where('name', 'LIKE',"%{$request->search}%")->paginate();
+        return view('admin.amenities.index',compact('amenities'));
     }
 }

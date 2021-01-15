@@ -24,8 +24,8 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active"><a href="{{route('admin.brand.index')}}">Brand</a></li>
-                  <li class="breadcrumb-item  active" aria-current="page">Brand</li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.amenities.index')}}">Amenities</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">Amenities</li>
                 </ol>
               </nav>
             </div>
@@ -42,31 +42,39 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('admin.brand.update',$brand->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.amenities.update',$amenities->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
                          
                             <div class="card-body">
                                 <!-- <h4 class="card-title">ADD Company</h4> -->
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Brand Name</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Amenities Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" id="brandname" value="{{$brand->name}}" >
+                                        <input type="text" name="name" class="form-control" id="name" value="{{$amenities->name}}" >
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Brand Code</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="brandcode" class="form-control" id="brandcode" value="{{$brand->brandcode}}" >
+                                <div class="col-md-3">
+                                @if(Storage::disk('public')->exists('amenities/'.$amenities->image) && $amenities->image)
+                  <img src="{{Storage::url('amenities/'.$amenities->image)}}" alt="Circle image" class="img-fluid rounded-circle shadow" style="width: 60px;">
+                  @endif
+                </div>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                    <input type="file" name="image" class="custom-file-input " value="{{ $amenities->image}}">
+                                            <label class="custom-file-label">{{ $amenities->image}}</label>
+                                        </div>
                                     </div>
                                 </div>
+
 
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
                                     <div class="col-sm-9">
                                         <select type="text" name="status" class="form-control" id="status" placeholder="Status">
-                                            <option value="1" {{ $brand->status=='1' ? 'selected' : '' }}>Active</option>
-                                            <option value="2" {{ $brand->status=='2' ? 'selected' : '' }}>Deactive</option>
+                                            <option value="1" {{ $amenities->status=='1' ? 'selected' : '' }}>Active</option>
+                                            <option value="2" {{ $amenities->status=='2' ? 'selected' : '' }}>Deactive</option>
                                         </select>
                                     </div>
                                     </div>

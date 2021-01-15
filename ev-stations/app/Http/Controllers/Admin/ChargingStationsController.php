@@ -100,6 +100,22 @@ class ChargingStationsController extends Controller
               'image'     => 'required|image|mimes:jpeg,jpg,png',
               'numbers_of_ports'=>'required',
         ]);
+
+        $image = $request->file('image');
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagecs = 'chargingstations-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('chargingstations')){
+                Storage::disk('public')->makeDirectory('chargingstations');
+            }
+            $chargingstationsimg = Image::make($image)->resize(150,150)->stream();
+            Storage::disk('public')->put('chargingstations/'.$imagecs, $chargingstationsimg);
+
+        }else{
+            $imagecs = 'default.png';
+        }
+
         $chargingstation = new ChargingStations();
         $chargingstation->name =   $request->name; 
         $chargingstation->status = $request->status;
@@ -127,25 +143,8 @@ class ChargingStationsController extends Controller
         $chargingstation->usagetype_id =$request->usagetype_id;
         $chargingstation->alternatecontact =$request->alternatecontact;
         $chargingstation->address =$request->address;
-        $image = $request->file('image');
-        if(isset($image)){
-            $currentDate = Carbon::now()->toDateString();
-            $imagecs = 'chargingstations-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-
-            if(!Storage::disk('public')->exists('chargingstations')){
-                Storage::disk('public')->makeDirectory('chargingstations');
-            }
-            $chargingstationsimg = Image::make($image)->resize(150,150)->stream();
-            Storage::disk('public')->put('chargingstations/'.$imagecs, $chargingstationsimg);
-
-        }else{
-            $imagecs = 'default.png';
-        }
-
+        $chargingstation->image    = $chargingstationsimg;
       
-
-
-       
         $chargingstation-> save();
       //  $chargingstation->connector()->sync([$request->price,$request->connector_type_id]);
 

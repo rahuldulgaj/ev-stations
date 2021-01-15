@@ -53,27 +53,27 @@ class BrandTypeController extends Controller
             'brandcode' => 'required|unique:brand_types|max:255',
             'image'     => 'required|image|mimes:jpeg,jpg,png'
     ]);
-        
+    $image = $request->file('image');
+    if(isset($image)){
+        $currentDate = Carbon::now()->toDateString();
+        $imagebrand = 'brand-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+        if(!Storage::disk('public')->exists('brand')){
+            Storage::disk('public')->makeDirectory('brand');
+        }
+        $brandimg = Image::make($image)->resize(150,150)->stream();
+        Storage::disk('public')->put('brand/'.$imagebrand, $brandimg);
+
+    }else{
+        $imagebrand = 'default.png';
+    }
       
         $brandtype = new BrandType();
         $brandtype->name = $request->name; 
         $brandtype->status = $request->status;
         $brandtype->brandcode = $request->brandcode;
         $brandtype->slug= str_slug($request->name);
-        $image = $request->file('image');
-        if(isset($image)){
-            $currentDate = Carbon::now()->toDateString();
-            $imagecs = 'brand-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-
-            if(!Storage::disk('public')->exists('brand')){
-                Storage::disk('public')->makeDirectory('brand');
-            }
-            $brandimg = Image::make($image)->resize(150,150)->stream();
-            Storage::disk('public')->put('brand/'.$imagecs, $brandimg);
-
-        }else{
-            $imagecs = 'default.png';
-        }
+        $brandtype->image = $request->imagebrand;
         $brandtype-> save();
         Toastr::success('Brandtype successfully added!','Success');
         return redirect()->route('admin.brand.index');
@@ -125,26 +125,28 @@ class BrandTypeController extends Controller
 
 
     ]);
-        
-        $brandtype = BrandType::find($id);
+
+    $brandtype = BrandType::find($id);
+    $image = $request->file('image');
+    if(isset($image)){
+        $currentDate = Carbon::now()->toDateString();
+        $imagecs = 'brand-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+        if(!Storage::disk('public')->exists('brand')){
+            Storage::disk('public')->makeDirectory('brand');
+        }
+        $brandimg = Image::make($image)->resize(150,150)->stream();
+        Storage::disk('public')->put('brand/'.$imagecs, $brandimg);
+
+    }else{
+        $imagecs = $brandtype->image;
+    }
+      
         $brandtype->name = $request->name; 
         $brandtype->status = $request->status;
         $brandtype->brandcode = $request->brandcode;
         $brandtype->slug= str_slug($request->name);
-        $image = $request->file('image');
-        if(isset($image)){
-            $currentDate = Carbon::now()->toDateString();
-            $imagecs = 'brand-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-
-            if(!Storage::disk('public')->exists('brand')){
-                Storage::disk('public')->makeDirectory('brand');
-            }
-            $brandimg = Image::make($image)->resize(150,150)->stream();
-            Storage::disk('public')->put('brand/'.$imagecs, $brandimg);
-
-        }else{
-            $imagecs = 'default.png';
-        }
+        $brandtype->image = $request->imagecs;
         $brandtype-> save();
         Toastr::success('Brand Successfully Updated!','Success');
         return redirect()->route('admin.brand.index');

@@ -25,8 +25,8 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active"><a href="{{route('admin.brand.index')}}">Brand</a></li>
-                  <li class="breadcrumb-item  active" aria-current="page">Brand</li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.amenities.index')}}">Amenities</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">Amenities</li>
                 </ol>
               </nav>
             </div>
@@ -46,22 +46,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                        <form action="{{route('admin.brand.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.amenities.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Brand Name</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Amenities Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Brand Name">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Amenities Name">
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">Brand Code</label>
                                     <div class="col-sm-9">
                                         <input type="text" name="brandcode" class="form-control" id="brandcode" placeholder="Enter Brand Code">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">File Upload</label>
                                     <div class="col-md-9">

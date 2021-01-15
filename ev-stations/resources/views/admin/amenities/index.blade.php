@@ -13,8 +13,8 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active"><a href="{{route('admin.brand.index')}}">Brand</a></li>
-                  <li class="breadcrumb-item  active" aria-current="page">Brand</li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.amenities.index')}}">Amenities</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">Amenities</li>
                 </ol>
               </nav>
             </div>
@@ -40,7 +40,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('admin.brand.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.amenities.search')}}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
@@ -53,8 +53,8 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('admin.brand.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('admin.brand.create') }}" ><i class="fa fa-plus"> </i>Add Brand</a>
+                    <a href="{{route('admin.amenities.index')}}" class="btn btn-md btn-danger">Clear</a>
+                    <a class="btn btn-md btn-info " href="{{ route('admin.amenities.create') }}" ><i class="fa fa-plus"> </i>Add Amenities</a>
                 </div>
             </div>
         </form>
@@ -94,7 +94,7 @@
                   <tfoot>
                     <tr><th rowspan="1" colspan="1">Sno</th>
                     <th rowspan="1" colspan="1">Name</th>
-                    <th rowspan="1" colspan="1">Code</th>
+                    <th rowspan="1" colspan="1">Image</th>
                    <th rowspan="1" colspan="1">Created  Date</th>
                    <th rowspan="1" colspan="1">Status</th>
                    <th rowspan="1" colspan="1">Action</th></tr>
@@ -153,14 +153,18 @@
                     
                     
                     
-                  @foreach($brands as $brand)
+                  @foreach($amenities as $amenitie)
                  
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
-                                        <td class="sorting_1">{{$brand->name}}</td>
-                                        <td class="sorting_1">{{$brand->brandcode}}</td>
-                                        <td class="sorting_1">{{$brand->created_at}}</td>
-                                        @if($brand->status== '1')
+                                        <td class="sorting_1">{{$amenitie->name}}</td>
+                                     
+                                        <td class="sorting_1">
+                                        @if(Storage::disk('public')->exists('amenities/'.$amenitie->image) && $amenitie->image)
+                                   <img src="{{Storage::url('amenities/'.$amenitie->image)}}" alt="{{$amenitie->name}}" width="60" class="img-responsive img-rounded">
+                                        @endif   </td>
+                                        <td class="sorting_1">{{$amenitie->created_at}}</td>
+                                        @if($amenitie->status== '1')
                                             <td>Active</td>
                                         @else
                                             <td>Deactive</td>
@@ -168,13 +172,13 @@
                                         <td>
                                       
  
-                                            <a href="{{route('admin.brand.edit',$brand->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('admin.brand.show',$brand->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
+                                            <a href="{{route('admin.amenities.edit',$amenitie->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{route('admin.amenities.show',$amenitie->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
-                                            <form id="delete-form-{{ $brand->id }}" action="{{route('admin.brand.destroy',$brand->id)}}" method="put">
+                                            <form id="delete-form-{{ $amenitie->id }}" action="{{route('admin.amenities.destroy',$amenitie->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="deletePost({{ $brand->id }})" class="btn btn-sm btn-danger">Delete</button>
+                                                <button type="button" onclick="deletePost({{ $amenitie->id }})" class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -191,7 +195,7 @@
                 <div class="row"><div class="col-sm-12 col-md-5">
                 <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination">
          <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
-                          {{ $brands->links() }}
+                          {{ $amenities->links() }}
                             </a></li>
                </ul></div></div></div></div>
               </div>
