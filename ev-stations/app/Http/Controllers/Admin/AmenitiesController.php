@@ -16,6 +16,8 @@ class AmenitiesController extends Controller
     public function index()
     {
         //
+        $amenities= Amenities::paginate(10);
+        return view('admin.amenities.index',compact('amenities'));
     }
 
     /**
@@ -26,6 +28,8 @@ class AmenitiesController extends Controller
     public function create()
     {
         //
+          //  $chargertypes = Chargertype::all();
+          return view('admin.amenities.create');
     }
 
     /**
@@ -37,6 +41,20 @@ class AmenitiesController extends Controller
     public function store(Request $request)
     {
         //
+        $request -> validate([
+            'name' => 'required|max:255',
+            'status' => 'required',
+            'image'     => 'required|image|mimes:jpeg,jpg,png'
+    ]);
+        
+      
+        $amenities = new Amenities();
+        $amenities->name = $request->name; 
+        $amenities->status = $request->status;
+        $amenities->slug= str_slug($request->name);
+        $amenities-> save();
+        Toastr::success('Amenities successfully added!','Success');
+        return redirect()->route('admin.amenities.index');
     }
 
     /**
@@ -48,6 +66,8 @@ class AmenitiesController extends Controller
     public function show(Amenities $amenities)
     {
         //
+        $amenities = Amenities::find($id);
+        return view('admin.amenities.show',compact('amenities'));
     }
 
     /**
