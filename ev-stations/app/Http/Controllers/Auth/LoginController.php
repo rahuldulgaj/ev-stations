@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Permission;
 
 class LoginController extends Controller
 {
@@ -36,7 +37,7 @@ class LoginController extends Controller
    
     protected function authenticated($request, $user)
     {
-       // dd($user);
+      //  dd($user->hasRole());
 //        $user = $request->user(); //getting the current logged in user
 // dd($user->hasRole('admin','editor'));
         if ($user->hasRole('Admin')) {

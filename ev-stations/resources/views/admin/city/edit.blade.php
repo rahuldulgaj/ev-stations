@@ -97,9 +97,7 @@
         </div>
         @livewireScripts
 
-        <footer class="footer text-center">
-            All Rights Reserved by BrainyDx. Designed and Developed by <a href="#">Brainydx</a>.
-        </footer>
+       
     </div>
 
 @endsection

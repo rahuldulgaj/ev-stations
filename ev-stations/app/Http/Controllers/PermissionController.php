@@ -6,6 +6,7 @@ use App\Permission;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Gate;
 
 class PermissionController extends Controller
 {
@@ -15,23 +16,11 @@ class PermissionController extends Controller
     	$dev_permission = Permission::where('slug','create-tasks')->first();
 		$manager_permission = Permission::where('slug', 'edit-users')->first();
 
-		//RoleTableSeeder.php
-		$dev_role = new Role();
-		$dev_role->slug = 'admins';
-        $dev_role->name = 'Admins';
-        $dev_role->status='1';
-		$dev_role->save();
-		$dev_role->permissions()->attach($dev_permission);
+	
+	
 
-		$manager_role = new Role();
-		$manager_role->slug = 'managerd';
-        $manager_role->name = 'Assistant Managerd';
-        $manager_role->status='1';
-		$manager_role->save();
-		$manager_role->permissions()->attach($manager_permission);
-
-		$dev_role = Role::where('slug','developer')->first();
-		$manager_role = Role::where('slug', 'manager')->first();
+		$dev_role = Role::where('slug','admin')->first();
+		$manager_role = Role::where('slug', 'user')->first();
 
 		$createTasks = new Permission();
 		$createTasks->slug = 'create-tasks';
@@ -45,29 +34,12 @@ class PermissionController extends Controller
 		$editUsers->save();
 		$editUsers->roles()->attach($manager_role);
 
-		$dev_role = Role::where('slug','developer')->first();
-		$manager_role = Role::where('slug', 'manager')->first();
+		$dev_role = Role::where('slug','admin')->first();
+		$manager_role = Role::where('slug', 'admin')->first();
 		$dev_perm = Permission::where('slug','create-tasks')->first();
 		$manager_perm = Permission::where('slug','edit-users')->first();
 
-		$developer = new User();
-        $developer->name = 'rahul';
-        $developer->username = 'rahul';
-
-		$developer->email = 'dulgajvips@gmail.com';
-		$developer->password = bcrypt('admin123');
-		$developer->save();
-		$developer->roles()->attach($dev_role);
-		$developer->permissions()->attach($dev_perm);
-
-		$manager = new User();
-        $manager->name = 'Rahul';
-        $manager->username = 'rahultest';
-		$manager->email = 'test@gmail.com';
-		$manager->password = bcrypt('admin123');
-		$manager->save();
-		$manager->roles()->attach($manager_role);
-		$manager->permissions()->attach($manager_perm);
+		
 
 		
 		return redirect()->back();

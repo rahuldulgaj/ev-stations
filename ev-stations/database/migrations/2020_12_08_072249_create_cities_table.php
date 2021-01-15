@@ -18,8 +18,8 @@ class CreateCitiesTable extends Migration
             $table->string('name');
             $table->bigInteger('state_id')->unsigned();
             $table->bigInteger('country_id')->unsigned();
-            $table->bigInteger('citycode')->unique();
-            $table->string('city_slug')->unique();
+            $table->string('citycode',128)->unique();
+            $table->string('slug')->unique();
             $table->string('status');
             $table->timestamps();
         });

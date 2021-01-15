@@ -1,4 +1,4 @@
-@extends('theme.default')
+@extends('theme.newdefault')
 
 @section('content')
 
@@ -106,9 +106,7 @@
         </div>
         
         @livewireScripts
-        <footer class="footer text-center">
-            All Rights Reserved by Brainydx Pvt. Ltd. Designed and Developed by <a href="https://Brainydx.com/">Brainydx</a>.
-        </footer>
+        
     </div>
 
     @endsection

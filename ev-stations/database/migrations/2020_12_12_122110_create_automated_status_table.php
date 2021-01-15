@@ -14,7 +14,7 @@ class CreateAutomatedStatusTable extends Migration
     public function up()
     {
         Schema::create('automated_status', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->string('slug');
             $table->boolean('status')->nullable();

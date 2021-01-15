@@ -1,8 +1,9 @@
-<div>
-    <div class="form-group row">
+    <div>
     
-        <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
-        <div class="col-md-6">
+    <div class="form-group row">
+        <label for="country" class="col-sm-3 text-right control-label col-form-label">{{ __('Country') }}</label>
+        <div class="col-sm-9">
+
             <select wire:model="selectedCountry" class="form-control"  name="country_id">
                 <option value="" selected>Choose Country</option>
                 @foreach($countries as $country)
@@ -14,10 +15,11 @@
 
     @if (!is_null($selectedCountry))
         <div class="form-group row">
-            <label for="state" class="col-md-4 col-form-label text-md-right">{{ __('State') }}</label>
+            <label for="state" class="col-sm-3 text-right control-label col-form-label">{{ __('State') }}</label>
 
-            <div class="col-md-6">
-                <select wire:model="selectedState" class="form-control" name="state_id">
+            <div class="col-sm-9">
+
+                <select wire:model="selectedState"   class="form-control" name="state_id">
                     <option value="" selected>Choose state</option>
                     @foreach($states as $state)
                         <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -29,9 +31,10 @@
 
     @if (!is_null($selectedState))
         <div class="form-group row">
-            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+            <label for="city" class="col-sm-3 text-right control-label col-form-label">{{ __('City') }}</label>
 
-            <div class="col-md-6">
+            <div class="col-sm-9">
+
                 <select class="form-control" name="city_id">
                     <option value="" selected>Choose city</option>
                     @foreach($cities as $city)

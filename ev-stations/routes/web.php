@@ -64,17 +64,41 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
   Route::resource('company','CompanyController');
   Route::get('company/search', [ 'as'=>'company.search', 'uses' => 'CompanyController@search']);
   #########EV STATIONS
-  Route::resource('evstation','EvstationsController');
+  Route::resource('chargingstations','ChargingStationsController');
+  Route::get('chargingstations/search',[ 'as'=>'chargingstations.search','uses' => 'ChargingStationsController@search']);
+#############
+Route::resource('amenities','ChargingStationsController');
+Route::get('amenities/search',[ 'as'=>'chargingstations.search','uses' => 'ChargingStationsController@search']);
+
+
+  #######admin.
+Route::resource('evstation','EvstationsController');
   Route::get('evstation/search',[ 'as'=>'evstation.search','uses' => 'EvstationsController@search']);
-###########
+  ###########
   Route::resource('automatedstatus','AutomatedStatusController');
   Route::get('automatedstatus/search',[ 'as'=>'automatedstatus.search','uses' => 'AutomatedStatusController@search']);
 ##########Role##
      Route::resource('role','RoleController');
      Route::get('role/search', [ 'as'=>'role.search','uses' => 'RoleController@search']);
-####
 Route::resource('user','UserController');
+
+########
+Route::resource('brand','BrandTypeController');
+Route::get('brand/search', [ 'as'=>'brand.search','uses' => 'BrandTypeController@search']);
+
+Route::resource('vehicletype','VehicleTypeController');
+Route::get('vehicletype/search', [ 'as'=>'vehicletype.search','uses' => 'VehicleTypeController@search']);
+##########
+Route::resource('modeltype','ModelTypeController');
+Route::get('modeltype/search', [ 'as'=>'modeltype.search','uses' => 'ModelTypeController@search']);
+
+##
+##########
+Route::resource('connectortype','ConnectorTypeController');
+Route::get('connectortype/search', [ 'as'=>'connectortype.search','uses' => 'ConnectorTypeController@search']);
+
     });
+
 
 #######END ADMIN
 

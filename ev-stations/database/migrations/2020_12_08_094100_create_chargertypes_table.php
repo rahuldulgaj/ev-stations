@@ -16,7 +16,7 @@ class CreateChargertypesTable extends Migration
         Schema::create('chargertypes', function (Blueprint $table) {
             $table->id();
             $table->string('name',128);
-            $table->string('ct_slug',128)->unique();
+            $table->string('slug',128)->unique();
             $table->string('ct_code',128)->unique();
             $table->string('ct_company',128);
             $table->boolean('status')->nullable();

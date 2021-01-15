@@ -14,7 +14,7 @@ class CreateEvstationsTable extends Migration
     public function up()
     {
         Schema::create('evstations', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name',128);
             $table->string('evslug',128);
             $table->string('evcode',128);

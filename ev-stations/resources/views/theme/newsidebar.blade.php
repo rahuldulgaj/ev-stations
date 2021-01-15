@@ -36,7 +36,7 @@
             </li>
             @endif
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="icons.html">
                 <i class="ni ni-planet text-orange"></i>
                 <span class="nav-link-text">Icons</span>
@@ -71,14 +71,14 @@
                 <i class="ni ni-circle-08 text-pink"></i>
                 <span class="nav-link-text">Register</span>
               </a>
-            </li>
+            </li> -->
            
           </ul>
 
  
           <!-- Divider -->
         <hr class="my-2">
-         @if ( (auth()->user()->role->id == 1)|| ( auth()->user()->role->id == 2))
+         @if ( (auth()->user()->role->id == 1) || ( auth()->user()->role->id == 2))
           <ul class="navbar-nav mb-md-3">
             <li class="nav-item dropdown">
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,14 +91,27 @@
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
-              <a class="nav-link" href="{{route('admin.role.index')}}" target="_blank">
+              <a class="nav-link" href="{{route('admin.role.index')}}" >
                 <i class="ni ni-spaceship"></i>
                 <span class="nav-link-text">Role</span>
               </a>
-              <a class="nav-link" href="{{route('admin.company.index')}}" target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Comapny/Brand</span>
+              <a class="nav-link" href="{{route('admin.brand.index')}}" >
+                <i class="ni ni-spaceship"></i>
+                <span class="nav-link-text">Brand</span>
               </a>
+              <a class="nav-link" href="{{route('admin.vehicletype.index')}}" >
+                <i class="ni ni-spaceship"></i>
+                <span class="nav-link-text">Vehicle Type</span>
+              </a>
+              <a class="nav-link" href="{{route('admin.modeltype.index')}}" >
+                <i class="ni ni-spaceship"></i>
+                <span class="nav-link-text">Model Type</span>
+              </a>
+              <a class="nav-link" href="{{route('admin.company.index')}}">
+                <i class="ni ni-palette"></i>
+                <span class="nav-link-text">Company</span>
+              </a>
+            
               <a class="nav-link" href="{{route('admin.country.index')}}"" target="_blank">
                 <i class="ni ni-ui-04"></i>
                 <span class="nav-link-text">Countries</span>
@@ -163,7 +176,7 @@
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
-              <a class="nav-link" href="{{route('admin.evstation.index')}}" target="_blank">
+              <a class="nav-link" href="{{route('admin.chargingstations.index')}}" target="_blank">
                 <i class="ni ni-spaceship"></i>
                 <span class="nav-link-text">Charging Station</span>
               </a>
@@ -187,7 +200,7 @@
                 </div>
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
-              <a class="nav-link" href="{{route('admin.evstation.index')}}" target="_blank">
+              <a class="nav-link" href="{{route('admin.connectortype.index')}}" target="_blank">
                 <i class="ni ni-spaceship text-blue"></i>
                 <span class="nav-link-text">Connector</span>
               </a>
@@ -223,8 +236,7 @@
            @endif
 
 
-        
-        </div>
+           </div>
       </div>
     </div>
   </nav>

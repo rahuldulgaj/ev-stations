@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Permission;
 
 class DashboardController extends Controller
 {
@@ -16,7 +17,7 @@ class DashboardController extends Controller
    
     public function index()
     {
-        //dd('test');
+      //  dd('test');
         $users = User::paginate(10);
         return view('admin.dashboard.index',compact('users'));
     }

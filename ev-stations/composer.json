@@ -4,9 +4,19 @@
     "description": "The Laravel Framework.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "Batter Cars",
+        "EV Cars Scooters Bike ",
+        "Cars Bike Scotty"
     ],
-    "license": "MIT",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Rahul Dulgaj",
+            "email": "rahuldulgaj14@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^7.2.5",
         "brian2694/laravel-toastr": "^5.54",
@@ -65,4 +75,5 @@
             "@php artisan key:generate --ansi"
         ]
     }
+    
 }

@@ -15,9 +15,9 @@ class CompanyController extends Controller
     public function index()
     {
         //
-        if(!Gate::allows('isAdmin')){
-            abort(401);
-        }
+        // if(!Gate::allows('isAdmin')){
+        //     abort(401);
+        // }
 
         $company= Company::paginate(15);
         return view('admin.company.index',compact('company'));

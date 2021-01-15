@@ -1,0 +1,47 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    root /var/www/html/;
+
+    index index.php index.html;
+
+    server_name beeev.com www.beeev.com;
+
+    access_log /var/log/nginx/beeev.com.access.log;
+    error_log /var/log/nginx/beeev.com.error.log;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+sudo ln -s /etc/nginx/conf.d/beeev.com.conf /etc/nginx/conf.d/beeev.com.conf
+
+sudo ln -s /etc/nginx/sites-available/example-one.com.conf /etc/nginx/sites-enabled/example-one.com.conf
+
+
+sudo ln -s /etc/nginx/conf.d/beeev.com.conf /etc/nginx/sites-enabled/beeev.com.conf
+
+
+sudo mkdir -p /var/www/beeev.com
+
+sudo chown -R $USER:$USER /var/www/beeev.com
+
+sudo chmod -R 755 /var/www/beeev.com
+sudo cp /var/www/html/index.php /var/www/beeev.com
+sudo cp /var/www/html/phpMyAdmin /var/www/beeev.com
+
+sudo cp /etc/apache2/sites-available/beeev.com.conf
+
+
+<VirtualHost *:80>
+    ServerAdmin admin@beeev.com
+    ServerName beeev.com
+    ServerAlias www.beeev.com
+    DocumentRoot /var/www/beeev.com
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/example.com.conf

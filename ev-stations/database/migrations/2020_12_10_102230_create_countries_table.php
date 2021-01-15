@@ -16,8 +16,8 @@ class CreateCountriesTable extends Migration
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('country_slug')->unique();
-            $table->bigInteger('countrycode')->unique();
+            $table->string('slug')->unique();
+            $table->string('countrycode',128)->unique();
             $table->boolean('status')->nullable();
             $table->timestamps();
         });
