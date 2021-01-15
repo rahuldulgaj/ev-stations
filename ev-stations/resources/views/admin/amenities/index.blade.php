@@ -158,7 +158,7 @@
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$amenitie->name}}</td>
-                                     {{dd(url)}}
+                                
                                         <td class="sorting_1">
                                         @if(Storage::disk('public')->exists('amenities/'.$amenitie->image) && $amenitie->image)
                                    <img src="{{Storage::url('amenities/'.$amenitie->image)}}" alt="{{$amenitie->name}}" width="60" class="img-responsive img-rounded">
