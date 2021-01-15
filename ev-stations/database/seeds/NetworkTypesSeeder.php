@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AmenitiesSeeder extends Seeder
+class NetworkTypesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,22 +12,22 @@ class AmenitiesSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('amenities')->insert(array(
+        DB::table('network_types')->insert(array(
             array(
-            'name' => "Hotel",
-            'slug'=>'hotel',
+            'name' => "Athor",
+            'slug'=>'athor',
             'status'=>'1',
             'image'=>'default.png'
             ),
             array(
-                'name' => "Tennis Court",
-                'slug'=>'tennis-court',
+                'name' => "Tata",
+                'slug'=>'tata',
                 'status'=>'1',
                 'image'=>'default.png'
             ),
             array(
-                'name' => "PVR",
-                'slug'=>'pvr',
+                'name' => "Texla",
+                'slug'=>'texla',
                 'status'=>'1',
                 'image'=>'default.png'
             ),

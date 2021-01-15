@@ -147,9 +147,10 @@ class ChargertypeController extends Controller
         $chargertype = Chargertype::find($chargertype->id);
         $chargertype->name = $request->name; 
         $chargertype->status = $request->status;
-        $chargertype->ct_code = $request->ct_code;
-        $chargertype->ct_slug= str_slug($request->name);
+        $chargertype->code = $request->code;
         $chargertypeslug  = str_slug($request->name);
+        $chargertype->slug=         $chargertypeslug;
+
         $chargertype->ct_company = $request->ct_company;
         $image = $request->file('image');
         $sDirPath = 'uploads/gallery/chargertype/'; //Specified Pathname

@@ -208,18 +208,20 @@
                         <td>
                             <select name="connector_type_id[]" class="form-control">
                                 <option value="">-- choose Connector --</option>
-                                @foreach ($chargertypes as $chargertype)
-                                    <option value="{{ $chargertype->id }}">
-                                        {{ $chargertype->name }}
+                                @foreach ($connectortypes as $connectortype)
+                                    <option value="{{ $connectortype->id }}">
+                                        {{ $connectortype->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </td>
                         <td>
                         <select type="text" name="network_id[]" class="form-control" id="network" placeholder="network">
-                                            <option value="1">Texla</option>
-                                            <option value="2">DC Hydra</option>
-                                            <option value="3">Azra</option>
+                        @foreach ($connectortypes as $connectortype)
+                                    <option value="{{ $connectortype->id }}">
+                                        {{ $connectortype->name }}
+                                    </option>
+                                @endforeach
                                         </select>
                         </td>
                       

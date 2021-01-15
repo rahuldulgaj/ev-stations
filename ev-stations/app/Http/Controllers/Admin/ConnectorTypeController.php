@@ -163,8 +163,17 @@ class ConnectorTypeController extends Controller
      * @param  \App\ConnectorType  $connectorType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ConnectorType $connectorType)
+    public function destroy($id)
     {
         //
+        $connectortype = ConnectorType::find($id);
+        $connectortype -> delete();
+        Toastr::error('Amenities successfully deleted!','Deleted');
+        return redirect()->route('admin.connectortype.index');
+    }
+
+    public function search(Request $request){
+        $connectortype =Amenities::where('name', 'LIKE',"%{$request->search}%")->paginate();
+        return view('admin.connectortype.index',compact('connectortype'));
     }
 }

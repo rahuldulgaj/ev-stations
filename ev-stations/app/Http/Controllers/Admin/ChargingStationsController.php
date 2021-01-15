@@ -18,7 +18,7 @@ use App\AutomatedStatus;
 use App\Amenities;
 use App\BrandType;
 use App\VehicleType;
-use App\ConnectorTypes;
+use App\ConnectorType;
 
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
@@ -46,8 +46,8 @@ class ChargingStationsController extends Controller
         $amenities=Amenities::get();
         $automatedstatus= AutomatedStatus::get();
         $chargingstations= ChargingStations::paginate(15);
-
-        return view('admin.chargingstations.index',compact('chargingstations','automatedstatus','companylist','countrylist','statelist','amenities'));
+       $connectortypes= ConnectorType::all();
+        return view('admin.chargingstations.index',compact('chargingstations','automatedstatus','companylist','countrylist','statelist','amenities','connectortypes'));
     }
 
     /**
@@ -67,7 +67,8 @@ class ChargingStationsController extends Controller
         $brandtypes= BrandType::all();
         $automatedstatus= AutomatedStatus::get();
         $chargertypes = Chargertype::all();
-        return view('admin.chargingstations.create',compact('vehicletypes','brandtypes','amenities','automatedstatus','countrylist','companylist','statelist','citylist','chargertypes'));
+        $connectortypes= ConnectorType::all();
+        return view('admin.chargingstations.create',compact('vehicletypes','brandtypes','amenities','automatedstatus','countrylist','companylist','statelist','citylist','chargertypes','connectortypes'));
     }
 
     /**
