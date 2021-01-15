@@ -52,6 +52,20 @@ class AmenitiesController extends Controller
         $amenities->name = $request->name; 
         $amenities->status = $request->status;
         $amenities->slug= str_slug($request->name);
+        $image = $request->file('image');
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagecs = 'amenities-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('amenities')){
+                Storage::disk('public')->makeDirectory('amenities');
+            }
+            $amenitiesimg = Image::make($image)->resize(150,150)->stream();
+            Storage::disk('public')->put('amenities/'.$imagecs, $amenitiesimg);
+
+        }else{
+            $imagecs = 'default.png';
+        }
         $amenities-> save();
         Toastr::success('Amenities successfully added!','Success');
         return redirect()->route('admin.amenities.index');

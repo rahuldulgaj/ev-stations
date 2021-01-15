@@ -51,6 +51,7 @@ class BrandTypeController extends Controller
             'name' => 'required|max:255',
             'status' => 'required',
             'brandcode' => 'required|unique:brand_types|max:255',
+            'image'     => 'required|image|mimes:jpeg,jpg,png'
     ]);
         
       
@@ -59,6 +60,20 @@ class BrandTypeController extends Controller
         $brandtype->status = $request->status;
         $brandtype->brandcode = $request->brandcode;
         $brandtype->slug= str_slug($request->name);
+        $image = $request->file('image');
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagecs = 'brand-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('brand')){
+                Storage::disk('public')->makeDirectory('brand');
+            }
+            $brandimg = Image::make($image)->resize(150,150)->stream();
+            Storage::disk('public')->put('brand/'.$imagecs, $brandimg);
+
+        }else{
+            $imagecs = 'default.png';
+        }
         $brandtype-> save();
         Toastr::success('Brandtype successfully added!','Success');
         return redirect()->route('admin.brand.index');
@@ -116,6 +131,20 @@ class BrandTypeController extends Controller
         $brandtype->status = $request->status;
         $brandtype->brandcode = $request->brandcode;
         $brandtype->slug= str_slug($request->name);
+        $image = $request->file('image');
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagecs = 'brand-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+            if(!Storage::disk('public')->exists('brand')){
+                Storage::disk('public')->makeDirectory('brand');
+            }
+            $brandimg = Image::make($image)->resize(150,150)->stream();
+            Storage::disk('public')->put('brand/'.$imagecs, $brandimg);
+
+        }else{
+            $imagecs = 'default.png';
+        }
         $brandtype-> save();
         Toastr::success('Brand Successfully Updated!','Success');
         return redirect()->route('admin.brand.index');
