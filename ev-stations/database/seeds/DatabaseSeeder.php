@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AutomatedStatusSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(AmenitiesSeeder::class);
+        $this->call(NetworkTypesSeeder::class);
+        $this->call(ModelTypeSeeder::class);
     }
 }
