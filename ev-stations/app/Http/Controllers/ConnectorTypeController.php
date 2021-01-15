@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\ConnectorType;
 use Illuminate\Http\Request;
 
+use Brian2694\Toastr\Facades\Toastr;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+
 class ConnectorTypeController extends Controller
 {
     /**
