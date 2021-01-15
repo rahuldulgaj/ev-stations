@@ -67,8 +67,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
   Route::resource('chargingstations','ChargingStationsController');
   Route::get('chargingstations/search',[ 'as'=>'chargingstations.search','uses' => 'ChargingStationsController@search']);
 #############
-Route::resource('amenities','ChargingStationsController');
-Route::get('amenities/search',[ 'as'=>'chargingstations.search','uses' => 'ChargingStationsController@search']);
+Route::resource('amenities','AmenitiesController');
+Route::get('amenities/search',[ 'as'=>'amenities.search','uses' => 'AmenitiesController@search']);
 
 
   #######admin.

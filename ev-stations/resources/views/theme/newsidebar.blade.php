@@ -132,6 +132,10 @@
                 <i class="ni ni-chart-pie-35"></i>
                 <span class="nav-link-text">Automated type</span>
               </a>
+              <a class="nav-link" href="{{route('admin.amenities.index')}}" target="_blank">
+                <i class="ni ni-chart-pie-35"></i>
+                <span class="nav-link-text">Amenities</span>
+              </a>
               </div>
             </li>
           </ul>
