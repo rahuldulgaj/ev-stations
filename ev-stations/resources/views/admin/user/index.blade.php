@@ -1,36 +1,36 @@
-@extends('theme.default')
+@extends('theme.newdefault')
 
 
 
 @section('content')
- <!-- Begin Page Content -->
- <div class="container-fluid">
-<!-- Page Heading -->
-<!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Users</h1>
-  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> 
-</div> -->
+<!-- Begin Page Content -->
+<div class="container-fluid">
+ <div class="header-body">
+ <div class="card shadow mb-4">
 
-<div class="row">
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.user.index')}}">User</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">User</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+        </div>  </div>
 
-    <div class="col-lg-12">
 
-        <!-- <h1 class="page-header">My Users</h1> -->
-        <h4 class="page-title">User Management</h4>
-    </div>
-    <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.user.index')}}">User</a></li>
-                                </ol>
-                            </nav>
-                        </div>
-    <!-- /.col-lg-12 -->
+      
 
-</div>
 
-<div class="row">
+<divsss class="row">
 
 
 
@@ -61,123 +61,57 @@
         </form>
     </div>
    </div>
-</div>
+</divsss>
 
-               <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">User Record</h6>
+<!-- RRRRRRRRRRRRRRRR -->
+
+
+<div class="row">
+        <div class="col">
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+              <h3 class="mb-0">Users</h3>
             </div>
-
-
-            <div class="card-body">
-              <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
-                <div class="col-sm-12 col-md-6">
-                <div class="dataTables_length" id="dataTable_length">
-                <label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                </select> entries</label></div></div>
-                <div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                  <thead>
-                    <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sno: activate to sort column descending" style="width: 58px;">Sno</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">First Name</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Last Name</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">User Name</th>
-                   
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Image: activate to sort column ascending" style="width: 63px;">Image</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 50px;">Role</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 31px;">Email</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="State: activate to sort column ascending" style="width: 31px;">State</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="City: activate to sort column ascending" style="width: 31px;">City</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Company: activate to sort column ascending" style="width: 31px;">Company</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Create Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 67px;">Status</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 67px;">Action</th>
-                    </tr>
-                  </thead>
-
-                  <tfoot>
-                    <tr><th rowspan="1" colspan="1">Sno</th>
-                    <th rowspan="1" colspan="1">First Name</th>
-                    <th rowspan="1" colspan="1">Last Name</th>
-                    <th rowspan="1" colspan="1">User Name</th>
-                    <th rowspan="1" colspan="1">Image</th>
-                    <th rowspan="1" colspan="1">Role</th>
-                    <th rowspan="1" colspan="1">Email</th>
-                    <th rowspan="1" colspan="1">State</th>
-                    <th rowspan="1" colspan="1">City</th>
-                    <th rowspan="1" colspan="1">Company</th>
-                    <th rowspan="1" colspan="1">Create Date</th>
-                    <th rowspan="1" colspan="1">Status</th>
-                    <th rowspan="1" colspan="1">Action</th></tr>
-                  </tfoot>
-                  <tbody>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                       
-                  @foreach($users as $user)
-                  <?php $userslug  = str_slug($user->username);?>
+            <!-- Light table -->
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                  <th scope="col" class="sort" data-sort="id">Id</th>
+                    <th scope="col" class="sort" data-sort="name">First Name</th>
+                    <th scope="col" class="sort" data-sort="name">Last Name</th>
+                    <th scope="col" class="sort" data-sort="name">User Name</th>
+                    <th scope="col" class="sort" data-sort="name">Image</th>
+                    <th scope="col" class="sort" data-sort="budget">Role</th>
+                    <th scope="col" class="sort" data-sort="email">Email</th>
+                    <th scope="col" class="sort" data-sort="mobile">Mobile</th>
+                    <th scope="col" class="sort" data-sort="state">State</th>
+                    <th scope="col" class="sort" data-sort="city">City</th>
+                    <th scope="col" class="sort" data-sort="company">Company</th>
+                    <th scope="col" class="sort" data-sort="created_at">Created Date</th>
+                    <th scope="col" class="sort" data-sort="status">Status</th>
+                    <th scope="col" class="sort" data-sort="completion">Completion</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                @foreach($users as $user)
+                <?php $userslug  = str_slug($user->username);?>
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$user->firstname}}</td>
                                         <td class="sorting_1">{{$user->lastname}}</td>
                                         <td class="sorting_1">{{$user->username}}</td>
-                                        <td><img src="{{ asset('uploads/gallery/'.$userslug.'/'. $user->image) }}" width="80px" height="80px" alt="Image"> </td>
+                                        <td>
+                                        <div class="avatar-group">
+                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$user->username}}">
+                          <img alt="" src="{{Storage::url('uploads/gallery/users/'.$user->image)}}">
+                        </a>
+                      </div></td>
                                         <td>{{$user->role->name}}</td>
                                         <td>{{$user->email}}</td>
+                                        <td>{{$user->mobile}}</td>
                                         <td>{{$user->state->name}}</td>
                                         <td>{{$user->city->name}}</td>
                                         <td>{{$user->company->name}}</td>
@@ -202,22 +136,46 @@
                                     </tr>
 
                                 @endforeach
-                    
-                    
-                    
-               
-                    
                 
-                    </tbody>
-                </table></div></div>
-                <div class="row"><div class="col-sm-12 col-md-5">
-                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination">
-         <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
+                </tbody>
+              </table>
+            </div>
+       
+       
+            <!-- Card footer -->
+            <div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul  class="pagination justify-content-end mb-0">
+                  <!-- <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li> -->
+                  <!-- <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li> -->
+                  
+         <li class="page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
                           {{ $users->links() }}
                             </a></li>
-               </ul></div></div></div></div>
-              </div>
+               
+                  <!-- <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li> -->
+                </ul>
+              </nav>
             </div>
           </div>
-          
+        </div>
+      </div>
+
+
+                       
+              
+                         
 @endsection

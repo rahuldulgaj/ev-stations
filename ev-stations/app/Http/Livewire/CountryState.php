@@ -20,6 +20,7 @@ class CountryState extends Component
 
     public $selectedCountry = NULL;
     public $selectedState = NULL;
+    public $selectedCity = NULL;
 
     // public function mount()
     // {

@@ -1,4 +1,19 @@
-@extends('theme.default')
+
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
+
+@extends('theme.newdefault')
 
 @section('content')
 
@@ -13,21 +28,28 @@
                 </ul>
             </div>
     @endif
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Admin Manager</h4>
-                    <div class="ml-auto text-right">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('user')}}">User</a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+      <!-- Begin Page Content -->
+<div class="container-fluid">
+ <div class="header-body">
+ <div class="card shadow mb-4">
+
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.user.index')}}">User</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">User</li>
+                </ol>
+              </nav>
             </div>
-        </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+        </div>  </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-10">
@@ -63,31 +85,32 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">File Upload</label>
-                                    <div class="col-md-9">
+                                <div class="col-md-3">
+                                @if(Storage::disk('public')->exists('uploads/gallery/users/'.$user->image) && $user->image)
+                  <img src="{{Storage::url('uploads/gallery/users/'.$user->image)}}" alt="Circle image" class="img-fluid rounded-circle shadow" style="width: 100px;">
+                  @endif
+                </div>   <div class="col-md-9">
                                         <div class="custom-file">
-                                            <input type="file" name="image" class="custom-file-input" value="{{$user->image}}">
+                                        <input type="file" name="image">
                                             <label class="custom-file-label">{{$user->image}}</label>
-                                            {{--<div class="invalid-feedback">Example invalid custom file feedback</div>--}}
                                         </div>
                                     </div>
+                                  
                                 </div>
                                
-                                
                                 <div class="form-group row">
                                     <label for="contact" class="col-sm-3 text-right control-label col-form-label">Contact Number </label>
                                     <div class="col-sm-9">
-                                        <input type="number" name="mobile" class="form-control" id="contact"  value="{{$user->mobile}}">
+                                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" name="mobile"  class="form-control" id="contact" placeholder="Contact Number" value="{{$user->mobile}}">
                                     </div>
                                 </div>
-                              
                                 <div class="form-group row">
                                     <label for="alternatecontact" class="col-sm-3 text-right control-label col-form-label">Alternate  Number </label>
                                     <div class="col-sm-9">
-                                        <input type="number" name="alternatecontact" class="form-control" id="alternatecontact"  value="{{$user->alternatecontact}}">
+                                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" name="alternatecontact" class="form-control" id="alternatecontact" placeholder="Alternate  Number"  value="{{$user->alternatecontact}}">
                                     </div>
                                 </div>
-
+                              
                                 <div class="form-group row">
                                 <label for="address_line_1" class="col-sm-3 text-right control-label col-form-label">Address</label>
                                 <div class="col-sm-9">
@@ -112,23 +135,20 @@
                                         </select>
                                     </div>
                                 </div> 
+@livewire('country-state-city', ['country'=>$user->country_id , 'state'=>$user->state_id,'city'=>$user->city_id])
 
+                              
                                 <div class="form-group row">
-                                  
-                                    <label for="state" class="col-sm-2 text-right control-label col-form-label">State</label>
-                                    <div class="col-sm-2">
-                                        <input type="text"  name="state_id" class="form-control" id="state" value="{{$user->state->id}}">
-                                    </div>
-                                    <label for="lname" class="col-sm-2 text-right control-label col-form-label">City</label>
-                                    <div class="col-sm-2">
-                                        <input type="text"  name="city_id" class="form-control" id="city" value="{{$user->city->id}}">
-                                    </div>
-                                    <label for="lname" class="col-sm-2 text-right control-label col-form-label">Company Name</label>
-                                    <div class="col-sm-2">
-                                        <input type="text"  name="company_id" class="form-control" id="company" value="{{$user->company->id}}">
-                                    </div>
-                                   
-                                </div>
+                 <label class="col-sm-3 text-right control-label col-form-label">Select Company</label>
+                           <div class="col-sm-9">
+                             <select name="company_id" class="form-control show-tick">
+                                 <option value="" disabled selected>Choose Company</option>
+                                 @foreach($companylist as $company)
+                                     <option value="{{$company->id}}" {{ $user->company_id==$company->id ? 'selected' : '' }}>{{$company->name}}</option>
+                                 @endforeach
+                             </select>
+                         </div></div>
+
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
                                     <div class="col-sm-9">
@@ -138,12 +158,15 @@
                                         </select>
                                     </div>
                                     </div>
+
+
                                     <div class="form-group row">
                                     <label for="lname" class="col-sm-3 text-right control-label col-form-label">Role</label>
                                     <div class="col-sm-9">
                                         <select type="text" name="role_id" class="form-control" id="lname">
-                                            <option  value="1" {{ $user->role_id=='1' ? 'selected' : '' }}>Admin</option>
-                                            <option value="2" {{ $user->role_id=='2' ? 'selected' : '' }}>Sub Admin</option>
+                                        @foreach($roles as $role)
+                                     <option value="{{$role->id}}" {{ $user->role_id==$role->id ? 'selected' : '' }}>{{$role->name}}</option>
+                                 @endforeach
                                         </select>
                                     </div>
                                 </div>

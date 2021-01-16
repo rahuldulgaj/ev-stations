@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
+use App\City;
+use App\Company;
+use App\BrandType;
+use App\VehicleType;
+use App\ConnectorType;
+
 class UserController extends Controller
 {
     /**
@@ -25,10 +32,12 @@ class UserController extends Controller
         // if(!Gate::allows('isAdmin')){
         //     abort(401);
         // }
+        $companylist=Company::all();
+
         $users = User::where('status','1')->paginate(15);
         $users=User::paginate(15);
-
-        return view('admin.user.index',compact('users'));
+        $roles=Role::all();
+        return view('admin.user.index',compact('users','companylist','roles'));
     }
 
     /**
@@ -38,15 +47,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.user.create');
+        $companylist=Company::all();
+        $roles=Role::all();
+        return view('admin.user.create',compact('companylist','roles'));
     }
    
     public function usershow($slug)
     {
-           $user = User::where('id', $slug)->first();;
-          // dd($user);
-           return view('admin.user.show',compact('user'));
+           $user = User::where('id', $slug)->first();
+           $companylist=Company::all();
+
+           return view('admin.user.show',compact('user','companylist'));
     }
     /**
      * Store a newly created resource in storage.
@@ -64,6 +75,7 @@ class UserController extends Controller
             'lastname' => 'required',
             'email' => 'required|unique:users|email',
             'address' => 'required',
+            'country_id' => 'required',
             'state_id' => 'required',
             'mobile' => 'required|unique:users|max:11',
             'role_id'=>'required'
@@ -77,7 +89,7 @@ class UserController extends Controller
         $userslug  = str_slug($request->username);
      
 
-        $sDirPath = 'uploads/gallery/'.$userslug.'/'; //Specified Pathname
+        $sDirPath = 'uploads/gallery/users/'; //Specified Pathname
                 if(isset($image)){
                             $currentDate = Carbon::now()->toDateString();
                             $imagename = $userslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
@@ -106,9 +118,9 @@ class UserController extends Controller
         $user->alternatecontact = $request->alternatecontact;
         $user->address = $request->address;
         $user->gender = $request->gender;
-      //  $user->join_date = $request->join_date;
         $user->city_id = $request->city_id;
         $user->state_id = $request->state_id;
+        $user->country_id = $request->country_id;
         $user->company_id = $request->company_id;
         $user->role_id = $request->role_id;
         $user->image    = $imagename;
@@ -140,7 +152,9 @@ class UserController extends Controller
     {
         
         $user = User::find($id);
-        return view('admin.user.edit',compact('user'));
+        $companylist=Company::all();
+        $roles=Role::all();
+        return view('admin.user.edit',compact('user','companylist','roles'));
     }
 
     public function update(Request $request, $id)
@@ -166,11 +180,11 @@ class UserController extends Controller
                 $image = $request->file('image');
                 $userslug  = str_slug($request->username);
               
-            $sDirPath = 'uploads/gallery/'.$userslug.'/'; //Specified Pathname
+            $sDirPath = 'uploads/gallery/users/'; //Specified Pathname
             if(isset($image)){
                         $currentDate = Carbon::now()->toDateString();
-                        $imagename = $userslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-                    if(!Storage::disk('public')->exists($sDirPath)){
+               $imagename = $userslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+               if(!Storage::disk('public')->exists($sDirPath)){
                         Storage::disk('public')->makeDirectory($sDirPath);
                     }
                     if(Storage::disk('public')->exists($sDirPath.'/'.$user->image)){

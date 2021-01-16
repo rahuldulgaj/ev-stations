@@ -1,4 +1,22 @@
-@extends('theme.default')
+
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
+
+@extends('theme.newdefault')
+
+@livewireStyles
+
 
 @section('content')
 
@@ -14,21 +32,28 @@
             </div>
     @endif
 
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Admin Manager</h4>
-                    <div class="ml-auto text-right">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.user.index')}}">User</a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+      <!-- Begin Page Content -->
+<div class="container-fluid">
+ <div class="header-body">
+ <div class="card shadow mb-4">
+
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.user.index')}}">User</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">User</li>
+                </ol>
+              </nav>
             </div>
-        </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+        </div>  </div>
 
         <div class="container-fluid">
 
@@ -81,33 +106,19 @@
                                 <div class="form-group row">
                                     <label for="contact" class="col-sm-3 text-right control-label col-form-label">Contact Number </label>
                                     <div class="col-sm-9">
-                                        <input type="number" name="mobile" class="form-control" id="contact" placeholder="Contact Number">
+                                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" name="mobile"  class="form-control" id="contact" placeholder="Contact Number" require>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="alternatecontact" class="col-sm-3 text-right control-label col-form-label">Alternate  Number </label>
                                     <div class="col-sm-9">
-                                        <input type="number" name="alternatecontact" class="form-control" id="alternatecontact" placeholder="Alternate  Number">
+                                        <input type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" name="alternatecontact" class="form-control" id="alternatecontact" placeholder="Alternate  Number">
                                     </div>
                                 </div>
                                 <div class="form-group row"><label for="address_line_1" class="col-sm-3 text-right control-label col-form-label">Address </label>
                                 <div class="col-sm-9">
                                  <textarea name="address" class="form-control" spellcheck="false"></textarea>
                                  </div></div>
-                                
-                               
-                                <!-- <div class="form-group row">
-                                    <label for="address" class="col-sm-3 text-right control-label col-form-label">Address </label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="address" class="form-control" id="alternatecontact" placeholder="Address">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="permanent" class="col-sm-3 text-right control-label col-form-label">Permanent Address </label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="permanentaddress" class="form-control" id="permanent" placeholder="Permanent Address">
-                                    </div>
-                                </div> -->
                                
                                  <div class="form-group row">
                                     <label for="gender" class="col-sm-3 text-right control-label col-form-label">Gender</label>
@@ -125,21 +136,22 @@
                                         <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
                                     </div>
                                 </div>
+
+                                @livewire('country-state-city',['country', 'state','city'])
+
+                           
                                 <div class="form-group row">
-                                <label for="lname" class="col-sm-2 text-right control-label col-form-label">State</label>
-                                    <div class="col-sm-2">
-                                        <input type="text"  name="state_id" class="form-control" id="state">
-                                    </div>
-                                    <label for="lname" class="col-sm-2 text-right control-label col-form-label">City</label>
-                                    <div class="col-sm-2">
-                                        <input type="text"  name="city_id" class="form-control" id="city">
-                                    </div>
-                                    <label for="company" class="col-sm-2 text-right control-label col-form-label">Company Name</label>
-                                    <div class="col-sm-2">
-                                        <input type="text"  name="company_id" class="form-control" id="company">
-                                    </div>
-                                   
-                                </div>
+                 <label class="col-sm-3 text-right control-label col-form-label">Select Company</label>
+                           <div class="col-sm-9">
+                             <select name="company_id" class="form-control show-tick">
+                                 <option value="" disabled selected>Choose Company</option>
+                                 @foreach($companylist as $company)
+                                     <option value="{{$company->id}}">{{$company->name}}</option>
+                                 @endforeach
+                             </select>
+                         </div>
+                         </div>
+
                                
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
@@ -157,21 +169,15 @@
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Role</label>
                                     <div class="col-sm-9">
                                         <select type="text" name="role_id" class="form-control" id="role" placeholder="Role">
-                                            <option value="1">Admin</option>
-                                            <option value="4">User</option>
+                                        @foreach($roles as $role)
+                                     <option value="{{$role->id}}">{{$role->name}}</option>
+                                 @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 
-                                <!-- <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Date Of Joining</label>
-                                    <div class="col-sm-9">
-                                        <input type="date" name="join_date" class="form-control" id="join_date">
-                                    </div>
-                                </div> -->
                             </div>
 
-                            <!-- COMPANY DETAILS -->
 
                          
               
@@ -188,12 +194,9 @@
                 </div>
             </div>
         </div>
-        
+    
 
-        <footer class="footer text-center">
-            All Rights Reserved by Brainydx Pvt. Ltd. Designed and Developed by <a href="https://Brainydx.com/">Brainydx</a>.
-        </footer>
-    </div>
+    @livewireScripts
 
     @endsection
     @push('scripts')
