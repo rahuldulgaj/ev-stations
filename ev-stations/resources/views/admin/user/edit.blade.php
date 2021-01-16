@@ -84,18 +84,19 @@ input[type=number] {
                                         <input type="text" name="username" class="form-control" id="username" value="{{$user->username}}">
                                     </div>
                                 </div>
+
+                           
                                 <div class="form-group row">
                                 <div class="col-md-3">
                                 @if(Storage::disk('public')->exists('uploads/gallery/users/'.$user->image) && $user->image)
                   <img src="{{Storage::url('uploads/gallery/users/'.$user->image)}}" alt="Circle image" class="img-fluid rounded-circle shadow" style="width: 100px;">
                   @endif
-                </div>   <div class="col-md-9">
-                                        <div class="custom-file">
-                                        <input type="file" name="image">
-                                            <label class="custom-file-label">{{$user->image}}</label>
-                                        </div>
-                                    </div>
-                                  
+                  </div> <div class="col-md-9">
+                  <div class="custom-file">
+            <input type="file" class="custom-file-input" id="dropzoneBasicUpload">
+            <label class="custom-file-label" for="dropzoneBasicUpload">Choose file</label>
+        </div>
+                                 </div>
                                 </div>
                                
                                 <div class="form-group row">
@@ -116,16 +117,7 @@ input[type=number] {
                                 <div class="col-sm-9">
 
                                  <textarea name="address" class="form-control" spellcheck="false">{{$user->address}}</textarea></div>
-                                 </div>
-                                <!-- <div class="form-group row">
-                                    <label for="address" class="col-sm-3 text-right control-label col-form-label">Address </label>
-                                    <div class="col-sm-9">
-                                        <input type="text" name="address" class="form-control" id="alternatecontact" placeholder="Address">
-                                    </div>
-                                </div> -->
-
-
-                              
+                                 </div>                              
                                 <div class="form-group row">
                                     <label for="gender" class="col-sm-3 text-right control-label col-form-label">Gender</label>
                                     <div class="col-sm-9">
