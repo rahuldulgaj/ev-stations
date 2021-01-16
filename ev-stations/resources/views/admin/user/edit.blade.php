@@ -91,13 +91,14 @@ input[type=number] {
                                 @if(Storage::disk('public')->exists('uploads/gallery/users/'.$user->image) && $user->image)
                   <img src="{{Storage::url('uploads/gallery/users/'.$user->image)}}" alt="Circle image" class="img-fluid rounded-circle shadow" style="width: 100px;">
                   @endif
-                  </div> <div class="col-md-9">
+                  </div>
+                  <div class="col-md-9">
                   <div class="custom-file">
-            <input type="file" class="custom-file-input" id="dropzoneBasicUpload">
+            <input type="file" name="image" class="custom-file-input" id="dropzoneBasicUpload">
             <label class="custom-file-label" for="dropzoneBasicUpload">Choose file</label>
-        </div>
-                                 </div>
-                                </div>
+                  </div>
+                   </div>
+               </div>
                                
                                 <div class="form-group row">
                                     <label for="contact" class="col-sm-3 text-right control-label col-form-label">Contact Number </label>

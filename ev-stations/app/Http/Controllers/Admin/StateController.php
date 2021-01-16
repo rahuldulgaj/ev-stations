@@ -65,7 +65,7 @@ class StateController extends Controller
         $state = new State();
         $state->name = $request->name; 
         $state->status = $request->status;
-        $state->state_slug= str_slug($request->name);
+        $state->slug= str_slug($request->name);
         $state->statecode=$request->statecode;
         $state->country_id= $request->country_id;
       //  $role->status = $request ->status == 'active'?1:0;
@@ -127,7 +127,7 @@ class StateController extends Controller
         $state = State::find($state->id);
         $state->name = $request->name; 
         $state->status = $request->status;
-        $state->state_slug= str_slug($request->name);
+        $state->slug= str_slug($request->name);
         $state->statecode= $request->statecode;
         $state->country_id= $request->country_id;
       //  $role->status = $request ->status == 'active'?1:0;

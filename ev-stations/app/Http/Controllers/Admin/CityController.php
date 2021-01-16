@@ -63,7 +63,7 @@ class CityController extends Controller
         $city = new City();
         $city->name = $request->name; 
         $city->status = $request->status;
-        $city->city_slug= str_slug($request->name);
+        $city->slug= str_slug($request->name);
         $city->state_id= $request->state_id;
         $city->country_id= $request->country_id;
         $city->citycode=$request->citycode;
@@ -126,7 +126,7 @@ class CityController extends Controller
         $city = City::find($city->id);
         $city->name = $request->name; 
         $city->status = $request->status;
-        $city->city_slug= str_slug($request->name);
+        $city->slug= str_slug($request->name);
         $city->citycode= $request->citycode;
       //  $role->status = $request ->status == 'active'?1:0;
         $city-> save();

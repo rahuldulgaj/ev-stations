@@ -11,13 +11,14 @@ class CountryStateCity extends Component
 {
    // public $countries;
    public $states;
-   public $cities=[];
+   public $cities;
    public $city;
    public $country;
    public $state;
 
     public $selectedCountry = NULL;
     public $selectedState = NULL;
+    public $selectedCity = NULL;
 
     public function mount($country,$state,$city)
     {
@@ -33,12 +34,13 @@ class CountryStateCity extends Component
     {
 
         if(!empty($this->country)) {
-           
             $this->states = State::where('country_id', $this->country)->get();
         }
+
         if(!empty($this->state)) {
             $this->cities = City::where('state_id', $this->state)->get();
         }
+
         return view('livewire.country-state-city')->withCountries(Country::orderBy('name')->get())->withStates(State::orderBy('name')->get());
     }
 
@@ -54,4 +56,5 @@ class CountryStateCity extends Component
     //         $this->cities = City::where('state_id', $state)->get();
     //     }
     // }
+    
 }

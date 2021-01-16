@@ -63,12 +63,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">File Upload</label>
+                                <div class="col-md-3">
+                  <img src="" alt="brand" class="img-fluid rounded-circle shadow" style="width: 60px;">
+                </div>
                                     <div class="col-md-9">
                                         <div class="custom-file">
-                                            <input type="file" name="image" class="custom-file-input ">
-                                            <label class="custom-file-label">Choose file...</label>
-                                            <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    <input type="file" name="image" class="custom-file-input ">
+                                            <label class="custom-file-label">Choose a image</label>
                                         </div>
                                     </div>
                                 </div>

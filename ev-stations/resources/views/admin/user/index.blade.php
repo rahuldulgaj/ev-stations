@@ -30,7 +30,7 @@
       
 
 
-<divsss class="row">
+<div class="row">
 
 
 
@@ -61,7 +61,7 @@
         </form>
     </div>
    </div>
-</divsss>
+</div>
 
 <!-- RRRRRRRRRRRRRRRR -->
 

@@ -62,6 +62,20 @@
                                 </div>
 
                                 <div class="form-group row">
+                                <div class="col-md-3">
+                                @if(Storage::disk('public')->exists('brand/'.$brand->image) && $brand->image)
+                  <img src="{{Storage::url('brand/'.$brand->image)}}" alt="brand" class="img-fluid rounded-circle shadow" style="width: 60px;">
+                  @endif
+                </div>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                    <input type="file" name="image" class="custom-file-input " value="{{ $brand->image}}">
+                    <label class="custom-file-label">Choose a image</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>
                                     <div class="col-sm-9">
                                         <select type="text" name="status" class="form-control" id="status" placeholder="Status">

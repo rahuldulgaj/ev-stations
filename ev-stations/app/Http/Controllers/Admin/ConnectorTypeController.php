@@ -51,7 +51,7 @@ class ConnectorTypeController extends Controller
         //     abort(401);
         // }
         $request -> validate([
-            'name' => 'required|max:255',
+            'name' => 'required|unique:connector_types|max:255',
             'status' => 'required',
             'image'     => 'required|image|mimes:jpeg,jpg,png'
         
@@ -62,9 +62,10 @@ class ConnectorTypeController extends Controller
         $connectortype->name = $request->name; 
         $connectortype->status = $request->status;
         $connectortypeslug  = str_slug($request->name);
-        $connectortype->slug=$connectortypeslug;
+        $connectortype->slug = $connectortypeslug;
         $image = $request->file('image');
         $sDirPath = 'connectortype/'; //Specified Pathname
+        
         if(isset($image)){
                     $currentDate = Carbon::now()->toDateString();
                     $imagename = $connectortypeslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
@@ -79,7 +80,8 @@ class ConnectorTypeController extends Controller
             }else{
                 $imagename = $connectortype->image;
             }
-            $connectortype->image    = $imagename;    
+            $connectortype->image = $imagename; 
+
         $connectortype-> save();
         Toastr::success('Connector Type successfully added!','Success');
         return redirect()->route('admin.connectortype.index');
@@ -125,7 +127,7 @@ class ConnectorTypeController extends Controller
         //     abort(401);
         // }
         $request -> validate([
-            'name' => 'required|max:255',
+            'name' => 'required|unique:connector_types|max:255',
             'status' => 'required',
             'image'     => 'required|image|mimes:jpeg,jpg,png'
     ]);
@@ -168,7 +170,7 @@ class ConnectorTypeController extends Controller
         //
         $connectortype = ConnectorType::find($id);
         $connectortype -> delete();
-        Toastr::error('Amenities successfully deleted!','Deleted');
+        Toastr::error('ConnectorType successfully deleted!','Deleted');
         return redirect()->route('admin.connectortype.index');
     }
 

@@ -1,4 +1,4 @@
-@extends('theme.default')
+@extends('theme.newdefault')
 
 @section('content')
 
@@ -13,35 +13,42 @@
                 </ul>
             </div>
     @endif
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">System Manager</h4>
-                    <div class="ml-auto text-right">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('role.index')}}">User</a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+     <!-- Begin Page Content -->
+  <div class="container-fluid">
+ <div class="header-body">
+ <div class="card shadow mb-4">
+ 
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.role.index')}}">Role</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">Role</li>
+                </ol>
+              </nav>
             </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+      
         </div>
-        <div class="container-fluid">
+        
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('role.update',$roles->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.role.update',$roles->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
-                            {{--@method('PUT')--}}
+                            {{ method_field('PUT') }}
                             <div class="card-body">
-                                <h4 class="card-title">ADD Role</h4>
 
                                 <div class="form-group row">
-                                    <label for="rolename" class="col-sm-3 text-right control-label col-form-label">Role name</label>
+                                    <label for="name" class="col-sm-3 text-right control-label col-form-label">Role name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="rolename" class="form-control" id="rolename" value="{{$roles->rolename}}" >
+                                        <input type="text" name="name" class="form-control" id="name" value="{{$roles->name}}" >
                                     </div>
                                 </div>
                                
@@ -67,10 +74,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <footer class="footer text-center">
-            All Rights Reserved by BrainyDx. Designed and Developed by <a href="#">Brainydx</a>.
-        </footer>
+    
+       
     </div>
 
 @endsection

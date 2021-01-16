@@ -15,8 +15,7 @@
     @if(count($states) > 0)
    
         <div class="form-group row">
-            <label for="state" class="col-sm-3 text-right control-label col-form-label">{{ __('State') }}</label>
-
+        <label class="col-sm-3 text-right inline-block w-32 font-bold">State</label>
             <div class="col-sm-9">
 
                 <select wire:model="state"   class="form-control" name="state_id">
@@ -29,10 +28,9 @@
         </div>
     @endif
 
-    @if (!is_null($state))
+    @if (count($cities) > 0)
         <div class="form-group row">
-            <label for="city" class="col-sm-3 text-right control-label col-form-label">{{ __('City') }}</label>
-
+        <label class="col-sm-3 text-right inline-block w-32 font-bold">City</label>
             <div class="col-sm-9">
 
                 <select class="form-control" name="city_id" wire:model="city" >
