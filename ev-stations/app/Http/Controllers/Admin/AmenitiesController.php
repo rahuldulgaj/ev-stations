@@ -117,7 +117,7 @@ class AmenitiesController extends Controller
         $request -> validate([
             'name' => 'required|max:255',
             'status' => 'required',
-            'image'     => 'required|image|mimes:jpeg,jpg,png'
+           // 'image'     => 'required|image|mimes:jpeg,jpg,png'
     ]);
         
      $image = $request->file('image');
@@ -133,7 +133,7 @@ class AmenitiesController extends Controller
         Storage::disk('public')->put('amenities/'.$imagecs, $amenitiesimg);
 
     }else{
-        $imagecs = $amenities->image;
+        $imagecs = 'default.png';
     }
         $amenities = Amenities::find($id);
         $amenities->name = $request->name; 

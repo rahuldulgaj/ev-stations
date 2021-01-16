@@ -17,6 +17,7 @@ class CreateVehicleTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name',128);
             $table->string('slug',128)->unique();
+            $table->text('image')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
         });

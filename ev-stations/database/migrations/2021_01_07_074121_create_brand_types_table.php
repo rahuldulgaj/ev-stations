@@ -18,7 +18,7 @@ class CreateBrandTypesTable extends Migration
                 $table->string('name');
                 $table->string('slug')->unique();
                 $table->string('brandcode',128)->unique();
-                $table->string('image')->nullable();
+                $table->text('image')->nullable();
                 $table->boolean('status')->nullable();
                 $table->timestamps();
             });

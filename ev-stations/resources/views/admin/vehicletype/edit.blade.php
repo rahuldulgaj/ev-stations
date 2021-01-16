@@ -54,7 +54,20 @@
                                         <input type="text" name="name" class="form-control" id="name" value="{{$vehicletype->name}}" >
                                     </div>
                                 </div>
-                             
+                                <div class="form-group row">
+                                <div class="col-md-3">
+                                @if(Storage::disk('public')->exists('vehicletype/'.$vehicletype->image) && $vehicletype->image)
+                  <img src="{{Storage::url('vehicletype/'.$vehicletype->image)}}" alt="Circle image" class="img-fluid rounded-circle shadow" style="width: 60px;">
+                  @endif
+                </div>
+                                    <div class="col-md-9">
+                                        <div class="custom-file">
+                    <input type="file" name="image" class="custom-file-input " value="{{ $vehicletype->image}}">
+                                            <label class="custom-file-label">{{ $vehicletype->image}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Status</label>

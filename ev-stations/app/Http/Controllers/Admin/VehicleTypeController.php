@@ -49,12 +49,29 @@ class VehicleTypeController extends Controller
         $request -> validate([
             'name' => 'required|unique:vehicle_types|max:255',
             'status' => 'required',
+            'image'     => 'required|image|mimes:jpeg,jpg,png'
         ]);
+        $image = $request->file('image');
+
+        if(isset($image)){
+            $currentDate = Carbon::now()->toDateString();
+            $imagecs = 'vehicletype-'.uniqid().'.'.$image->getClientOriginalExtension();
+    
+            if(!Storage::disk('public')->exists('vehicletype')){
+                Storage::disk('public')->makeDirectory('vehicletype');
+            }
+            $amenitiesimg = Image::make($image)->resize(150,150)->stream();
+            Storage::disk('public')->put('vehicletype/'.$imagecs, $amenitiesimg);
+    
+        }else{
+            $imagecs = 'default.png';
+        }
 
         $vehicletype = new VehicleType();
         $vehicletype->name = $request->name; 
         $vehicletype->status = $request->status;
         $vehicletype->slug= str_slug($request->name);
+        $vehicletype->image=$imagecs;
         $vehicletype-> save();
         Toastr::success('VehicleType successfully added!','Success');
         return redirect()->route('admin.vehicletype.index');
@@ -103,11 +120,25 @@ class VehicleTypeController extends Controller
  
  
      ]);
-         
+     $image = $request->file('image');
+    if(isset($image)){
+        $currentDate = Carbon::now()->toDateString();
+        $imagecs = 'vehicletype-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+        if(!Storage::disk('public')->exists('vehicletype')){
+            Storage::disk('public')->makeDirectory('vehicletype');
+        }
+        $amenitiesimg = Image::make($image)->resize(150,150)->stream();
+        Storage::disk('public')->put('vehicletype/'.$imagecs, $amenitiesimg);
+
+    }else{
+        $imagecs = 'default.png';
+    }
          $vehicletype =  VehicleType::find($id);
          $vehicletype->name = $request->name; 
          $vehicletype->status = $request->status;
          $vehicletype->slug= str_slug($request->name);
+         $vehicletype->image=$imagecs;
          $vehicletype-> save();
          Toastr::success('Vehicle Type Successfully Updated!','Success');
          return redirect()->route('admin.vehicletype.index');
