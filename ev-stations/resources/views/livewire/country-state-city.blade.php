@@ -2,13 +2,14 @@
     
     <div class="form-group row">
     <label class="col-sm-3 text-right inline-block w-32 font-bold">Country</label>
-        <select name="country_id" wire:model="country" class="col-sm-9 form-control ">
+    <div class="col-sm-9">
+        <select name="country_id" wire:model="country" class="form-control ">
             <option value=''>Choose a Country</option>
             @foreach($countries as $country)
                 <option value={{ $country->id }}>{{ $country->name }}</option>
             @endforeach
         </select>
-       
+        </div>
     </div>
  
     @if(count($states) > 0)

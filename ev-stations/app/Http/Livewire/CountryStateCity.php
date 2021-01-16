@@ -11,7 +11,7 @@ class CountryStateCity extends Component
 {
    // public $countries;
    public $states;
-   public $cities;
+   public $cities=[];
    public $city;
    public $country;
    public $state;
@@ -39,8 +39,6 @@ class CountryStateCity extends Component
         if(!empty($this->state)) {
             $this->cities = City::where('state_id', $this->state)->get();
         }
-      
-
         return view('livewire.country-state-city')->withCountries(Country::orderBy('name')->get())->withStates(State::orderBy('name')->get());
     }
 

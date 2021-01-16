@@ -16,7 +16,7 @@ input[type=number] {
 @extends('theme.newdefault')
 
 @section('content')
-
+@livewireStyles
 
     <div class="page-wrapper">
         @if ($errors->any())
@@ -135,7 +135,7 @@ input[type=number] {
                                         </select>
                                     </div>
                                 </div> 
-@livewire('country-state-city', ['country'=>$user->country_id , 'state'=>$user->state_id,'city'=>$user->city_id])
+@livewire('country-state-city',['country'=>$user->country_id , 'state'=>$user->state_id,'city'=>$user->city_id])
 
                               
                                 <div class="form-group row">
@@ -188,9 +188,7 @@ input[type=number] {
                 </div>
             </div>
         </div>
-        <footer class="footer text-center">
-            All Rights Reserved by BrainyDx. Designed and Developed by <a href="#">Brainydx</a>.
-        </footer>
+     
     </div>
-
+    @livewireScripts
 @endsection
