@@ -93,10 +93,8 @@
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$city->name}}</td>
                                 
-                                        <td class="sorting_1">
-                                        @if(Storage::disk('public')->exists('city/'.$city->image) && $city->image)
-                                   <img src="{{Storage::url('city/'.$city->image)}}" alt="{{$city->name}}" width="60" class="img-responsive img-rounded">
-                                        @endif   </td>
+                                        <td class="sorting_1">{{$city->citycode}}
+                                      </td>
                                         <td class="sorting_1">{{$city->created_at}}</td>
                                         @if($city->status== '1')
                                             <td>Active</td>
