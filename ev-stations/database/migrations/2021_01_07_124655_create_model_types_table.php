@@ -20,17 +20,17 @@ class CreateModelTypesTable extends Migration
             $table->string('modelcode',128)->unique();
             $table->bigInteger('brand_types_id')->unsigned();
             $table->bigInteger('vehicle_types_id')->unsigned();
-            $table->string('battary_size',128);
-            $table->string('charging_standard',128);
-            $table->string('compatiable_charging',128);
-            $table->string('range',128);
-            $table->string('dc_charging_time',128);
-            $table->string('home_plug_charging_time',128);
-            $table->string('swappable_battary',128);
-            $table->string('price',128);
-            $table->string('description',128);
-            $table->bigInteger('status');
-            $table->text('image');
+            $table->string('battary_size',128)->nullable();
+            $table->string('charging_standard',128)->nullable();
+            $table->string('compatiable_charging',128)->nullable();
+            $table->string('range',128)->nullable();
+            $table->string('dc_charging_time',128)->nullable();
+            $table->string('home_plug_charging_time',128)->nullable();
+            $table->string('swappable_battary',128)->nullable();
+            $table->string('price',128)->nullable();
+            $table->string('description',128)->nullable();
+        $table->bigInteger('status');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
         Schema::table('model_types', function($table) {

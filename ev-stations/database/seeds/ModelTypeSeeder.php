@@ -17,7 +17,7 @@ class ModelTypeSeeder extends Seeder
             'name' => "Scoda Tx-1",
             'slug'=>'scoda-tx-1',
             'modelcode'=>'sctx01',
-            'company_id'=>'1',
+           
             'swappable_battary'=>'yes',
             'brand_types_id'=>'1',
             'vehicle_types_id'=>'3',
@@ -27,13 +27,14 @@ class ModelTypeSeeder extends Seeder
             'range'=>'45',
            'compatiable_charging'=>'3',
             'dc_charging_time'=>'2',
+            'home_plug_charging_time'=>'1',
             'status'=>'1'
             ),
             array(
                 'name' => "Scoda Tx-3",
                 'slug'=>'scoda-tx-3',
                 'modelcode'=>'sctx03',
-                'company_id'=>'1',
+              
                 'swappable_battary'=>'yes',
                 'brand_types_id'=>'1',
                 'vehicle_types_id'=>'3',
@@ -42,6 +43,7 @@ class ModelTypeSeeder extends Seeder
                 'price'=>'89000',
                 'range'=>'60',
                'compatiable_charging'=>'4',
+               'home_plug_charging_time'=>'1',
                 'dc_charging_time'=>'2',
                 'status'=>'1'
             ),
@@ -49,7 +51,7 @@ class ModelTypeSeeder extends Seeder
                 'name' => "Bajaj Chetak EV",
                 'slug'=>'bajaj-chetak-01',
                 'modelcode'=>'bc01',
-                'company_id'=>'1',
+               
                 'swappable_battary'=>'yes',
                 'brand_types_id'=>'1',
                 'vehicle_types_id'=>'1',
@@ -59,6 +61,7 @@ class ModelTypeSeeder extends Seeder
                 'range'=>'50',
                'compatiable_charging'=>'2',
                 'dc_charging_time'=>'2',
+                'home_plug_charging_time'=>'1',
                 'status'=>'1'
             ),
         ));
