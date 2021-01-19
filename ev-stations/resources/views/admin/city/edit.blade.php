@@ -46,7 +46,7 @@
                             {{ method_field('PUT') }}
                       
                             <div class="card-body">
-                                <h4 class="card-title">ADD CITY</h4>
+                               
              
 
                                 <div class="flex flex-col justify-around h-full">
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">city Code</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">City Code</label>
                                     <div class="col-sm-9">
                                <input type="text" name="citycode" class="form-control" id="citycode" value="{{$city->citycode}}" >
                                     </div>
