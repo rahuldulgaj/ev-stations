@@ -119,23 +119,22 @@ class AmenitiesController extends Controller
             'status' => 'required',
            // 'image'     => 'required|image|mimes:jpeg,jpg,png'
     ]);
-        
-     $image = $request->file('image');
-     $slug =str_slug($request->name);
+    $amenities = Amenities::find($id);
+    $image = $request->file('image');
+
+    $slug =str_slug($request->name);
     if(isset($image)){
         $currentDate = Carbon::now()->toDateString();
         $imagecs = 'amenities-'.$slug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
-
         if(!Storage::disk('public')->exists('amenities')){
             Storage::disk('public')->makeDirectory('amenities');
         }
         $amenitiesimg = Image::make($image)->resize(150,150)->stream();
         Storage::disk('public')->put('amenities/'.$imagecs, $amenitiesimg);
-
     }else{
-        $imagecs = 'default.png';
+        $imagecs =$amenities->image;
     }
-        $amenities = Amenities::find($id);
+     
         $amenities->name = $request->name; 
         $amenities->status = $request->status;
         $amenities->slug= $slug;

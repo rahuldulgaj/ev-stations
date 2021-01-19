@@ -129,6 +129,7 @@ class BrandTypeController extends Controller
        
        $brandtype = BrandType::find($id);
         $image = $request->file('image');
+        
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
             $imagecs = 'brand-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
