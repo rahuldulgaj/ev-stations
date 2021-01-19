@@ -1,4 +1,4 @@
-@extends('theme.default')
+@extends('theme.newdefault')
 
 @section('content')
 

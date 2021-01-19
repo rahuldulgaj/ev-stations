@@ -13,21 +13,32 @@
                 </ul>
             </div>
     @endif
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">System Manager</h4>
-                    <div class="ml-auto text-right">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.state.index')}}">User</a></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+
+       <!-- Begin Page Content -->
+       <div class="container-fluid">
+ <div class="header-body">
+ <div class="card shadow mb-4">
+ 
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.state.index')}}">State</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">State</li>
+                </ol>
+              </nav>
             </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+      
         </div>
+
+
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-10">

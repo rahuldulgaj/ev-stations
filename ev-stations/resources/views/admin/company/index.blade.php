@@ -1,35 +1,30 @@
-@extends('theme.default')
+@extends('theme.newdefault')
 
 
 
 @section('content')
  <!-- Begin Page Content -->
  <div class="container-fluid">
+ <div class="header-body">
+ <div class="card shadow mb-4">
 
-<!-- Page Heading -->
-<!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Users</h1>
-  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> 
-</div> -->
-
-<div class="row">
-
-    <div class="col-lg-12">
-
-        <!-- <h1 class="page-header">My Users</h1> -->
-        <h4 class="page-title">Company Management</h4>
-    </div>
-    <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.company.index')}}">Company</a></li>
-                                </ol>
-                            </nav>
-                        </div>
-    <!-- /.col-lg-12 -->
-
-</div>
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.company.index')}}">Company</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">Company</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+        </div>  </div>
 
 <div class="row">
 
@@ -54,112 +49,45 @@
             </div>
             <div class="border-top">
                 <div class="card-body">
-                    <button type="submit" class="btn btn-success">Search</button>
-                    <a href="{{route('admin.company.index')}}" class="btn btn-md btn-danger">Clear</a>
-                    <a class="btn btn-md btn-info " href="{{ route('admin.company.create') }}" ><i class="fa fa-plus"> </i>Add Company </a>
+                    <button type="submit" class="btn btn-sm btn-neutral">Search</button>
+                    <a href="{{route('admin.company.index')}}" class="btn btn-sm btn-neutral">Clear</a>
+                    <a class="btn btn-sm btn-neutral" href="{{ route('admin.company.create') }}" ><i class="fa fa-plus"> </i>Add Company </a>
                 </div>
             </div>
         </form>
     </div>
    </div>
 </div>
-
-               <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Record</h6>
+             
+<div class="row">
+        <div class="col">
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+              <h3 class="mb-0">Records</h3>
             </div>
 
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                  <th scope="col" class="sort" data-sort="id">Id</th>
+                    <th scope="col" class="sort" data-sort="name">Name</th>
+                    <th scope="col" class="sort" data-sort="code">Code</th>
+                    <th scope="col" class="sort" data-sort="created_at">Created Date</th>
+                    <th scope="col" class="sort" data-sort="status">Status</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                    
+                @foreach($companies as $company)
 
-            <div class="card-body">
-              <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
-                <div class="col-sm-12 col-md-6">
-                <div class="dataTables_length" id="dataTable_length">
-                <label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                </select> entries</label></div></div>
-                <div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                  <thead>
-                    <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sno: activate to sort column descending" style="width: 58px;">Sno</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Name</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Code</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Created Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 67px;">Status</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 67px;">Action</th>
-                    </tr>
-                  </thead>
-
-                  <tfoot>
-                    <tr><th rowspan="1" colspan="1">Sno</th>
-                    <th rowspan="1" colspan="1">Name</th>
-                    <th rowspan="1" colspan="1">Code</th>
-                   <th rowspan="1" colspan="1">Created  Date</th>
-                   <th rowspan="1" colspan="1">Status</th>
-                   <th rowspan="1" colspan="1">Action</th></tr>
-                  </tfoot>
-                  <tbody>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                  @foreach($companies as $company)
                  
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$company->name}}</td>
+                                
                                         <td class="sorting_1">{{$company->companycode}}</td>
                                         <td class="sorting_1">{{$company->created_at}}</td>
                                         @if($company->status== '1')
@@ -199,6 +127,7 @@
               </div>
             </div>
           </div>
+              
 @endsection
 
 

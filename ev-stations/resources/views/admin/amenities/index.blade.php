@@ -87,18 +87,18 @@
                 </thead>
                 <tbody class="list">
                     
-                  @foreach($amenities as $amenitie)
+                  @foreach($amenities as $amenity)
                  
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
-                                        <td class="sorting_1">{{$amenitie->name}}</td>
+                                        <td class="sorting_1">{{$amenity->name}}</td>
                                 
                                         <td class="sorting_1">
-                                        @if(Storage::disk('public')->exists('amenities/'.$amenitie->image) && $amenitie->image)
-                                   <img src="{{Storage::url('amenities/'.$amenitie->image)}}" alt="{{$amenitie->name}}" width="60" class="img-responsive img-rounded">
+                                        @if(Storage::disk('public')->exists('amenities/'.$amenity->image) && $amenity->image)
+                                   <img src="{{Storage::url('amenities/'.$amenity->image)}}" alt="{{$amenity->name}}" width="60" class="img-responsive img-rounded">
                                         @endif   </td>
-                                        <td class="sorting_1">{{$amenitie->created_at}}</td>
-                                        @if($amenitie->status== '1')
+                                        <td class="sorting_1">{{$amenity->created_at}}</td>
+                                        @if($amenity->status== '1')
                                             <td>Active</td>
                                         @else
                                             <td>Deactive</td>
@@ -106,13 +106,13 @@
                                         <td>
                                       
  
-                                            <a href="{{route('admin.amenities.edit',$amenitie->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('admin.amenities.show',$amenitie->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
+                                            <a href="{{route('admin.amenities.edit',$amenity->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                            <a href="{{route('admin.amenities.show',$amenity->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
-                                            <form id="delete-form-{{ $amenitie->id }}" action="{{route('admin.amenities.destroy',$amenitie->id)}}" method="put">
+                                            <form id="delete-form-{{ $amenity->id }}" action="{{route('admin.amenities.destroy',$amenitie->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="deletePost({{ $amenitie->id }})" class="btn btn-sm btn-danger">Delete</button>
+                                                <button type="button" onclick="deletePost({{ $amenity->id }})" class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>

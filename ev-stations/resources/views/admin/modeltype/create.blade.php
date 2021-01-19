@@ -64,14 +64,14 @@
                             </select>   
                             </div>
                             </div>
-                         
-                         <div class="form-group row">
+
+                                               <div class="form-group row">
                               <label class="col-sm-3 text-right control-label col-form-label" for="exampleFormControlSelect1">Vehicle Type</label>
-                             <div class="col-sm-9">
+                             <div class="col-sm-9 dropdown">
                             <select class="form-control" name="vehicle_types_id" id="exampleFormControlSelect1">
                             <option value=''>Choose Vehicle</option>
                               @foreach($vehicletypes as $vehicletype)
-                                 <option value="{{ $vehicletype->id }}">{{ $vehicletype->name }}</option>
+                              <img src="{{Storage::url('vehicletype/'.$vehicletype->image)}}"/>      <option value="{{ $vehicletype->id }}">{{ $vehicletype->name }}</option>
                             @endforeach
                         </select>
                           </div>
