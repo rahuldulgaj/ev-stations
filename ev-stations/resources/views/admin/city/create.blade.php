@@ -50,6 +50,7 @@
 
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
+                              
 
                                 @livewire('country-state',['country', 'state'])
                                 <div class="form-group row">
@@ -112,13 +113,9 @@
         </div>
         
         @livewireScripts
+
         
     </div>
 
     @endsection
-    @push('scripts')
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/4.4.5/js/fileinput.min.js"></script>
-
-    <script src="{{ asset('backend/plugins/bootstrap-select/js/bootstrap-select.js') }}"></script>
-    @endpush

@@ -39,11 +39,12 @@ class CountryState extends Component
     
     public function render()
     {
+      
         if(!empty($this->country)) {
             $this->states = State::where('country_id', $this->country)->get();
         }
-        return view('livewire.country-state')
-            ->withCountries(Country::orderBy('name')->get());
+        
+        return view('livewire.country-state')->withCountries(Country::orderBy('name')->get());
     }
 
     // public function updatedSelectedCountry($country)
