@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class AmenitiesSeeder extends Seeder
 {
@@ -17,19 +19,25 @@ class AmenitiesSeeder extends Seeder
             'name' => "Hotel",
             'slug'=>'hotel',
             'status'=>'1',
-            'image'=>'default.png'
+            'image'=>'default.png',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ),
             array(
                 'name' => "Tennis Court",
                 'slug'=>'tennis-court',
                 'status'=>'1',
-                'image'=>'default.png'
+                'image'=>'default.png',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ),
             array(
                 'name' => "PVR",
                 'slug'=>'pvr',
                 'status'=>'1',
-                'image'=>'default.png'
+                'image'=>'default.png',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ),
         ));
     }

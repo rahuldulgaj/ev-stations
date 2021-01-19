@@ -55,7 +55,7 @@
             <div class="card-body">
                     <button type="submit" class="btn btn-sm btn-neutral">Search</button>
                     <a href="{{route('admin.city.index')}}" class="btn btn-sm btn-neutral">Clear</a>
-                    <a class="btn btn-sm btn-neutral" href="{{ route('admin.city.create') }}" ><i class="fa fa-plus"> </i>Add Amenities</a>
+                    <a class="btn btn-sm btn-neutral" href="{{ route('admin.city.create') }}" ><i class="fa fa-plus"> </i>Add City</a>
                 </div>
             </div>
         </form>
