@@ -58,7 +58,8 @@ class StateController extends Controller
            // 'statename' => 'required',
             'status' => 'required',
             'name' => 'required|unique:states|max:255',
-          //  'title'     => 'required|unique:properties|max:255',
+           'statecode'     => 'required|unique:states|max:255',
+           'country_id'     => 'required',
     ]);
         
       
@@ -121,6 +122,7 @@ class StateController extends Controller
             'status' => 'required',
             'name' => 'required|max:255',
            'country_id'     => 'required',
+           'statecode'     => 'required|unique:states|max:255',
     ]);
         
       

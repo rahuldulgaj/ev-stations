@@ -109,10 +109,10 @@
                 </div>
             </div>
         </div>
-        
+  
         @livewireScripts
         
     </div>
 
     @endsection
-   
+    @livewireAssets
