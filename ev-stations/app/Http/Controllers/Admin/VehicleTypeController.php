@@ -132,7 +132,7 @@ class VehicleTypeController extends Controller
         Storage::disk('public')->put('vehicletype/'.$imagecs, $amenitiesimg);
 
     }else{
-        $imagecs = 'default.png';
+        $imagecs =  $vehicletype->image;
     }
          $vehicletype =  VehicleType::find($id);
          $vehicletype->name = $request->name; 
