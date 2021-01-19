@@ -66,7 +66,7 @@ class CountryController extends Controller
         $country = new Country();
         $country->name = $request->name; 
         $country->status = $request->status;
-        $country->country_slug= str_slug($request->name);
+        $country->slug= str_slug($request->name);
        // $country->state_id= $request->state_id;
         $country->countrycode=$request->countrycode;
       //  $role->status = $request ->status == 'active'?1:0;
@@ -125,7 +125,7 @@ class CountryController extends Controller
         $country = Country::find($country->id);
         $country->name = $request->name; 
         $country->status = $request->status;
-        $country->country_slug= str_slug($request->name);
+        $country->slug= str_slug($request->name);
        // $country->state_id= $request->state_id;
         $country->countrycode=$request->countrycode;
       //  $role->status = $request ->status == 'active'?1:0;
