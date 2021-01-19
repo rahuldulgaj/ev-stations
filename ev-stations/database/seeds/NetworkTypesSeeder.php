@@ -21,19 +21,22 @@ class NetworkTypesSeeder extends Seeder
             'name' => "Athor",
             'slug'=>'athor',
             'status'=>'1',
-            'image'=>'default.png'
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ),
             array(
                 'name' => "Tata",
                 'slug'=>'tata',
                 'status'=>'1',
-                'image'=>'default.png'
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ),
             array(
                 'name' => "Texla",
                 'slug'=>'texla',
                 'status'=>'1',
-                'image'=>'default.png'
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ),
         ));
     }
