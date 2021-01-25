@@ -42,8 +42,8 @@
   <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
     <div class="container">
     <a class="navbar-brand" href="{{ url('/') }}">
-      {{ config('app.name', 'Laravel') }}
-        <img src="{{asset('assets/img/brand/logo.png')}}">
+      <!-- {{ config('app.name', 'BeeEv') }} -->
+        <img src="{{asset('assets/img/brand/BlueBeeEV.png')}}">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -53,8 +53,8 @@
           <div class="row">
             <div class="col-6 collapse-brand">
             <a href="{{ url('/home') }}">
-                {{ config('app.name', 'Laravel') }}
-                 <img src="{{asset('assets/img/brand/logo.png')}}">
+                <!-- {{ config('app.name', 'BeeEv') }} -->
+                 <img src="{{asset('assets/img/brand/BlueBeeEV.png')}}">
               </a>
             </div>
             <div class="col-6 collapse-close">
