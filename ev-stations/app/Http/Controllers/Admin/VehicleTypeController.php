@@ -83,12 +83,13 @@ class VehicleTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(VehicleType $vehicletype)
     {
-        //
-        $vehicletype =  VehicleType::find($id);
+        $vehicletype = VehicleType::withCount('comments')->find($vehicletype->id);
+
         return view('admin.vehicletype.show',compact('vehicletype'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -153,14 +154,16 @@ class VehicleTypeController extends Controller
     public function destroy($id)
     {
         //
-        $vehicletype =  VehicleType::find($id);
-        $vehicletype -> delete();
+       // $vehicletype =  VehicleType::find($id);
+        $vehicletype = VehicleType::find($id)->delete();
         Toastr::error('Vehicletype successfully deleted!','Deleted');
         return redirect()->route('admin.vehicletype.index');
     }
 
     public function search(Request $request){
-        $vehicletype =VehicleType::where('name', 'LIKE',"%{$request->search}%")->paginate('10');
-        return view('admin.vehicletype.index',compact('vehicletype'));
+        
+       dd($request);
+        $vehicletypes =VehicleType::where('name', 'LIKE',"%{$request->search}%")->paginate();
+        return view('admin.vehicletype.show',compact('vehicletypes'));
     }
 }

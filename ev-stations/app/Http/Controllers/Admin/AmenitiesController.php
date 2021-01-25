@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Amenities;
-use Illuminate\Http\Request;
 
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
+
 
 class AmenitiesController extends Controller
 {
@@ -78,18 +79,13 @@ class AmenitiesController extends Controller
         return redirect()->route('admin.amenities.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Amenities  $amenities
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Amenities $amenities)
-    {
-        //
-        $amenities = Amenities::find($id);
-        return view('admin.amenities.show',compact('amenities'));
-    }
+    
+    // public function show(Amenities $amenities)
+    // {
+    //     //
+    //     $amenities = Amenities::find($amenities->id);
+    //     return view('admin.amenities.index',compact('amenities'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -159,8 +155,15 @@ class AmenitiesController extends Controller
         return redirect()->route('admin.amenities.index');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Amenities  $amenities
+     * @return \Illuminate\Http\Response
+     */
     public function search(Request $request){
-        $amenities =Amenities::where('name', 'LIKE',"%{$request->search}%")->paginate();
+        dd('test');
+        $amenities =Amenities::where('name', 'LIKE',"%{$request->search}%")->paginate(10);
         return view('admin.amenities.index',compact('amenities'));
     }
 }

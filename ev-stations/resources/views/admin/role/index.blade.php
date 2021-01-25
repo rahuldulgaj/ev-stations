@@ -31,7 +31,30 @@
 
 
 <div class="row">
+<div>
+        <div class="mx-auto pull-right">
+            <div class="">
+                <form action="{{ route('admin.role.showindex') }}" method="GET" role="search">
 
+                    <div class="input-group">
+                        <span class="input-group-btn mr-5 mt-1">
+                            <button class="btn btn-info" type="submit" title="Search projects">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </span>
+                        <input type="text" class="form-control mr-2" name="term" placeholder="Search projects" id="term">
+                        <a href="{{ route('admin.role.index') }}" class=" mt-1">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" title="Refresh page">
+                                    <span class="fas fa-sync-alt"></span>
+                                </button>
+                            </span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 <div class="col-md-12">
@@ -41,13 +64,15 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('admin.role.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.role.showindex') }}" method="GET" class="form-horizontal">
+      
+      
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
                     <!-- <label class="col-sm-3 text-right control-label col-form-label"></label> -->
                     <div class="col-sm-8">
-                        <input type="text" name="search" class="form-control" id="firstname" placeholder="Role name">
+                <input type="text" name="search" class="form-control" id="firstname" placeholder="Role name">
                     </div>
                 </div>
             </div>
@@ -96,9 +121,9 @@
                                          @endif
                                         <td>
                      <a href="{{route('admin.role.edit',$role->id)}}" class="btn btn-sm btn-info">Edit</a>
-                     <a href="{{route('admin.role.show',$role->id)}}" class="btn btn-success btn-sm waves-effect">View</a>
-                      <form id="delete-form-{{ $role->id }}" action="{{route('admin.role.destroy',$role->id)}}" method="put">
-                                                @csrf
+                     <!-- <a href="{{route('admin.role.show',$role->id)}}" class="btn btn-success btn-sm waves-effect">View</a> -->
+                  <form id="delete-form-{{ $role->id }}" action="{{route('admin.role.destroy',$role->id)}}" method="put">
+                               @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $role->id }})" class="btn btn-sm btn-danger">Delete</button>
                                             </form>

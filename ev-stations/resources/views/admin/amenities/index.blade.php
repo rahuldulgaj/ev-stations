@@ -47,7 +47,8 @@
                 <div class="form-group row">
                     <!-- <label class="col-sm-3 text-right control-label col-form-label"></label> -->
                     <div class="col-sm-8">
-                        <input type="text" name="search" class="form-control" id="firstname" placeholder="Brand Name">
+                        <input type="text" name="search" class="form-control" id="firstname" 
+                        placeholder="Amenity Name">
                     </div>
                 </div>
             </div>

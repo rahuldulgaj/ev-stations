@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Gate;
 use Brian2694\Toastr\Facades\Toastr;
@@ -20,14 +21,28 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         // if(!Gate::allows('isAdmin')){
         //     abort(401);
         // }
 
-        $roles=Role::OrderBy('name','ASC')->paginate(15);
+        // $roles = Role::query();
+        // if (request('search')) {
+        //     $roles->where('name', 'Like', '%' . request('search') . '%');
+        // }
+        //  return $roles->orderBy('id', 'DESC')->paginate(10);
+
+        $roles=Role::Where([
+            ['name','!=',Null],[function($query) use ($request){
+                if(($search =$request->search)){
+                    $query->orwhere('name','LIKE','%'.$search.'%')->get();
+                }
+            }]
+        ])
+       ->OrderBy('name','ASC')->paginate(15);
+       // $roles=Role::OrderBy('name','ASC')->paginate(15);
         return view('admin.role.index',compact('roles'));
     }
 
@@ -50,7 +65,6 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         //
-       
         $request -> validate([
             'name' => 'required',
             'status' => 'required',
@@ -106,7 +120,7 @@ class RoleController extends Controller
     {
         
         $request -> validate([
-            'name' => 'required',
+            'name' =>   'required',
             'status' => 'required',
 
     ]);
@@ -136,7 +150,9 @@ class RoleController extends Controller
 
     
     public function search(Request $request){
+      
         $role =Role::where('name', 'LIKE',"%{$request->search}%")->paginate();
+        dd($role);
         return view('admin.role.index',compact('role'));
     }
 }
