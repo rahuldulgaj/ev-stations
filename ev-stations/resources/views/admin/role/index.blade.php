@@ -31,6 +31,7 @@
 
 
 <div class="row">
+<!-- 
 <div>
         <div class="mx-auto pull-right">
             <div class="">
@@ -54,7 +55,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 <div class="col-md-12">
