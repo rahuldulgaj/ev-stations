@@ -116,7 +116,7 @@
                                             <form id="delete-form-{{ $vehicletype->id }}" action="{{route('admin.vehicletype.destroy',$vehicletype->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="button" onclick="deletePost({{ $vehicletype->id }})" class="btn btn-sm btn-danger">Delete</button>
+                                    <button type="button" onclick="deletePost({{ $vehicletype->id }})" class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -140,7 +140,7 @@
             </div>
           </div>
 
-          
+
           {{--sweetalert box for deleting start--}}
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.8/dist/sweetalert2.all.min.js"></script>
 
