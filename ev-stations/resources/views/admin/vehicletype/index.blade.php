@@ -42,6 +42,7 @@
             </div>
 
         <form action="{{route('admin.vehicletype.search')}}" method="GET" class="form-horizontal">
+       
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
@@ -54,8 +55,12 @@
             <div class="border-top">
                 <div class="card-body">
                     <button type="submit" class="btn btn-sm btn-neutral">Search</button>
+
                     <a href="{{route('admin.vehicletype.index')}}" class="btn btn-sm btn-neutral">Clear</a>
                     <a class="btn btn-sm btn-neutral" href="{{ route('admin.vehicletype.create') }}" ><i class="fa fa-plus"> </i>Add Vehicle Types</a>
+                 
+                 
+                
                 </div>
             </div>
         </form>

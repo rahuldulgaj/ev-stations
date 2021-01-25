@@ -9,6 +9,7 @@
 
 
 @section('content')
+
      <!-- Begin Page Content -->
  <div class="container-fluid">
  <div class="header-body">
@@ -47,7 +48,7 @@
                 <div class="header">
                     <h2>
                         <br>
-                        <small>Posted By <strong>{{$vehicletype->name}}</strong> on {{$vehicletype->created_at->toFormattedDateString()}}</small>
+
                     </h2>
                 </div>
 
@@ -55,12 +56,7 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <strong>Vehicle Type : </strong>
-                            <span class="right">  {{$vehicletype->name}}</span>
-                        </li>
                        
-                        <li class="list-group-item">
-                            <strong>Status: </strong>
-                            <span class="right">{{$vehicletype->status}}</span>
                         </li>
                      
                     </ul>

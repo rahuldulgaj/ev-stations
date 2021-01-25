@@ -34,12 +34,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index');
 Auth::routes();
 
-Route::get('/roless', 'PermissionController@Permission');
+//Route::get('/roless', 'PermissionController@Permission');
 
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin'],'as'=>'admin.'],
+Route::group([ 'prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin'],'as'=>'admin.'],
  function(){
 
   Route::get('dashboard','DashboardController@index')->name('dashboard');
@@ -69,8 +69,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
 #############
 Route::resource('amenities','AmenitiesController');
 Route::get('amenities/search',[ 'as'=>'amenities.search','uses' => 'AmenitiesController@search']);
-
-
   #######admin.
 Route::resource('evstation','EvstationsController');
   Route::get('evstation/search',[ 'as'=>'evstation.search','uses' => 'EvstationsController@search']);
@@ -79,15 +77,21 @@ Route::resource('evstation','EvstationsController');
   Route::get('automatedstatus/search',[ 'as'=>'automatedstatus.search','uses' => 'AutomatedStatusController@search']);
 ##########Role##
      Route::resource('role','RoleController');
-     Route::get('role/search', [ 'as'=>'role.search','uses' => 'RoleController@search']);
+    // Route::get('role/search' ,'RoleController@search')->name('role.search');
+
+     Route::get('/role/showindex' ,'RoleController@showindex')->name('role.showindex');
+     ######################
 Route::resource('user','UserController');
 
 ########
 Route::resource('brand','BrandTypeController');
 Route::get('brand/search', [ 'as'=>'brand.search','uses' => 'BrandTypeController@search']);
 
+##
+Route::get('Admin/vehicletype/search','VehicleTypeController@search');
 Route::resource('vehicletype','VehicleTypeController');
-Route::get('vehicletype/search', [ 'as'=>'vehicletype.search','uses' => 'VehicleTypeController@search']);
+//Route::get('/vehicletype/search',\App\Http\Controllers\Admin\VehicleTypeController::class . '@search');
+
 ##########
 Route::resource('modeltype','ModelTypeController');
 Route::get('modeltype/search', [ 'as'=>'modeltype.search','uses' => 'ModelTypeController@search']);
@@ -97,9 +101,12 @@ Route::get('modeltype/search', [ 'as'=>'modeltype.search','uses' => 'ModelTypeCo
 Route::resource('connectortype','ConnectorTypeController');
 Route::get('connectortype/search', [ 'as'=>'connectortype.search','uses' => 'ConnectorTypeController@search']);
 
+
+
     });
 
 
+ 
 #######END ADMIN
 
 Route::group(['prefix'=>'subadmin','namespace'=>'Admin','middleware'=>['auth','subadmin'],'as'=>'subadmin.'],
