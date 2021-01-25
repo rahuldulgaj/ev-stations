@@ -143,11 +143,11 @@
                                          @endif
                                         <td>
 
-                                        <span class="input-group-btn">
+                                        <!-- <span class="input-group-btn">
                                 <button class="btn btn-warning" onclick="deletePost({{ $role->id }})" type="button" title="Delete">
                                     <span class="fas fa-edit"></span>
                                 </button>
-                            </span>
+                            </span> -->
                      <a href="{{route('admin.role.edit',$role->id)}}" class="btn btn-sm btn-info">Edit</a>
                      <!-- <a href="{{route('admin.role.show',$role->id)}}" class="btn btn-success btn-sm waves-effect">View</a> -->
                   <form id="delete-form-{{ $role->id }}" action="{{route('admin.role.destroy',$role->id)}}" method="put">
