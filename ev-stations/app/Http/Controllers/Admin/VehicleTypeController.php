@@ -83,12 +83,14 @@ class VehicleTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(VehicleType $vehicletype)
-    {
-        $vehicletype = VehicleType::withCount('comments')->find($vehicletype->id);
+    // public function show(VehicleType $vehicletype)
+    // {
+       
+    //     dd('comments');
+    //     $vehicletype = VehicleType::withCount('comments')->find($vehicletype->id);
+    //     return view('admin.vehicletype.show',compact('vehicletype'));
 
-        return view('admin.vehicletype.show',compact('vehicletype'));
-    }
+    // }
 
 
     /**
@@ -161,7 +163,6 @@ class VehicleTypeController extends Controller
     }
 
     public function search(Request $request){
-        
        dd($request);
         $vehicletypes =VehicleType::where('name', 'LIKE',"%{$request->search}%")->paginate();
         return view('admin.vehicletype.show',compact('vehicletypes'));

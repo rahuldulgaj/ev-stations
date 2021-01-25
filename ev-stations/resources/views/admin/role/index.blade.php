@@ -34,7 +34,7 @@
 <div>
         <div class="mx-auto pull-right">
             <div class="">
-                <form action="{{ route('admin.role.showindex') }}" method="GET" role="search">
+                <form action="{{ route('admin.role.index') }}" method="GET" role="search">
 
                     <div class="input-group">
                         <span class="input-group-btn mr-5 mt-1">
@@ -78,9 +78,31 @@
             </div>
             <div class="border-top">
                 <div class="card-body">
-                    <button type="submit" class="btn btn-sm btn-neutral">Search</button>
-                    <a href="{{route('admin.role.index')}}" class="btn btn-sm btn-neutral">Clear</a>
-                    <a class="btn btn-sm btn-neutral" href="{{ route('admin.role.create') }}" ><i class="fa fa-plus"> </i>Add Role</a>
+
+                        <span class="input-group-btn mr-6 mt-1">
+                            <button class="btn btn-info" type="submit"  title="Search projects">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </span>
+
+                        <a href="{{ route('admin.role.index') }}" class=" mt-1">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" title="Refresh page">
+                                    <span class="fas fa-sync-alt"></span>
+                                </button>
+                            </span>
+                        </a>
+
+                        <a href="{{ route('admin.role.create') }}" class=" mt-1">
+                        <span class="btn-label">
+                        <button type="button" class="btn btn-labeled btn-primary" title="Add New">
+                  <i class="fas fa-plus"></i></span></button></a>  
+                    <!-- <button type="submit" class="btn btn-sm btn-neutral">Search</button> -->
+                    <!-- <a href="{{route('admin.role.index')}}" class="btn btn-sm btn-neutral">Clear</a> -->
+                  
+                        <!--  -->
+                           
+                    <!-- <a class="btn btn-sm btn-neutral" href="{{ route('admin.role.create') }}" ><i class="fa fa-plus"> </i>Add Role</a> -->
                 </div>
             </div>
         </form>
@@ -120,12 +142,24 @@
                                             <td>Deactive</td>
                                          @endif
                                         <td>
+
+                                        <span class="input-group-btn">
+                                <button class="btn btn-warning" onclick="deletePost({{ $role->id }})" type="button" title="Delete">
+                                    <span class="fas fa-edit"></span>
+                                </button>
+                            </span>
                      <a href="{{route('admin.role.edit',$role->id)}}" class="btn btn-sm btn-info">Edit</a>
                      <!-- <a href="{{route('admin.role.show',$role->id)}}" class="btn btn-success btn-sm waves-effect">View</a> -->
                   <form id="delete-form-{{ $role->id }}" action="{{route('admin.role.destroy',$role->id)}}" method="put">
                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" onclick="deletePost({{ $role->id }})" class="btn btn-sm btn-danger">Delete</button>
+                             
+                               @method('DELETE')
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" onclick="deletePost({{ $role->id }})" type="button" title="Delete">
+                                    <span class="fas fa-trash"></span>
+                                </button>
+                            </span>
+                                                <!-- <button type="button" onclick="deletePost({{ $role->id }})" class="btn btn-sm btn-danger">Delete</button> -->
                                             </form>
                                         </td>
                                     </tr>
@@ -168,7 +202,46 @@
           </div>
         </div>
       </div>
-                    
+      {{--sweetalert box for deleting start--}}
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.8/dist/sweetalert2.all.min.js"></script>
+
+            <script type="text/javascript">
+                function deletePost(id)
+
+                {
+                    const swalWithBootstrapButtons = swal.mixin({
+                        confirmButtonClass: 'btn btn-success',
+                        cancelButtonClass: 'btn btn-danger',
+                        buttonsStyling: false,
+                    })
+
+                    swalWithBootstrapButtons({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel!',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.value) {
+                            event.preventDefault();
+                            document.getElementById('delete-form-'+id).submit();
+                        } else if (
+                            // Read more about handling dismissals
+                            result.dismiss === swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons(
+                                'Cancelled',
+                                'Your file is safe :)',
+                                'error'
+                            )
+                        }
+                    })
+                }
+
+            </script>
+            {{--sweetalert box for deleting end--}}            
               
 @endsection
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class VehicleType extends Model
 {
     //
-    // use SoftDeletes;
-
-    // protected $table = 'vehicle_types';
+    use SoftDeletes;
+    protected $table = 'vehicle_types';
+    
 }

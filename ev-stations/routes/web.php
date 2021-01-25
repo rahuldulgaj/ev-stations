@@ -88,7 +88,7 @@ Route::resource('brand','BrandTypeController');
 Route::get('brand/search', [ 'as'=>'brand.search','uses' => 'BrandTypeController@search']);
 
 ##
-Route::get('Admin/vehicletype/search','VehicleTypeController@search');
+Route::get('/admin/vehicletype/search','VehicleTypeController@search');
 Route::resource('vehicletype','VehicleTypeController');
 //Route::get('/vehicletype/search',\App\Http\Controllers\Admin\VehicleTypeController::class . '@search');
 

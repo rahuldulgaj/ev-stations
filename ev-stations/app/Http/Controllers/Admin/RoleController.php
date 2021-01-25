@@ -66,7 +66,7 @@ class RoleController extends Controller
     {
         //
         $request -> validate([
-            'name' => 'required',
+            'name' => 'required|unique:roles|max:255',
             'status' => 'required',
 
     ]);
@@ -120,7 +120,7 @@ class RoleController extends Controller
     {
         
         $request -> validate([
-            'name' =>   'required',
+            'name' => 'required|max:255',
             'status' => 'required',
 
     ]);
@@ -144,6 +144,9 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         //
+        $role = Role::find($id)->delete();
+        Toastr::error('Role successfully deleted!','Deleted');
+        return redirect()->route('admin.role.index');
 
     }
 

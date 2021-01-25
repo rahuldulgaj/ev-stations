@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="header bg-gradient-primary py-5 py-lg-6 pt-lg-6">
+<div class="header bg-gradient-warning py-5 py-lg-6 pt-lg-6">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
