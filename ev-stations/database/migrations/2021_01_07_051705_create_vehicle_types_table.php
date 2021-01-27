@@ -19,6 +19,7 @@ class CreateVehicleTypesTable extends Migration
             $table->string('slug',128)->unique();
             $table->text('image')->nullable();
             $table->boolean('status')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

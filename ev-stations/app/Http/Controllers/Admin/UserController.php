@@ -182,7 +182,7 @@ class UserController extends Controller
               
             $sDirPath = 'uploads/gallery/users/'; //Specified Pathname
             if(isset($image)){
-                        $currentDate = Carbon::now()->toDateString();
+              $currentDate = Carbon::now()->toDateString();
                $imagename = $userslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
                if(!Storage::disk('public')->exists($sDirPath)){
                         Storage::disk('public')->makeDirectory($sDirPath);
@@ -203,7 +203,6 @@ class UserController extends Controller
         $user->alternatecontact = $request->alternatecontact;
         $user->address = $request->address;
         $user->gender = $request->gender;
-       // $user->join_date = $request->join_date;
         $user->city_id = $request->city_id;
         $user->state_id = $request->state_id;
         $user->company_id = $request->company_id;
@@ -228,13 +227,13 @@ class UserController extends Controller
      */
     public function delete($id)
     {
-      
         $user = User::find($id);
-        $user -> delete();
+        $user ->delete();
         Toastr::error('User successfully deleted!','Deleted');
         return redirect()->route('admin.user.index');
     }
-
+    
+    ################
     public function search(Request $request){
         $users =User::where('username', 'LIKE',"%{$request->search}%")->paginate();
         return view('admin.user.index',compact('users'));

@@ -64,10 +64,7 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
-
-        <form action="{{route('admin.role.showindex') }}" method="GET" class="form-horizontal">
-      
-      
+        <form action="{{route('admin.role.search') }}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
@@ -150,17 +147,16 @@
                                 </button>
                             </span> -->
                      <a href="{{route('admin.role.edit',$role->id)}}" class="btn btn-sm btn-info">Edit</a>
-                     <!-- <a href="{{route('admin.role.show',$role->id)}}" class="btn btn-success btn-sm waves-effect">View</a> -->
-                  <form id="delete-form-{{ $role->id }}" action="{{route('admin.role.destroy',$role->id)}}" method="put">
-                               @csrf
-                             
-                               @method('DELETE')
+
+                  <form id="delete-form-{{ $role->id }}" action="{{route('admin.role.destroy',$role->id)}}"
+                   method="POST">
+                  @method('DELETE')
+                  @csrf
                             <span class="input-group-btn">
-                                <button class="btn btn-danger" onclick="deletePost({{ $role->id }})" type="button" title="Delete">
-                                    <span class="fas fa-trash"></span>
-                                </button>
+                          <button class="btn btn-sm btn-danger" onclick="deletePost({{ $role->id }})" type="button" title="Delete">Delete</button>
                             </span>
-                                                <!-- <button type="button" onclick="deletePost({{ $role->id }})" class="btn btn-sm btn-danger">Delete</button> -->
+
+                        <!-- <button type="button" onclick="deletePost({{ $role->id }})" class="btn btn-sm btn-danger">Delete</button> -->
                                             </form>
                                         </td>
                                     </tr>

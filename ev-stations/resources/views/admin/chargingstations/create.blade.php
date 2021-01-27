@@ -17,7 +17,7 @@
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active"><a href="{{route('admin.chargingstations.index')}}">Charging Stations</a></li>
+        <li class="breadcrumb-item active"><a href="{{route('admin.chargingstations.index')}}">Charging Stations</a></li>
                   <li class="breadcrumb-item  active" aria-current="page">Charging Stations</li>
                 </ol>
               </nav>
@@ -39,9 +39,19 @@
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
                         <form action="{{route('admin.chargingstations.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
-                            @csrf
+                           <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <div class="card-body">
-        
+         
+                            <div class="form-group row">
+                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">Station Type</label>
+                                    <div class="col-sm-9">
+                                        <select type="text" name="usagetype_id" class="form-control" id="status" placeholder="usagetype_id">
+                                            <option value="1">Public</option>
+                                            <option value="2">Private</option>
+                                            <option value="3">Swappable</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group row">
                                 <label for="lname" class="col-sm-3 text-right control-label col-form-label">Name</label>
@@ -129,15 +139,7 @@
                                     </div>
                                 </div> -->
 
-                                <div class="form-group row">
-                                    <label for="role" class="col-sm-3 text-right control-label col-form-label">Usage Type</label>
-                                    <div class="col-sm-9">
-                                        <select type="text" name="usagetype_id" class="form-control" id="status" placeholder="usagetype_id">
-                                            <option value="1">Public</option>
-                                            <option value="2">Private</option>
-                                        </select>
-                                    </div>
-                                </div>
+                               
                                 <div class="form-group row">
                                     <label for="role" class="col-sm-3 text-right control-label col-form-label">Availbility</label>
                                     <div class="col-sm-9">
@@ -382,7 +384,8 @@
     @endsection
 
     @section('scripts')
-    @parent
+
+    
             <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
