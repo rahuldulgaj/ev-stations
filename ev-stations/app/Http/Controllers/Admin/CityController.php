@@ -149,4 +149,13 @@ class CityController extends Controller
         Toastr::success('message', 'City deleted successfully.');
         return back();
     }
+
+     #######SEARCH BRAND #
+     public function search(Request $request){
+
+        $cities =City::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.city.index',compact('cities'));
+    }
 }
