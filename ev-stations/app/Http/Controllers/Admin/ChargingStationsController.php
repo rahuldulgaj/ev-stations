@@ -19,6 +19,7 @@ use App\Amenities;
 use App\BrandType;
 use App\VehicleType;
 use App\ConnectorType;
+use App\NetworkTypes;
 
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
@@ -47,7 +48,8 @@ class ChargingStationsController extends Controller
         $automatedstatus= AutomatedStatus::get();
         $chargingstations= ChargingStations::paginate(15);
        $connectortypes= ConnectorType::all();
-        return view('admin.chargingstations.index',compact('chargingstations','automatedstatus','companylist','countrylist','statelist','amenities','connectortypes'));
+       $networktypeslist=NetworkTypes::all();
+        return view('admin.chargingstations.index',compact('chargingstations','automatedstatus','companylist','countrylist','statelist','amenities','connectortypes','networktypeslist'));
     }
 
     /**
@@ -68,7 +70,8 @@ class ChargingStationsController extends Controller
         $automatedstatus= AutomatedStatus::get();
         $chargertypes = Chargertype::all();
         $connectortypes= ConnectorType::all();
-        return view('admin.chargingstations.create',compact('vehicletypes','brandtypes','amenities','automatedstatus','countrylist','companylist','statelist','citylist','chargertypes','connectortypes'));
+        $networktypeslist=NetworkTypes::all();
+        return view('admin.chargingstations.create',compact('vehicletypes','brandtypes','amenities','automatedstatus','countrylist','companylist','statelist','citylist','chargertypes','connectortypes','networktypeslist'));
     }
 
     /**
@@ -82,7 +85,7 @@ class ChargingStationsController extends Controller
         //
      //   dd($request);
         $request -> validate([
-            'name' => 'required|unique:model_types|max:255',
+            'name' => 'required|unique:charging_stations|max:255',
             'status' => 'required',
             'code' => 'required',
             'ownername' => 'required',
@@ -144,7 +147,7 @@ class ChargingStationsController extends Controller
         $chargingstation->usagetype_id =$request->usagetype_id;
         $chargingstation->alternatecontact =$request->alternatecontact;
         $chargingstation->address =$request->address;
-        $chargingstation->image    = $chargingstationsimg;
+        $chargingstation->image    = $imagecs;
       
         $chargingstation-> save();
       //  $chargingstation->connector()->sync([$request->price,$request->connector_type_id]);

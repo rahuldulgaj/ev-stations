@@ -19,6 +19,7 @@ use App\Company;
 use App\BrandType;
 use App\VehicleType;
 use App\ConnectorType;
+use App\NetworkTypes;
 
 class UserController extends Controller
 {
@@ -33,11 +34,11 @@ class UserController extends Controller
         //     abort(401);
         // }
         $companylist=Company::all();
-
+        $networktypeslist=NetworkTypes::all();
         $users = User::where('status','1')->paginate(15);
         $users=User::paginate(15);
         $roles=Role::all();
-        return view('admin.user.index',compact('users','companylist','roles'));
+        return view('admin.user.index',compact('users','companylist','roles','networktypeslist'));
     }
 
     /**
@@ -49,7 +50,8 @@ class UserController extends Controller
     {
         $companylist=Company::all();
         $roles=Role::all();
-        return view('admin.user.create',compact('companylist','roles'));
+        $networktypeslist=NetworkTypes::all();
+        return view('admin.user.create',compact('companylist','roles','networktypeslist'));
     }
    
     public function usershow($slug)
@@ -154,7 +156,8 @@ class UserController extends Controller
         $user = User::find($id);
         $companylist=Company::all();
         $roles=Role::all();
-        return view('admin.user.edit',compact('user','companylist','roles'));
+        $networktypeslist=NetworkTypes::all();
+        return view('admin.user.edit',compact('user','companylist','roles','networktypeslist'));
     }
 
     public function update(Request $request, $id)
@@ -235,7 +238,8 @@ class UserController extends Controller
     
     ################
     public function search(Request $request){
-        $users =User::where('username', 'LIKE',"%{$request->search}%")->paginate();
+        
+        $users =User::where('username', 'LIKE',"%{$request->search}%")->paginate('10');
         return view('admin.user.index',compact('users'));
     }
 
