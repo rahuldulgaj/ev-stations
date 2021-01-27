@@ -130,4 +130,12 @@ class AutomatedStatusController extends Controller
     {
         //
     }
+     #######SEARCH BRAND #
+     public function search(Request $request){
+
+        $automatedstatus =AutomatedStatus::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.automatedstatus.index',compact('automatedstatus'));
+    }
 }
