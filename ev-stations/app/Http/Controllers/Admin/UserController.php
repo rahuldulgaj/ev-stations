@@ -50,7 +50,7 @@ class UserController extends Controller
     {
         $companylist=Company::all();
         $roles=Role::all();
-        $networktypeslist=NetworkTypes::all();
+        
         return view('admin.user.create',compact('companylist','roles','networktypeslist'));
     }
    
@@ -238,7 +238,7 @@ class UserController extends Controller
     
     ################
     public function search(Request $request){
-        
+
         $users =User::where('username', 'LIKE',"%{$request->search}%")->paginate('10');
         return view('admin.user.index',compact('users'));
     }

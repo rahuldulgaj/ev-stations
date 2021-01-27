@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
+
+
 class BrandTypeController extends Controller
 {
     /**
@@ -22,7 +24,9 @@ class BrandTypeController extends Controller
     public function index()
     {
         //
-        $brands= BrandType::paginate(10);
+        $brands= BrandType::whereIn('status', [1, 2])
+        ->OrderBy('name','ASC')
+        ->paginate('10');
         return view('admin.brand.index',compact('brands'));
     }
 
@@ -168,9 +172,11 @@ class BrandTypeController extends Controller
         Toastr::error('Brand successfully deleted!','Deleted');
         return redirect()->route('admin.brand.index');
     }
-
+ #######SEARCH BRAND #
     public function search(Request $request){
-        $brand =BrandType::where('name', 'LIKE',"%{$request->search}%")->paginate();
-        return view('admin.brand.index',compact('brand'));
+        $brands =BrandType::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.brand.index',compact('brands'));
     }
 }

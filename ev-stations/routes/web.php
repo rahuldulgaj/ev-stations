@@ -87,11 +87,11 @@ Auth::routes();
    Route::get('vehicletype/search', ['as'=>'vehicletype.search','uses' => 'VehicleTypeController@search']);
    Route::resource('vehicletype','VehicleTypeController',['except' => 'show']);
   ########
-  Route::resource('brand','BrandTypeController');
+  Route::resource('brand','BrandTypeController',['except' => 'show']);
   Route::get('brand/search', [ 'as'=>'brand.search','uses' => 'BrandTypeController@search']);
 
   
-  Route::get('vehicletype/autocomplete',array('as'=>'vehicletype.autocomplete','uses'=>'VehicleTypeController@autocomplete'));
+  Route::get('vehicletype/autocomplete',['as'=>'vehicletype.autocomplete','uses'=>'VehicleTypeController@autocomplete']);
 
     ##########
     Route::resource('modeltype','ModelTypeController');

@@ -74,6 +74,8 @@
                     </div>
                 </div>
             </div>
+           
+           
             <div class="border-top">
                 <div class="card-body">
 
@@ -87,14 +89,13 @@
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="button" title="Refresh page">
                                     <span class="fas fa-sync-alt"></span>
-                                </button>
-                            </span>
-                        </a>
+                              </button></span> </a>
 
                         <a href="{{ route('admin.role.create') }}" class=" mt-1">
                         <span class="btn-label">
                         <button type="button" class="btn btn-labeled btn-primary" title="Add New">
-                  <i class="fas fa-plus"></i></span></button></a>  
+                  <i class="fas fa-plus"></i>
+                  </span></button></a>  
                     <!-- <button type="submit" class="btn btn-sm btn-neutral">Search</button> -->
                     <!-- <a href="{{route('admin.role.index')}}" class="btn btn-sm btn-neutral">Clear</a> -->
                   
