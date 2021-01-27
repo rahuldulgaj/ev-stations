@@ -81,7 +81,8 @@ Auth::routes();
 
      // Route::get('/role/showindex' ,'RoleController@showindex')->name('role.showindex');
       ######################
-  Route::resource('user','UserController',['except' => 'show']);
+      Route::get('user/search' ,['as'=>'user.search','uses' => 'UserController@search']);
+      Route::resource('user','UserController',['except' => 'show']);
 
   ########
   Route::resource('brand','BrandTypeController');
