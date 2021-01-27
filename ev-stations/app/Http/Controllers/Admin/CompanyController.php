@@ -124,4 +124,13 @@ class CompanyController extends Controller
         Toastr::success('message', 'State deleted successfully.');
         return back();
     }
+
+     #######SEARCH BRAND #
+     public function search(Request $request){
+
+        $companies =Company::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.company.index',compact('companies'));
+    }
 }
