@@ -148,4 +148,13 @@ class CountryController extends Controller
         Toastr::success('message', 'State deleted successfully.');
         return back();
     }
+
+    #######SEARCH BRAND #
+    public function search(Request $request){
+
+        $countries =Country::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.country.index',compact('countries'));
+    }
 }

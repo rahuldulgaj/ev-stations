@@ -152,4 +152,13 @@ class StateController extends Controller
         Toastr::success('message', 'State deleted successfully.');
         return back();
     }
+    ##########
+     #######SEARCH BRAND #
+     public function search(Request $request){
+
+        $states =State::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.state.index',compact('states'));
+    }
 }

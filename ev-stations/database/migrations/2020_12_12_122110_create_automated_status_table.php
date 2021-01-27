@@ -19,6 +19,7 @@ class CreateAutomatedStatusTable extends Migration
             $table->string('slug');
             $table->boolean('status')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

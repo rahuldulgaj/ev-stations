@@ -108,7 +108,6 @@
                                       
  
                                             <a href="{{route('admin.amenities.edit',$amenity->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('admin.amenities.show',$amenity->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
                                             <form id="delete-form-{{ $amenity->id }}" action="{{route('admin.amenities.destroy',$amenity->id)}}" method="put">
                                                 @csrf

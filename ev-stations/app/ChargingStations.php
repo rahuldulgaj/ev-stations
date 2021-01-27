@@ -3,11 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class ChargingStations extends Model
 {
     //
+    use SoftDeletes;
+
     protected $fillable = [
         'name','status','code', 'ownername','company_id' ,'latitude' ,'longitude','lat_lang','mobile', 'time_slot_id','automated_status_id',
         'country_id','state_id','city_id','image','numbers_of_ports'

@@ -1,35 +1,32 @@
-@extends('theme.default')
+@extends('theme.newdefault')
 
 
 
 @section('content')
- <!-- Begin Page Content -->
- <div class="container-fluid">
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+ <div class="header-body">
+ <div class="card shadow mb-4">
+ 
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.chargertype.index')}}">Charge Types</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">Charge Types</li>
+                </ol>
+              </nav>
+            </div>
+            <!-- <div class="col-lg-6 col-5 text-right">
+              <a href="#" class="btn btn-sm btn-neutral">New</a>
+              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+            </div> -->
+          </div>
+      
+        </div>
 
-<!-- Page Heading -->
-<!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  <h1 class="h3 mb-0 text-gray-800">Users</h1>
-  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> 
-</div> -->
-
-<div class="row">
-
-    <div class="col-lg-12">
-
-        <!-- <h1 class="page-header">My Users</h1> -->
-        <h4 class="page-title">Charger Types Management</h4>
-    </div>
-    <div class="ml-auto text-right">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('admin.chargertype.index')}}">Charger Types</a></li>
-                                </ol>
-                            </nav>
-                        </div>
-    <!-- /.col-lg-12 -->
-
-</div>
 
 <div class="row">
 
@@ -64,108 +61,41 @@
    </div>
 </div>
 
-               <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Record</h6>
+<!-- ######################## -->
+           
+<div class="row">
+        <div class="col">
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+              <h3 class="mb-0">Records</h3>
             </div>
 
-
-            <div class="card-body">
-              <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
-                <div class="col-sm-12 col-md-6">
-                <div class="dataTables_length" id="dataTable_length">
-                <label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                </select> entries</label></div></div>
-                <div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                  <thead>
-                    <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sno: activate to sort column descending" style="width: 58px;">Sno</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Name</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Code</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Company</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Image</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Created Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 67px;">Status</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 67px;">Action</th>
-                    </tr>
-                  </thead>
-
-                  <tfoot>
-                    <tr><th rowspan="1" colspan="1">Sno</th>
-                    <th rowspan="1" colspan="1">Name</th>
-                    <th rowspan="1" colspan="1">Code</th>
-                    <th rowspan="1" colspan="1">Company</th>
-                    <th rowspan="1" colspan="1">Image</th>
-                   <th rowspan="1" colspan="1">Created  Date</th>
-                   <th rowspan="1" colspan="1">Status</th>
-                   <th rowspan="1" colspan="1">Action</th></tr>
-                  </tfoot>
-                  <tbody>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                  <th scope="col" class="sort" data-sort="id">Id</th>
+                    <th scope="col" class="sort" data-sort="name">Name</th>
+                    <th scope="col" class="sort" data-sort="code">Code</th>
+                    <th scope="col" class="sort" data-sort="company">Company</th>
+                    <th scope="col" class="sort" data-sort="company">Image</th>
+                    <th scope="col" class="sort" data-sort="created_at">Created Date</th>
+                    <th scope="col" class="sort" data-sort="status">Status</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                  @foreach($chargertypes as $chargertype)
+                @foreach($chargertypes as $chargertype)
                  
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$chargertype->name}}</td>
-                                        <td class="sorting_1">{{$chargertype->ct_code}}</td>
-                                        <td class="sorting_1">{{$chargertype->ct_company}}</td>
+                                
+                                        <td class="sorting_1">{{$chargertype->ct_code}} </td>
+                                      
+                                        <td class="sorting_1">{{$chargertype->ct_company}} </td>  
                                         <td class="sorting_1"><img src="{{ url('storage/uploads/gallery/chargertype/'.$chargertype->image) }}" alt="" title="" /></td>
                                         <td class="sorting_1">{{$chargertype->created_at}}</td>
                                         @if($chargertype->status== '1')
@@ -177,9 +107,7 @@
                                       
  
                                             <a href="{{route('admin.chargertype.edit',$chargertype->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('admin.chargertype.show',$chargertype->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
-                                          
-                                            <form id="delete-form-{{ $chargertype->id }}" action="{{route('admin.chargertype.destroy',$chargertype->id)}}" method="put">
+                                  <form id="delete-form-{{ $chargertype->id }}" action="{{route('admin.chargertype.destroy',$chargertype->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $chargertype->id }})" class="btn btn-sm btn-danger">Delete</button>
@@ -199,13 +127,60 @@
                 <div class="row"><div class="col-sm-12 col-md-5">
                 <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination">
          <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
-                          {{ $chargertypes->links() }}
+         {{ $chargertypes->links() }}
                             </a></li>
                </ul></div></div></div></div>
               </div>
             </div>
           </div>
-@endsection
+                    
+                  
+
+
+         
+          @endsection
+
+{{--sweetalert box for deleting start--}}
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.8/dist/sweetalert2.all.min.js"></script>
+
+            <script type="text/javascript">
+                function deletePost(id)
+
+                {
+                    const swalWithBootstrapButtons = swal.mixin({
+                        confirmButtonClass: 'btn btn-success',
+                        cancelButtonClass: 'btn btn-danger',
+                        buttonsStyling: false,
+                    })
+
+                    swalWithBootstrapButtons({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel!',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.value) {
+                            event.preventDefault();
+                            document.getElementById('delete-form-'+id).submit();
+                        } else if (
+                            // Read more about handling dismissals
+                            result.dismiss === swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons(
+                                'Cancelled',
+                                'Your file is safe :)',
+                                'error'
+                            )
+                        }
+                    })
+                }
+
+            </script>
+            {{--sweetalert box for deleting end--}} 
+
 
 
 

@@ -23,6 +23,7 @@ class CreateChargingStationsConnectorTypeTable extends Migration
             $table->bigInteger('network_id')->nullable();
             $table->bigInteger('rate_id')->nullable();
             $table->timestamps();
+            
         });
     }
 

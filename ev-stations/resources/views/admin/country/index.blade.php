@@ -107,9 +107,8 @@
                                       
  
                                             <a href="{{route('admin.country.edit',$country->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('admin.country.show',$country->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
-                                            <form id="delete-form-{{ $country->id }}" action="{{route('admin.country.destroy',$country->id)}}" method="put">
+                                            <form id="delete-form-{{ $country->id }}" action="{{route('admin.country.destroy',$country->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $country->id }})" class="btn btn-sm btn-danger">Delete</button>
@@ -126,12 +125,13 @@
                 
                     </tbody>
                 </table></div></div>
-                <div class="row"><div class="col-sm-12 col-md-5">
-                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination">
-         <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">
-         {{ $countries->links() }}
-                            </a></li>
-               </ul></div></div></div></div>
+
+                <div class="row">
+                <div class="col-sm-12 col-md-5">
+                <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite"></div></div><div class="col-sm-12 col-md-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+                {{ $countries->links() }}
+              </div></div></div></div>
               </div>
             </div>
           </div>
@@ -139,7 +139,46 @@
 
 
 
+          {{--sweetalert box for deleting start--}}
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.8/dist/sweetalert2.all.min.js"></script>
 
+            <script type="text/javascript">
+                function deletePost(id)
+
+                {
+                    const swalWithBootstrapButtons = swal.mixin({
+                        confirmButtonClass: 'btn btn-success',
+                        cancelButtonClass: 'btn btn-danger',
+                        buttonsStyling: false,
+                    })
+
+                    swalWithBootstrapButtons({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel!',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.value) {
+                            event.preventDefault();
+                            document.getElementById('delete-form-'+id).submit();
+                        } else if (
+                            // Read more about handling dismissals
+                            result.dismiss === swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons(
+                                'Cancelled',
+                                'Your file is safe :)',
+                                'error'
+                            )
+                        }
+                    })
+                }
+
+            </script>
+            {{--sweetalert box for deleting end--}} 
 
 
 

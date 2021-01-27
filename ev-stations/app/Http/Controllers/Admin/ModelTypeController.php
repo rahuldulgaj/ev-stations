@@ -25,7 +25,8 @@ class ModelTypeController extends Controller
     public function index()
     {
         //
-        $modeltypes= ModelType::latest()->paginate('10');
+        $modeltypes= ModelType::latest()
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')->paginate('10');
         return view('admin.modeltype.index',compact('modeltypes'));
     }
 
@@ -191,7 +192,9 @@ class ModelTypeController extends Controller
         return redirect()->route('admin.modeltype.index');
     }
     public function search(Request $request){
-        $modeltype = ModelType::where('name', 'LIKE',"%{$request->search}%")->paginate('10');
-        return view('admin.modeltype.index',compact('modeltype'));
+        $modeltypes = ModelType::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.modeltype.index',compact('modeltypes'));
     }
 }

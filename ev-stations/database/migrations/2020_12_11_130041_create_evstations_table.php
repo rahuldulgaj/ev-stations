@@ -37,6 +37,7 @@ class CreateEvstationsTable extends Migration
           //  $table->date('join_date')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
 
         });

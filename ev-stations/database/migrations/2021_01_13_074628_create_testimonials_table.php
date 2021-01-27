@@ -20,6 +20,7 @@ class CreateTestimonialsTable extends Migration
             $table->string('testimonial');
             $table->boolean('status')->nullable();       
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

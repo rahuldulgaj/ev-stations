@@ -22,6 +22,7 @@ class CreateChargertypesTable extends Migration
             $table->boolean('status')->nullable();
             $table->text('image')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

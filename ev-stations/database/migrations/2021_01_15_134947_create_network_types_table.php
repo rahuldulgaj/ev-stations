@@ -20,6 +20,7 @@ class CreateNetworkTypesTable extends Migration
             $table->string('image')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
