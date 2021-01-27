@@ -80,17 +80,17 @@ Auth::routes();
   Route::resource('role','RoleController',['except' => 'show']);
 
      // Route::get('/role/showindex' ,'RoleController@showindex')->name('role.showindex');
-      ######################
-      Route::get('user/search' ,['as'=>'user.search','uses' => 'UserController@search']);
-      Route::resource('user','UserController',['except' => 'show']);
-
+  ######################
+  Route::get('user/search' ,['as'=>'user.search','uses' => 'UserController@search']);
+  Route::resource('user','UserController',['except' => 'show']);
+  ##
+   Route::get('vehicletype/search', ['as'=>'vehicletype.search','uses' => 'VehicleTypeController@search']);
+   Route::resource('vehicletype','VehicleTypeController',['except' => 'show']);
   ########
   Route::resource('brand','BrandTypeController');
   Route::get('brand/search', [ 'as'=>'brand.search','uses' => 'BrandTypeController@search']);
 
-  ##
-  Route::get('vehicletype/search', ['as'=>'vehicletype.search','uses' => 'VehicleTypeController@search']);
-  Route::resource('vehicletype','VehicleTypeController',['except' => 'show']);
+  
   Route::get('vehicletype/autocomplete',array('as'=>'vehicletype.autocomplete','uses'=>'VehicleTypeController@autocomplete'));
 
     ##########

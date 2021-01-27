@@ -125,9 +125,8 @@
                                         <td>
                                             
                                             <a href="{{route('admin.user.edit',$user->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('admin.user.show',$user->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
                                           
-                                            <form id="delete-form-{{ $user->id }}" action="{{route('user.delete',$user->id)}}" method="put">
+                                            <form id="delete-form-{{ $user->id }}" action="{{route('admin.user.destroy',$user->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $user->id }})" class="btn btn-sm btn-danger">Delete</button>
