@@ -41,7 +41,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Search</h6>
             </div>
 
-        <form action="{{route('user.search')}}" method="GET" class="form-horizontal">
+        <form action="{{route('admin.user.search')}}" method="GET" class="form-horizontal">
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
