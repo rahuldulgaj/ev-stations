@@ -21,6 +21,7 @@ class CreateStatesTable extends Migration
             $table->bigInteger('country_id')->unsigned()->nullable();
             $table->string('status');
             $table->timestamps();
+            $table->softDeletes();
         });
       
     }

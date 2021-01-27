@@ -56,7 +56,7 @@ class AutomatedStatusController extends Controller
         $automatedStatus = new AutomatedStatus();
         $automatedStatus->name = $request->name; 
         $automatedStatus->status = $request->status;
-      //  $automatedStatus->slug= str_slug($request->name);
+        $automatedStatus->slug= str_slug($request->name);
       //  $automatedStatus->status = $request ->status == 'active'?1:0;
         $automatedStatus-> save();
         Toastr::success('Automated Status successfully added!','Success');
@@ -66,7 +66,7 @@ class AutomatedStatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AutomatedStatus  $automatedStatus
+     * @param  \App\AutomatedStatus  $automatedstatus
      * @return \Illuminate\Http\Response
      */
     public function show(AutomatedStatus $automatedstatus)
@@ -80,17 +80,17 @@ class AutomatedStatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AutomatedStatus  $automatedStatus
+     * @param  \App\AutomatedStatus  $automatedstatus
      * @return \Illuminate\Http\Response
      */
-    public function edit(AutomatedStatus $automatedstatus)
+    public function edit($id)
     {
         //
         //dd($automatedStatus);
-        $automatedStatus =  AutomatedStatus::find($automatedstatus->id);
+        $automatedstatus =  AutomatedStatus::find($id);
        // dd($automatedstatus);
 //$automatedStatus = AutomatedStatus::where('automated_status.id', $automatedStatus->id)->first();
-        return view('admin.automatedstatus.edit',compact('automatedStatus'));
+        return view('admin.automatedstatus.edit',compact('automatedstatus'));
 
     }
 
@@ -98,10 +98,10 @@ class AutomatedStatusController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AutomatedStatus  $automatedStatus
+     * @param  \App\AutomatedStatus  $automatedstatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AutomatedStatus $automatedstatus)
+    public function update(Request $request , AutomatedStatus $automatedstatus)
     {
         //
         $request -> validate([
@@ -110,10 +110,10 @@ class AutomatedStatusController extends Controller
     ]);
         
       
-    $automatedstatus = AutomatedStatus::find($automatedstatus->id);
+        $automatedstatus = AutomatedStatus::find($automatedstatus->id);
         $automatedstatus->name = $request->name; 
         $automatedstatus->status = $request->status;
-      //  $automatedStatus->slug= str_slug($request->name);
+        $automatedStatus->slug= str_slug($request->name);
       //  $automatedStatus->status = $request ->status == 'active'?1:0;
         $automatedstatus-> save();
         Toastr::success('Automated Status successfully added!','Success');

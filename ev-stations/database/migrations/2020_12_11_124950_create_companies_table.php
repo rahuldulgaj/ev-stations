@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('companycode',128)->unique();
             $table->boolean('status')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

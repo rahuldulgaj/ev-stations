@@ -119,5 +119,9 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         //
+        $company = Company::find($company->id);
+        $company->delete();
+        Toastr::success('message', 'State deleted successfully.');
+        return back();
     }
 }

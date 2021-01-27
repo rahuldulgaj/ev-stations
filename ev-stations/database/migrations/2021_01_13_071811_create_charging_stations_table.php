@@ -40,6 +40,7 @@ class CreateChargingStationsTable extends Migration
             $table->text('image')->nullable();
             $table->boolean('status')->nullable();       
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -61,8 +61,8 @@ class ChargertypeController extends Controller
         $request -> validate([
             'name' => 'required|max:255',
             'status' => 'required',
-            'ct_code' => 'required|unique:chargertypes|max:255',
-            'ct_company' => 'required',
+            'code' => 'required|unique:chargertypes|max:255',
+            //'ct_company' => 'required',
           //  'title'     => 'required|unique:properties|max:255',
     ]);
         
@@ -70,10 +70,9 @@ class ChargertypeController extends Controller
         $chargertype = new Chargertype();
         $chargertype->name = $request->name; 
         $chargertype->status = $request->status;
-        $chargertype->ct_code = $request->ct_code;
-        $chargertype->ct_slug= str_slug($request->name);
+        $chargertype->code = $request->code;
+        $chargertype->slug= str_slug($request->name);
         $chargertypeslug  = str_slug($request->name);
-        $chargertype->ct_company = $request->ct_company;
         $image = $request->file('image');
         $sDirPath = 'uploads/gallery/chargertype/'; //Specified Pathname
         if(isset($image)){
@@ -85,7 +84,7 @@ class ChargertypeController extends Controller
                 if(Storage::disk('public')->exists($sDirPath.'/'.$chargertype->image)){
                     Storage::disk('public')->delete($sDirPath.'/'.$chargertype->image);
                 }
-                $chargertypeimage = Image::make($image)->resize(300, 200)->stream();
+                $chargertypeimage = Image::make($image)->resize(50, 50)->stream();
                 Storage::disk('public')->put($sDirPath.'/'.$imagename, $chargertypeimage);
             }else{
                 $imagename = $chargertype->image;
@@ -93,7 +92,7 @@ class ChargertypeController extends Controller
             $chargertype->image    = $imagename;    
         $chargertype-> save();
         Toastr::success('Chargertype successfully added!','Success');
-        return redirect()->route('chargertype.index');
+        return redirect()->route('admin.chargertype.index');
     }
 
     /**
@@ -138,8 +137,8 @@ class ChargertypeController extends Controller
         $request -> validate([
             'name' => 'required|max:255',
             'status' => 'required',
-            'ct_code' => 'required|max:255',
-            'ct_company' => 'required',
+            'code' => 'required|max:255',
+          // 'ct_company' => 'required',
           //  'state_id' => 'required',
           //  'title'     => 'required|unique:properties|max:255',
     ]);
@@ -150,8 +149,6 @@ class ChargertypeController extends Controller
         $chargertype->code = $request->code;
         $chargertypeslug  = str_slug($request->name);
         $chargertype->slug=         $chargertypeslug;
-
-        $chargertype->ct_company = $request->ct_company;
         $image = $request->file('image');
         $sDirPath = 'uploads/gallery/chargertype/'; //Specified Pathname
         if(isset($image)){
@@ -163,7 +160,7 @@ class ChargertypeController extends Controller
                 if(Storage::disk('public')->exists($sDirPath.'/'.$chargertype->image)){
                     Storage::disk('public')->delete($sDirPath.'/'.$chargertype->image);
                 }
-                $chargertypeimage = Image::make($image)->resize(300, 200)->stream();
+                $chargertypeimage = Image::make($image)->resize(50, 50)->stream();
                 Storage::disk('public')->put($sDirPath.'/'.$imagename, $chargertypeimage);
             }else{
                 $imagename = $chargertype->image;
@@ -171,7 +168,7 @@ class ChargertypeController extends Controller
             $chargertype->image    = $imagename;    
         $chargertype-> save();
         Toastr::success('Chargertype successfully Updated!','Success');
-        return redirect()->route('chargertype.index');
+        return redirect()->route('admin.chargertype.index');
     }
 
     /**
@@ -183,5 +180,17 @@ class ChargertypeController extends Controller
     public function destroy(Chargertype $chargertype)
     {
         //
+        $chargertype = Chargertype::find($chargertype->id);
+        $chargertype->delete();
+        Toastr::success('message', 'Chargertype deleted successfully.');
+        return back();
+    }
+    #######SEARCH BRAND #
+    public function search(Request $request){
+
+        $chargertypes =Chargertype::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+        return view('admin.chargertype.index',compact('chargertypes'));
     }
 }

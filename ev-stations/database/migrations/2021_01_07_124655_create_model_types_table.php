@@ -32,6 +32,7 @@ class CreateModelTypesTable extends Migration
         $table->bigInteger('status');
             $table->text('image')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
         Schema::table('model_types', function($table) {
             $table->foreign('brand_types_id')->references('id')->on('brand_types')->unsigned()->onDelete('cascade');
