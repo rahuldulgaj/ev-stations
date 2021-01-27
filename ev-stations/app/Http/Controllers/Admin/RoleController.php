@@ -27,22 +27,16 @@ class RoleController extends Controller
         // if(!Gate::allows('isAdmin')){
         //     abort(401);
         // }
+            //     $roles=Role::Where([
+            //         ['name','!=',Null],[function($query) use ($request){
+            //             if(($search =$request->search)){
+            //                 $query->orwhere('name','LIKE','%'.$search.'%')->get();
+            //             }
+            //         }]
+            //     ])
+            //    ->OrderBy('name','ASC')->paginate(15);
 
-        // $roles = Role::query();
-        // if (request('search')) {
-        //     $roles->where('name', 'Like', '%' . request('search') . '%');
-        // }
-        //  return $roles->orderBy('id', 'DESC')->paginate(10);
-
-        $roles=Role::Where([
-            ['name','!=',Null],[function($query) use ($request){
-                if(($search =$request->search)){
-                    $query->orwhere('name','LIKE','%'.$search.'%')->get();
-                }
-            }]
-        ])
-       ->OrderBy('name','ASC')->paginate(15);
-       // $roles=Role::OrderBy('name','ASC')->paginate(15);
+       $roles=Role::whereIn('status', [1, 2])->OrderBy('name','ASC')->paginate(15);
         return view('admin.role.index',compact('roles'));
     }
 
@@ -68,10 +62,8 @@ class RoleController extends Controller
         $request -> validate([
             'name' => 'required|unique:roles|max:255',
             'status' => 'required',
-
-    ]);
+           ]);
         
-      
         $role = new Role();
         $role->name = $request->name; 
         $role->slug =str_slug($request->name);
@@ -104,7 +96,6 @@ class RoleController extends Controller
     public function edit($id)
     {
         //
-
         $roles = Role::find($id);
         return view('admin.role.edit',compact('roles'));
     }
@@ -122,8 +113,7 @@ class RoleController extends Controller
         $request -> validate([
             'name' => 'required|max:255',
             'status' => 'required',
-
-    ]);
+           ]);
       
         $role = Role::find($id);
         $role->name = $request->name;
@@ -137,25 +127,26 @@ class RoleController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
-    {
-        //
-        $role = Role::find($id)->delete();
-        Toastr::error('Role successfully deleted!','Deleted');
-        return redirect()->route('admin.role.index');
 
-    }
+        public function destroy(Role $role)
+        {
+            
+            $role = Role::find($role->id)->delete();
+            Toastr::error('Role successfully deleted!','Deleted');
+            return redirect()->route('admin.role.index');
+        }
 
 
     
     public function search(Request $request){
       
-        $role =Role::where('name', 'LIKE',"%{$request->search}%")->paginate();
-        dd($role);
-        return view('admin.role.index',compact('role'));
+        $roles =Role::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate('10');
+
+        return view('admin.role.index',compact('roles'));
     }
 }

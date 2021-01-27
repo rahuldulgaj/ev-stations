@@ -8,6 +8,13 @@
  <div class="header-body">
  <div class="card shadow mb-4">
 
+
+ <div class="row">
+        <!-- <div class="col-md-8 offset-md-2">
+            <h5><strong>Laravel 7 Autocomplete Search Example</strong></h5>
+            <input type="text" class="form-control typeahead">
+        </div> -->
+    </div>
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
               <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
@@ -42,26 +49,43 @@
             </div>
 
         <form action="{{route('admin.vehicletype.search')}}" method="GET" class="form-horizontal">
-       
+
+
             <div class="card-body">
                 <!-- <h4 class="card-title">Search</h4> -->
                 <div class="form-group row">
                     <!-- <label class="col-sm-3 text-right control-label col-form-label"></label> -->
                     <div class="col-sm-8">
-                        <input type="text" name="search" class="form-control" id="firstname" placeholder="Vehicle Types">
+                        <input type="text" name="search" class="form-control typeahead" id="firstname" placeholder="Vehicle Types">
                     </div>
                 </div>
             </div>
             <div class="border-top">
                 <div class="card-body">
-                    <button type="submit" class="btn btn-sm btn-neutral">Search</button>
 
+                <span class="input-group-btn mr-6 mt-1">
+                            <button class="btn btn-info" type="submit"  title="Search projects">
+                                <span class="fas fa-search"></span>
+                            </button>
+                        </span>
+
+                        <a href="{{ route('admin.vehicletype.index') }}" class=" mt-1">
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="button" title="Refresh page">
+                                    <span class="fas fa-sync-alt"></span>
+                              </button></span> </a>
+
+                        <a href="{{ route('admin.vehicletype.create') }}" class=" mt-1">
+                        <span class="btn-label">
+                        <button type="button" class="btn btn-labeled btn-primary" title="Add New">
+                  <i class="fas fa-plus"></i>
+                  </span></button></a>
+
+                    <!-- <button type="submit" class="btn btn-sm btn-neutral">Search</button>
                     <a href="{{route('admin.vehicletype.index')}}" class="btn btn-sm btn-neutral">Clear</a>
-                    <a class="btn btn-sm btn-neutral" href="{{ route('admin.vehicletype.create') }}" ><i class="fa fa-plus"> </i>Add Vehicle Types</a>
-                 
-                 
-                
-                </div>
+                    <a class="btn btn-sm btn-neutral" href="{{ route('admin.vehicletype.create') }}" ><i class="fa fa-plus"> </i>Add Vehicle Types</a> -->
+                    
+                  </div>
             </div>
         </form>
     </div>
@@ -101,21 +125,24 @@
                                         @if(Storage::disk('public')->exists('vehicletype/'.$vehicletype->image) && $vehicletype->image)
                                    <img src="{{Storage::url('vehicletype/'.$vehicletype->image)}}" alt="{{$vehicletype->name}}" width="60" class="img-responsive img-rounded">
                                         @endif   </td>
+
                                         <td class="sorting_1">{{$vehicletype->created_at}}</td>
+                                        
                                         @if($vehicletype->status== '1')
                                             <td>Active</td>
                                         @else
                                             <td>Deactive</td>
                                          @endif
-                                        <td>
-                                      
- 
-                                            <a href="{{route('admin.vehicletype.edit',$vehicletype->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                            <a href="{{route('admin.vehicletype.show',$vehicletype->id)}}" class="btn btn-success btn-sm waves-effect">View</a>                                        </a>
-                                          
-                                            <form id="delete-form-{{ $vehicletype->id }}" action="{{route('admin.vehicletype.destroy',$vehicletype->id)}}" method="put">
-                                                @csrf
-                                                @method('DELETE')
+
+                                       
+                                        <td> 
+                                        <a href="{{route('admin.vehicletype.edit',$vehicletype->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                        
+                                        <form id="delete-form-{{ $vehicletype->id }}" action="{{route('admin.vehicletype.destroy',$vehicletype->id)}}" method="POST">
+                                        @method('DELETE')
+                                           @csrf
+                                                <!-- <input type="hidden" name="_method" value="DELETE"> -->
+
                                     <button type="button" onclick="deletePost({{ $vehicletype->id }})" class="btn btn-sm btn-danger">Delete</button>
                                             </form>
                                         </td>
@@ -181,7 +208,7 @@
             </script>
             {{--sweetalert box for deleting end--}}   
 
-
+           
 
 @endsection
 

@@ -10,5 +10,8 @@ class VehicleType extends Model
     //
     use SoftDeletes;
     protected $table = 'vehicle_types';
-    
+   
+   // protected $dates = ['deleted_at'];
+
+
 }

@@ -22,28 +22,38 @@ class VehicleTypeController extends Controller
     public function index()
     {
         //
-        $vehicletypes= VehicleType::paginate(10);
+        // $vehicletypes= VehicleType::Where([
+        //     ['name','!=',Null],[function($query) use ($request){
+        //         if(($search =$request->search)){
+        //             $query->orwhere('name','LIKE','%'.$search.'%')->get();
+        //         }
+        //     }]
+        // ])->OrderBy('name','ASC')->paginate(15);
+
+        $vehicletypes= VehicleType::whereIn('status', [1, 2])->OrderBy('name','ASC')->paginate(15);
         return view('admin.vehicletype.index',compact('vehicletypes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        return view('admin.vehicletype.create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+        /**
+         * Show the form for creating a new resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
+
+        public function create()
+        {
+            return view('admin.vehicletype.create');
+        }
+
+        /**
+         * Store a newly created resource in storage.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @return \Illuminate\Http\Response
+         */
+
+     public function store(Request $request)
     {
         //
         $request -> validate([
@@ -52,45 +62,45 @@ class VehicleTypeController extends Controller
             'image'     => 'required|image|mimes:jpeg,jpg,png'
         ]);
         $image = $request->file('image');
-
-        if(isset($image)){
-            $currentDate = Carbon::now()->toDateString();
-            $imagecs = 'vehicletype-'.uniqid().'.'.$image->getClientOriginalExtension();
-    
-            if(!Storage::disk('public')->exists('vehicletype')){
-                Storage::disk('public')->makeDirectory('vehicletype');
+            if(isset($image)){
+                $currentDate = Carbon::now()->toDateString();
+                $imagecs = 'vehicletype-'.uniqid().'.'.$image->getClientOriginalExtension();
+        
+                if(!Storage::disk('public')->exists('vehicletype')){
+                    Storage::disk('public')->makeDirectory('vehicletype');
+                }
+                $amenitiesimg = Image::make($image)->resize(150,150)->stream();
+                Storage::disk('public')->put('vehicletype/'.$imagecs, $amenitiesimg);
+            }else{
+                $imagecs = 'default.png';
             }
-            $amenitiesimg = Image::make($image)->resize(150,150)->stream();
-            Storage::disk('public')->put('vehicletype/'.$imagecs, $amenitiesimg);
-    
-        }else{
-            $imagecs = 'default.png';
-        }
 
-        $vehicletype = new VehicleType();
-        $vehicletype->name = $request->name; 
-        $vehicletype->status = $request->status;
-        $vehicletype->slug= str_slug($request->name);
-        $vehicletype->image=$imagecs;
-        $vehicletype-> save();
-        Toastr::success('VehicleType successfully added!','Success');
+            $vehicletype = new VehicleType();
+            $vehicletype->name = $request->name; 
+            $vehicletype->status = $request->status;
+            $vehicletype->slug= str_slug($request->name);
+            $vehicletype->image=$imagecs;
+            $vehicletype-> save();
+            Toastr::success('VehicleType successfully added!','Success');
         return redirect()->route('admin.vehicletype.index');
     }
 
+   
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show(VehicleType $vehicletype)
-    // {
-       
-    //     dd('comments');
-    //     $vehicletype = VehicleType::withCount('comments')->find($vehicletype->id);
-    //     return view('admin.vehicletype.show',compact('vehicletype'));
 
-    // }
+
+    public function show(VehicleType $vehicletype)
+    {
+        dd('comments');
+        $vehicletype = VehicleType::find($vehicletype->id);
+        return view('admin.vehicletype.show',compact('vehicletype'));
+
+    }
 
 
     /**
@@ -123,6 +133,7 @@ class VehicleTypeController extends Controller
  
  
      ]);
+     $vehicletype =  VehicleType::find($id);
      $image = $request->file('image');
     if(isset($image)){
         $currentDate = Carbon::now()->toDateString();
@@ -137,7 +148,7 @@ class VehicleTypeController extends Controller
     }else{
         $imagecs =  $vehicletype->image;
     }
-         $vehicletype =  VehicleType::find($id);
+      
          $vehicletype->name = $request->name; 
          $vehicletype->status = $request->status;
          $vehicletype->slug= str_slug($request->name);
@@ -155,16 +166,27 @@ class VehicleTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
        // $vehicletype =  VehicleType::find($id);
         $vehicletype = VehicleType::find($id)->delete();
         Toastr::error('Vehicletype successfully deleted!','Deleted');
         return redirect()->route('admin.vehicletype.index');
     }
 
+ ###########SEARCH ###########3
     public function search(Request $request){
-       dd($request);
-        $vehicletypes =VehicleType::where('name', 'LIKE',"%{$request->search}%")->paginate();
-        return view('admin.vehicletype.show',compact('vehicletypes'));
+        $vehicletypes =VehicleType::where('name', 'LIKE',"%{$request->search}%")->paginate('10');
+        return view('admin.vehicletype.index',compact('vehicletypes'));
     }
+
+    #############AUTO COMPLETE######
+    public function autocomplete(Request $request)
+    {
+        $data = VehicleType::select('name','image')
+                    ->where("name","LIKE","%{$request->input('query')}%")
+                    ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+                    ->get();
+
+        return response()->json($data);
+    }
+
 }
