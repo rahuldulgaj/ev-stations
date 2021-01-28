@@ -93,10 +93,10 @@
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$chargertype->name}}</td>
                                 
-                                        <td class="sorting_1">{{$chargertype->ct_code}} </td>
+                                        <td class="sorting_1">{{$chargertype->code}} </td>
                                       
                                         <td class="sorting_1">{{$chargertype->ct_company}} </td>  
-                                        <td class="sorting_1"><img src="{{ url('storage/uploads/gallery/chargertype/'.$chargertype->image) }}" alt="" title="" /></td>
+                                        <td class="sorting_1"><img src="{{ url('storage/chargertype/'.$chargertype->image) }}" alt="" title="" /></td>
                                         <td class="sorting_1">{{$chargertype->created_at}}</td>
                                         @if($chargertype->status== '1')
                                             <td>Active</td>
