@@ -112,10 +112,12 @@
             </div>
         </div>
   
-        @livewireScripts
 
         
     </div>
+
+    
+    @livewireScripts
 
     @endsection
 
