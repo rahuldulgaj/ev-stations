@@ -49,8 +49,6 @@
 
 
                             <div class="card-body">
-                                <!-- <h4 class="card-title">Add Employee</h4> -->
-                              
 
                                 @livewire('country-state',['country', 'state'])
                                 <div class="form-group row">
@@ -113,9 +111,7 @@
         </div>
   
         @livewireScripts
-
         
     </div>
 
     @endsection
-
