@@ -78,7 +78,6 @@
                   <th scope="col" class="sort" data-sort="id">Id</th>
                     <th scope="col" class="sort" data-sort="name">Name</th>
                     <th scope="col" class="sort" data-sort="code">Code</th>
-                    <th scope="col" class="sort" data-sort="company">Company</th>
                     <th scope="col" class="sort" data-sort="company">Image</th>
                     <th scope="col" class="sort" data-sort="created_at">Created Date</th>
                     <th scope="col" class="sort" data-sort="status">Status</th>
@@ -92,11 +91,12 @@
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$chargertype->name}}</td>
-                                
-                                        <td class="sorting_1">{{$chargertype->code}} </td>
+                                        <td class="sorting_1">{{$chargertype->code}} </td> 
+                                        <td class="sorting_1">
+                                        @if(Storage::disk('public')->exists('chargertype/'.$chargertype->image) && $chargertype->image)
+                                   <img src="{{Storage::url('chargertype/'.$chargertype->image)}}" alt="{{$chargertype->name}}" width="60" class="img-responsive img-rounded">
+                                        @endif   </td>
                                       
-                                        <td class="sorting_1">{{$chargertype->ct_company}} </td>  
-                                        <td class="sorting_1"><img src="{{ url('storage/chargertype/'.$chargertype->image) }}" alt="" title="" /></td>
                                         <td class="sorting_1">{{$chargertype->created_at}}</td>
                                         @if($chargertype->status== '1')
                                             <td>Active</td>
