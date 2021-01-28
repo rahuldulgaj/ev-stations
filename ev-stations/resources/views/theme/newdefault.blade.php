@@ -10,7 +10,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="">
+    <meta name="description" content="Elecrtic Vehicle">
 
     <meta name="author" content="">
  <!-- CSRF Token -->
