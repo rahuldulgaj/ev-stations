@@ -22,7 +22,8 @@ class ConnectorTypeController extends Controller
     public function index()
     {
         //
-        $connectortypes= ConnectorType::paginate(15);
+        $connectortypes= ConnectorType::whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate(15);
         return view('admin.connectortype.index',compact('connectortypes'));
     }
 
@@ -179,7 +180,10 @@ class ConnectorTypeController extends Controller
     }
 
     public function search(Request $request){
-        $connectortype =Amenities::where('name', 'LIKE',"%{$request->search}%")->paginate();
+
+        $connectortype =ConnectorType::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate();
         return view('admin.connectortype.index',compact('connectortype'));
     }
 }

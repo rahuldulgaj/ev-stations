@@ -110,11 +110,7 @@
             </div>
         </div>
   
-<<<<<<< HEAD
         @livewireScripts
-=======
-
->>>>>>> 93bda610d722a6221ac147c639c6c1bc0b9c13d6
         
     </div>
 

@@ -166,7 +166,8 @@
                                         <td class="sorting_1">{{$connectortype->created_at}}</td>
                                         @if($connectortype->status== '1')
                                             <td>Active</td>
-                                        @else
+                                        @el
+                                        se
                                             <td>Deactive</td>
                                          @endif
                                         <td>
