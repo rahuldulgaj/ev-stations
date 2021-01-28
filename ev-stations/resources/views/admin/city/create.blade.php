@@ -49,11 +49,8 @@
 
 
                             <div class="card-body">
-<<<<<<< HEAD
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
                               
-=======
->>>>>>> 987fadb970f2c446fa76d1e26f16e6f9a2f6d0ef
 
                                 @livewire('country-state',['country', 'state'])
                                 <div class="form-group row">
@@ -121,11 +118,4 @@
     </div>
 
     @endsection
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
-=======
-    @livewireAssets
->>>>>>> 987fadb970f2c446fa76d1e26f16e6f9a2f6d0ef
-=======
->>>>>>> caaebddf0fac3710e57f08a851e297e8b7c52b73
+
