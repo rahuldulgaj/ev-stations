@@ -181,9 +181,9 @@ class ConnectorTypeController extends Controller
 
     public function search(Request $request){
 
-        $connectortype =ConnectorType::where('name', 'LIKE',"%{$request->search}%")
+        $connectortypes =ConnectorType::where('name', 'LIKE',"%{$request->search}%")
         ->whereIn('status', [1, 2])->OrderBy('name','ASC')
         ->paginate();
-        return view('admin.connectortype.index',compact('connectortype'));
+        return view('admin.connectortype.index',compact('connectortypes'));
     }
 }
