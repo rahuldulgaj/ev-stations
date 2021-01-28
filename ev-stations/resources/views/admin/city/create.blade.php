@@ -115,4 +115,3 @@
     </div>
 
     @endsection
-    @livewireAssets
