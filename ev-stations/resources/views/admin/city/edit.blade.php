@@ -2,7 +2,7 @@
 
 @section('content')
 
-@livewireStylessss
+@livewireStyles
 
     <div class="page-wrapper">
         @if ($errors->any())
