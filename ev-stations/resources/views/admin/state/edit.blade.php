@@ -1,4 +1,4 @@
-@extends('theme.default')
+@extends('theme.newdefault')
 
 @section('content')
 
@@ -14,8 +14,8 @@
             </div>
     @endif
 
-       <!-- Begin Page Content -->
-       <div class="container-fluid">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
  <div class="header-body">
  <div class="card shadow mb-4">
  
@@ -35,11 +35,10 @@
               <a href="#" class="btn btn-sm btn-neutral">Filters</a>
             </div> -->
           </div>
-      
         </div>
 
 
-        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
