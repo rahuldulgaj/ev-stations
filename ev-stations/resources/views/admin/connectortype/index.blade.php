@@ -61,104 +61,33 @@
     </div>
    </div>
 </div>
-
-               <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Record</h6>
+         
+<div class="row">
+        <div class="col">
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+              <h3 class="mb-0">Records</h3>
             </div>
 
-
-            <div class="card-body">
-              <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
-                <div class="col-sm-12 col-md-6">
-                <div class="dataTables_length" id="dataTable_length">
-                <label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                </select> entries</label></div></div>
-                <div class="col-sm-12 col-md-6"><div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                  <thead>
-                    <tr role="row">
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sno: activate to sort column descending" style="width: 58px;">Sno</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Name</th>
-                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 58px;">Code</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 68px;">Created Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 67px;">Status</th>
-                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 67px;">Action</th>
-                    </tr>
-                  </thead>
-
-                  <tfoot>
-                    <tr><th rowspan="1" colspan="1">Sno</th>
-                    <th rowspan="1" colspan="1">Name</th>
-                    <th rowspan="1" colspan="1">Image</th>
-                   <th rowspan="1" colspan="1">Created  Date</th>
-                   <th rowspan="1" colspan="1">Status</th>
-                   <th rowspan="1" colspan="1">Action</th></tr>
-                  </tfoot>
-                  <tbody>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                  <th scope="col" class="sort" data-sort="id">Id</th>
+                    <th scope="col" class="sort" data-sort="name">City Name</th>
+                    <th scope="col" class="sort" data-sort="image">Code</th>
+                    <th scope="col" class="sort" data-sort="created_at">Created Date</th>
+                    <th scope="col" class="sort" data-sort="status">Status</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody class="list">
                     
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                  @foreach($connectortypes as $connectortype)
-                 
+                @foreach($connectortypes as $connectortype)
                                     <tr role="row" class="odd">
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$connectortype->name}}</td>
-                                
                                         <td class="sorting_1">
                                         @if(Storage::disk('public')->exists('connectortype/'.$connectortype->image) && $connectortype->image)
                                    <img src="{{Storage::url('connectortype/'.$connectortype->image)}}" alt="{{$connectortype->name}}" width="60" class="img-responsive img-rounded">
@@ -171,10 +100,9 @@
                                          @endif
                                         <td>
                                       
+                                      
  
                                             <a href="{{route('admin.connectortype.edit',$connectortype->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                          
-
                                           
                                             <form id="delete-form-{{ $connectortype->id }}" action="{{route('admin.connectortype.destroy',$connectortype->id)}}" method="POST">
                                                 @csrf
@@ -202,6 +130,9 @@
               </div>
             </div>
           </div>
+<!-- ############## -->
+
+
 @endsection
 
 
