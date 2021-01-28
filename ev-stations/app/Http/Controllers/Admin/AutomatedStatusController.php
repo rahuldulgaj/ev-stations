@@ -101,9 +101,10 @@ class AutomatedStatusController extends Controller
      * @param  \App\AutomatedStatus  $automatedstatus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request , AutomatedStatus $automatedstatus)
+    public function update(Request $request , AutomatedStatus  $automatedstatus)
     {
         //
+        //dd( $automatedstatus->id);
         $request -> validate([
             'name' => 'required|max:255',
             'status' => 'required',
@@ -113,7 +114,7 @@ class AutomatedStatusController extends Controller
         $automatedstatus = AutomatedStatus::find($automatedstatus->id);
         $automatedstatus->name = $request->name; 
         $automatedstatus->status = $request->status;
-        $automatedStatus->slug= str_slug($request->name);
+        $automatedstatus->slug= str_slug($request->name);
       //  $automatedStatus->status = $request ->status == 'active'?1:0;
         $automatedstatus-> save();
         Toastr::success('Automated Status successfully added!','Success');
@@ -129,6 +130,11 @@ class AutomatedStatusController extends Controller
     public function destroy(AutomatedStatus $automatedstatus)
     {
         //
+
+        $automatedstatus = AutomatedStatus::find($automatedstatus->id);
+        $automatedstatus->delete();
+        Toastr::success('message', 'Automatedstatus deleted successfully.');
+        return back();
     }
      #######SEARCH BRAND #
      public function search(Request $request){

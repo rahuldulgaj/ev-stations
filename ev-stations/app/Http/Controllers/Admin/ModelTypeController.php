@@ -77,8 +77,24 @@ class ModelTypeController extends Controller
         $modeltype->swappable_battary =$request->swappable_battary;
         $modeltype->price =$request->price;
         $modeltype->description =$request->description;
-        $modeltype->image =$request->image;
         $modeltype->slug = str_slug($request->name);
+        $image = $request->file('image');
+        $sDirPath = 'model/'; //Specified Pathname
+        if(isset($image)){
+                    $currentDate = Carbon::now()->toDateString();
+                    $imagename = $chargertypeslug.uniqid().'.'.$image->getClientOriginalExtension();
+                if(!Storage::disk('public')->exists($sDirPath)){
+                    Storage::disk('public')->makeDirectory($sDirPath);
+                }
+                if(Storage::disk('public')->exists($sDirPath.'/'.$chargertype->image)){
+                    Storage::disk('public')->delete($sDirPath.'/'.$chargertype->image);
+                }
+                $chargertypeimage = Image::make($image)->resize(50, 50)->stream();
+                Storage::disk('public')->put($sDirPath.'/'.$imagename, $chargertypeimage);
+            }else{
+                $imagename = 'default.png';
+            }
+        $modeltype->image    = $imagename; 
         $modeltype-> save();
         Toastr::success('Model Types successfully added!','Success');
         return redirect()->route('admin.modeltype.index');
@@ -148,13 +164,13 @@ class ModelTypeController extends Controller
             $modeltype->swappable_battary =$request->swappable_battary;
             $modeltype->price =$request->price;
             $modeltype->description =$request->description;
-            $modeltype->image =$request->image;
             $modeltype->slug = str_slug($request->name);
             $modelslug = str_slug($request->name);
-            $sDirPath = 'uploads/gallery/model/'.$modelslug.'/'; //Specified Pathname
+            $image = $request->file('image');
+            $sDirPath = 'model/'; //Specified Pathname
             if(isset($image)){
                         $currentDate = Carbon::now()->toDateString();
-                        $imagename = $modelslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+                        $imagename = $modelslug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
                    
                     if(!Storage::disk('public')->exists($sDirPath)){
                         Storage::disk('public')->makeDirectory($sDirPath);
@@ -169,9 +185,8 @@ class ModelTypeController extends Controller
 
                 }else{
                     $imagename = $modeltype->image;
-
                 }
-           
+            $modeltype->image    = $imagename;
             $modeltype-> save();
         Toastr::success('Model Types successfully added!','Success');
         return redirect()->route('admin.modeltype.index');
@@ -187,6 +202,10 @@ class ModelTypeController extends Controller
     {
         //
         $modeltype =  ModelType::find($id);
+      
+        if(Storage::disk('public')->exists('model/'.$modeltype->image)){
+            Storage::disk('public')->delete('model/'.$modeltype->image);
+        }
         $modeltype -> delete();
         Toastr::error('Model successfully deleted!','Deleted');
         return redirect()->route('admin.modeltype.index');

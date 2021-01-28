@@ -108,7 +108,7 @@ class ChargingStationsController extends Controller
         $image = $request->file('image');
         if(isset($image)){
             $currentDate = Carbon::now()->toDateString();
-            $imagecs = 'chargingstations-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $imagecs = 'chargingstations-'.uniqid().'.'.$image->getClientOriginalExtension();
 
             if(!Storage::disk('public')->exists('chargingstations')){
                 Storage::disk('public')->makeDirectory('chargingstations');
@@ -190,6 +190,7 @@ class ChargingStationsController extends Controller
     public function edit(ChargingStations $chargingStations)
     {
         //
+        
     }
 
     /**
@@ -213,5 +214,26 @@ class ChargingStationsController extends Controller
     public function destroy(ChargingStations $chargingStations)
     {
         //
+        $chargingstations =  ChargingStations::find($chargingstations->id);
+
+
+        if(Storage::disk('public')->exists('chargingstations/'.$chargingstations->image)){
+            Storage::disk('public')->delete('chargingstations/'.$chargingstations->image);
+        }
+        
+      
+        $chargingstations -> delete();
+        $chargingstations->connector()->detach();
+        //detached
+        Toastr::error('Chargingstations successfully deleted!','Deleted');
+        return redirect()->route('admin.chargingstations.index');
+    }
+
+    public function search(Request $request){
+        //dd('test');
+        $chargingstations =ChargingStations::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate(10);
+        return view('admin.chargingstations.index',compact('chargingstations'));
     }
 }

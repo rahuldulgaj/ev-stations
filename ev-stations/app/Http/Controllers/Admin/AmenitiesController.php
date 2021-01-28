@@ -23,7 +23,8 @@ class AmenitiesController extends Controller
     public function index()
     {
         //
-        $amenities= Amenities::paginate(10);
+        $amenities= Amenities::whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate(10);
         return view('admin.amenities.index',compact('amenities'));
     }
 
@@ -58,7 +59,7 @@ class AmenitiesController extends Controller
     $slug =str_slug($request->name);
     if(isset($image)){
         $currentDate = Carbon::now()->toDateString();
-        $imagecs = 'amenities-'.$slug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+        $imagecs = 'amenities'.'-'.uniqid().'.'.$image->getClientOriginalExtension();
 
         if(!Storage::disk('public')->exists('amenities')){
             Storage::disk('public')->makeDirectory('amenities');
@@ -121,7 +122,7 @@ class AmenitiesController extends Controller
     $slug =str_slug($request->name);
     if(isset($image)){
         $currentDate = Carbon::now()->toDateString();
-        $imagecs = 'amenities-'.$slug.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+        $imagecs = 'amenities'.'-'.uniqid().'.'.$image->getClientOriginalExtension();
         if(!Storage::disk('public')->exists('amenities')){
             Storage::disk('public')->makeDirectory('amenities');
         }
@@ -150,6 +151,10 @@ class AmenitiesController extends Controller
     {
         //
         $amenities =  Amenities::find($id);
+
+        if(Storage::disk('public')->exists('amenities/'.$amenities->image)){
+            Storage::disk('public')->delete('amenities/'.$amenities->image);
+        }
         $amenities -> delete();
         Toastr::error('Amenities successfully deleted!','Deleted');
         return redirect()->route('admin.amenities.index');
@@ -162,8 +167,10 @@ class AmenitiesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function search(Request $request){
-        dd('test');
-        $amenities =Amenities::where('name', 'LIKE',"%{$request->search}%")->paginate(10);
+        //dd('test');
+        $amenities =Amenities::where('name', 'LIKE',"%{$request->search}%")
+        ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+        ->paginate(10);
         return view('admin.amenities.index',compact('amenities'));
     }
 }

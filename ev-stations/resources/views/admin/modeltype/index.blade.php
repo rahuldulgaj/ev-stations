@@ -96,6 +96,7 @@
                   <th scope="col" class="sort" data-sort="id">Id</th>
                     <th scope="col" class="sort" data-sort="name">Name</th>
                     <th scope="col" class="sort" data-sort="created_at">Created Date</th>
+                    <th scope="col" class="sort" data-sort="status">Images</th>
                     <th scope="col" class="sort" data-sort="status">Status</th>
                     <th scope="col"></th>
                   </tr>
@@ -106,6 +107,12 @@
                                         <th>{{$loop->index+1}}</th>
                                         <td class="sorting_1">{{$modeltype->name}}</td>
                                         <td class="sorting_1">{{$modeltype->created_at}}</td>
+                                        <td>
+                                        <div class="avatar-group">
+                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{$modeltype->name}}">
+                          <img alt="" src="{{ url('storage/model/'.$modeltype->image) }}">
+                        </a>
+                      </div></td>
 
                                         @if($modeltype->status== '1')
                                             <td>Active</td>

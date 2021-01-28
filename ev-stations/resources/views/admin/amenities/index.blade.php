@@ -109,7 +109,7 @@
  
                                             <a href="{{route('admin.amenities.edit',$amenity->id)}}" class="btn btn-sm btn-info">Edit</a>
                                           
-                                            <form id="delete-form-{{ $amenity->id }}" action="{{route('admin.amenities.destroy',$amenity->id)}}" method="put">
+                                            <form id="delete-form-{{ $amenity->id }}" action="{{route('admin.amenities.destroy',$amenity->id)}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" onclick="deletePost({{ $amenity->id }})" class="btn btn-sm btn-danger">Delete</button>
@@ -136,6 +136,51 @@
             </div>
           </div>
 @endsection
+
+
+
+
+{{--sweetalert box for deleting start--}}
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.28.8/dist/sweetalert2.all.min.js"></script>
+
+            <script type="text/javascript">
+                function deletePost(id)
+
+                {
+                    const swalWithBootstrapButtons = swal.mixin({
+                        confirmButtonClass: 'btn btn-success',
+                        cancelButtonClass: 'btn btn-danger',
+                        buttonsStyling: false,
+                    })
+
+                    swalWithBootstrapButtons({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel!',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.value) {
+                            event.preventDefault();
+                            document.getElementById('delete-form-'+id).submit();
+                        } else if (
+                            // Read more about handling dismissals
+                            result.dismiss === swal.DismissReason.cancel
+                        ) {
+                            swalWithBootstrapButtons(
+                                'Cancelled',
+                                'Your file is safe :)',
+                                'error'
+                            )
+                        }
+                    })
+                }
+
+            </script>
+            {{--sweetalert box for deleting end--}} 
+
 
 
 

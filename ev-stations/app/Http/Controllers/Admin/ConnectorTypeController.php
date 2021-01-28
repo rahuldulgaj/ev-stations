@@ -169,6 +169,10 @@ class ConnectorTypeController extends Controller
     {
         //
         $connectortype = ConnectorType::find($id);
+
+        if(Storage::disk('public')->exists('connectortype/'.$connectortype->image)){
+            Storage::disk('public')->delete('connectortype/'.$connectortype->image);
+        }
         $connectortype -> delete();
         Toastr::error('ConnectorType successfully deleted!','Deleted');
         return redirect()->route('admin.connectortype.index');
