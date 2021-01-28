@@ -174,6 +174,8 @@
  
                                             <a href="{{route('admin.connectortype.edit',$connectortype->id)}}" class="btn btn-sm btn-info">Edit</a>
                                           
+
+                                          <!-- <a></a> -->
                                             <form id="delete-form-{{ $connectortype->id }}" action="{{route('admin.connectortype.destroy',$connectortype->id)}}" method="put">
                                                 @csrf
                                                 @method('DELETE')
