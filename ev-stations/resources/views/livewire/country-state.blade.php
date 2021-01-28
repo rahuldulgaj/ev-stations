@@ -10,6 +10,8 @@
             @endforeach
         </select>
     </div>
+
+    
     @if(count($states) > 0)
     <div class="form-group row">
             <label class="col-sm-3 text-right inline-block w-32 font-bold">State</label>
