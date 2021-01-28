@@ -50,7 +50,7 @@
                                 <h4 class="card-title">ADD State</h4>
 
                                 <div class="form-group row">
-                 <label class="col-sm-3 text-right control-label col-form-label">Select State</label>
+                 <label class="col-sm-3 text-right control-label col-form-label">Select Country</label>
                            <div class="col-sm-9">
                              <select name="country_id" class="form-control show-tick">
                                  <option value="" disabled selected>Choose State</option>
