@@ -62,8 +62,6 @@ class ChargertypeController extends Controller
             'name' => 'required|max:255',
             'status' => 'required',
             'code' => 'required|unique:chargertypes|max:255',
-            //'ct_company' => 'required',
-          //  'title'     => 'required|unique:properties|max:255',
     ]);
         
       
@@ -74,10 +72,10 @@ class ChargertypeController extends Controller
         $chargertype->slug= str_slug($request->name);
         $chargertypeslug  = str_slug($request->name);
         $image = $request->file('image');
-        $sDirPath = 'uploads/gallery/chargertype/'; //Specified Pathname
+        $sDirPath = 'chargertype/'; //Specified Pathname
         if(isset($image)){
                     $currentDate = Carbon::now()->toDateString();
-                    $imagename = $chargertypeslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+                    $imagename = $chargertypeslug.uniqid().'.'.$image->getClientOriginalExtension();
                 if(!Storage::disk('public')->exists($sDirPath)){
                     Storage::disk('public')->makeDirectory($sDirPath);
                 }
@@ -87,7 +85,7 @@ class ChargertypeController extends Controller
                 $chargertypeimage = Image::make($image)->resize(50, 50)->stream();
                 Storage::disk('public')->put($sDirPath.'/'.$imagename, $chargertypeimage);
             }else{
-                $imagename = $chargertype->image;
+                $imagename = 'default.png';
             }
             $chargertype->image    = $imagename;    
         $chargertype-> save();
@@ -150,10 +148,10 @@ class ChargertypeController extends Controller
         $chargertypeslug  = str_slug($request->name);
         $chargertype->slug=         $chargertypeslug;
         $image = $request->file('image');
-        $sDirPath = 'uploads/gallery/chargertype/'; //Specified Pathname
+        $sDirPath = 'chargertype/'; //Specified Pathname
         if(isset($image)){
                     $currentDate = Carbon::now()->toDateString();
-                    $imagename = $chargertypeslug.'-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+                    $imagename = $chargertypeslug.uniqid().'.'.$image->getClientOriginalExtension();
                 if(!Storage::disk('public')->exists($sDirPath)){
                     Storage::disk('public')->makeDirectory($sDirPath);
                 }
@@ -181,6 +179,9 @@ class ChargertypeController extends Controller
     {
         //
         $chargertype = Chargertype::find($chargertype->id);
+        if(Storage::disk('public')->exists('chargertype/'.$chargertype->image)){
+            Storage::disk('public')->delete('chargertype/'.$chargertype->image);
+        }
         $chargertype->delete();
         Toastr::success('message', 'Chargertype deleted successfully.');
         return back();

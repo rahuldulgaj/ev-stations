@@ -144,7 +144,6 @@ class CityController extends Controller
     {
         //
         $city = City::find($city->id);
-
         $city->delete();
         Toastr::success('message', 'City deleted successfully.');
         return back();

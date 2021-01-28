@@ -168,6 +168,9 @@ class BrandTypeController extends Controller
     {
         //
         $brand = BrandType::find($id);
+        if(Storage::disk('public')->exists('brand/'.$brand->image)){
+            Storage::disk('public')->delete('brand/'.$brand->image);
+        }
         $brand -> delete();
         Toastr::error('Brand successfully deleted!','Deleted');
         return redirect()->route('admin.brand.index');
