@@ -88,12 +88,6 @@
                             </div>
 
                             <!-- COMPANY DETAILS -->
-
-                         
-              
-               
-
-                             
                             <div class="border-top">
                                 <div class="card-body">
                                     <button type="submit" class="btn btn-dark">Submit</button>
