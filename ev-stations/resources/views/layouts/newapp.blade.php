@@ -52,7 +52,7 @@
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-6 collapse-brand">
-            <a href="{{ url('/home') }}">
+            <a href="{{ url('/') }}">
                 <!-- {{ config('app.name', 'BeeEv') }} -->
                  <img src="{{asset('assets/img/brand/BlueBeeEV.png')}}">
               </a>

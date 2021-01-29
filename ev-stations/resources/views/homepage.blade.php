@@ -101,8 +101,17 @@
         <!-- <div class="flex-center position-ref full-height"> -->
             @if (Route::has('login'))
                 <div class="top-right links">
+              
                     @auth
-                        <a href="{{ url('/') }}">Home</a>
+             
+                       @if(Auth::user()->role_id  == '1')
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        @elseif(Auth::user()->role_id  == '2')
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        @elseif(Auth::user()->role_id  == '3')
+                        <a href="{{ route('agent.dashboard') }}">Dashboard</a>
+                        @endif
+
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         @if (Route::has('register'))
