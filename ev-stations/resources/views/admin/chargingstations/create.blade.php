@@ -218,10 +218,10 @@
                             </select>
                         </td>
                         <td>
-                        <select type="text" name="network_id[]" class="form-control" id="network" placeholder="network">
-                        @foreach ($networktypeslist as $networktype)
-                                    <option value="{{ $networktype->id }}">
-                                        {{ $networktype->name  }}
+                        <select type="text" name="brand_id[]" class="form-control" id="network" placeholder="network">
+                        @foreach ($brandtypeslist as $brandtypes)
+                                    <option value="{{ $brandtypes->id }}">
+                                        {{ $brandtypes->name  }}
                                     </option>
                                 @endforeach
                                         </select>

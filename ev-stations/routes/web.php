@@ -51,56 +51,61 @@ Auth::routes();
   #########STATE
   Route::get('state/search',[ 'as'=>'state.search','uses' => 'StateController@search']);
   Route::resource('state','StateController',['except' => 'show']);
-    ##########CITY##
-    Route::resource('city','CityController',['except' => 'show']);
-    Route::get('city/search',[ 'as'=>'city.search','uses' => 'CityController@search']);
+  ##########CITY##
+  Route::resource('city','CityController',['except' => 'show']);
+  Route::get('city/search',[ 'as'=>'city.search','uses' => 'CityController@search']);
   ###########COUNTRY
-    Route::resource('country','CountryController',['except' => 'show']);
-    Route::get('country/search', [ 'as'=>'country.search','uses' => 'CountryController@search']);
+  Route::resource('country','CountryController',['except' => 'show']);
+  Route::get('country/search', [ 'as'=>'country.search','uses' => 'CountryController@search']);
     ###############Charger Types ########
-    Route::resource('chargertype','ChargertypeController',['except' => 'show']);
-    Route::get('chargertype/search',  [ 'as'=>'chargertype.search','uses' => 'ChargertypeController@search']);
+  Route::resource('chargertype','ChargertypeController',['except' => 'show']);
+  Route::get('chargertype/search',  [ 'as'=>'chargertype.search','uses' => 'ChargertypeController@search']);
   ###############COMPANY ########
-    Route::resource('company','CompanyController',['except' => 'show']);
-    Route::get('company/search', [ 'as'=>'company.search', 'uses' => 'CompanyController@search']);
-    #########EV STATIONS
-    Route::resource('chargingstations','ChargingStationsController',['except' => 'show']);
-    Route::get('chargingstations/search',[ 'as'=>'chargingstations.search','uses' => 'ChargingStationsController@search']);
+  Route::resource('company','CompanyController',['except' => 'show']);
+  Route::get('company/search', [ 'as'=>'company.search', 'uses' => 'CompanyController@search']);
+  #########EV STATIONS
+  Route::resource('chargingstations','ChargingStationsController',['except' => 'show']);
+  Route::get('chargingstations/search',[ 'as'=>'chargingstations.search','uses' => 'ChargingStationsController@search']);
   #############
   Route::resource('amenities','AmenitiesController',['except' => 'show']);
   Route::get('amenities/search',[ 'as'=>'amenities.search','uses' => 'AmenitiesController@search']);
-    #######admin.
+  #######admin.
   Route::resource('evstation','EvstationsController');
-    Route::get('evstation/search',[ 'as'=>'evstation.search','uses' => 'EvstationsController@search']);
-    ###########
-    Route::resource('automatedstatus','AutomatedStatusController',['except' => 'show']);
-    Route::get('automatedstatus/search',[ 'as'=>'automatedstatus.search','uses' => 'AutomatedStatusController@search']);
+  Route::get('evstation/search',[ 'as'=>'evstation.search','uses' => 'EvstationsController@search']);
+  ###########
+  Route::resource('automatedstatus','AutomatedStatusController',['except' => 'show']);
+  Route::get('automatedstatus/search',[ 'as'=>'automatedstatus.search','uses' => 'AutomatedStatusController@search']);
   ##########Role##
   Route::get('role/search' ,['as'=>'role.search','uses' => 'RoleController@search']);
   Route::resource('role','RoleController',['except' => 'show']);
 
-     // Route::get('/role/showindex' ,'RoleController@showindex')->name('role.showindex');
+  // Route::get('/role/showindex' ,'RoleController@showindex')->name('role.showindex');
   ######################
   Route::get('user/search' ,['as'=>'user.search','uses' => 'UserController@search']);
   Route::resource('user','UserController',['except' => 'show']);
   ##
-   Route::get('vehicletype/search', ['as'=>'vehicletype.search','uses' => 'VehicleTypeController@search']);
-   Route::resource('vehicletype','VehicleTypeController',['except' => 'show']);
+  Route::get('vehicletype/search', ['as'=>'vehicletype.search','uses' => 'VehicleTypeController@search']);
+  Route::resource('vehicletype','VehicleTypeController',['except' => 'show']);
+  Route::get('vehicletype/autocomplete',['as'=>'vehicletype.autocomplete','uses'=>'VehicleTypeController@autocomplete']);
+
   ########
   Route::resource('brand','BrandTypeController',['except' => 'show']);
   Route::get('brand/search', [ 'as'=>'brand.search','uses' => 'BrandTypeController@search']);
 
-  
-  Route::get('vehicletype/autocomplete',['as'=>'vehicletype.autocomplete','uses'=>'VehicleTypeController@autocomplete']);
-
-    ##########
-    Route::resource('modeltype','ModelTypeController',['except' => 'show']);
-    Route::get('modeltype/search', [ 'as'=>'modeltype.search','uses' => 'ModelTypeController@search']);
+  ##########
+  Route::resource('modeltype','ModelTypeController',['except' => 'show']);
+  Route::get('modeltype/search', [ 'as'=>'modeltype.search','uses' => 'ModelTypeController@search']);
   ############
   Route::resource('connectortype','ConnectorTypeController',['except' => 'show']);
   Route::get('connectortype/search', ['as'=>'connectortype.search','uses' => 'ConnectorTypeController@search']);
-  });
+ 
+  ############
+  Route::resource('networktypes','NetworkTypesController',['except' => 'show']);
+  Route::get('networktypes/search', ['as'=>'networktypes.search','uses' => 'NetworkTypesController@search']);
+ 
 
+
+});
 
  
 #######END ADMIN

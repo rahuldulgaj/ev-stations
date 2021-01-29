@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Evstations;
+use App\ChargingStations;
 
 class HomeController extends Controller
 {
@@ -25,11 +26,13 @@ class HomeController extends Controller
     public function index()
     {
         // view('homepage');
-        $evstations= Evstations::paginate(5);
-        $mapShops = $evstations->makeHidden(['active', 'created_at', 'updated_at', 'deleted_at', 'created_by_id', 'photos', 'media']);
-        $latitude = $evstations->count() && (request()->filled('category') || request()->filled('search')) ? $evstations->average('latitude') : 51.5073509;
-        $longitude = $evstations->count() && (request()->filled('category') || request()->filled('search')) ? $shops->average('longitude') : -0.12775829999998223;
-        return view('homepage', compact( 'evstations', 'mapShops', 'latitude', 'longitude'));
+        $chargingstations= ChargingStations::paginate(5);
+
+        $mapShops = $chargingstations->makeHidden(['status', 'created_at', 'updated_at', 'deleted_at', 'images']);
+
+        $latitude = $chargingstations->count() && (request()->filled('category') || request()->filled('search')) ? $chargingstations->average('latitude') : 51.5073509;
+        $longitude = $chargingstations->count() && (request()->filled('category') || request()->filled('search')) ? $shops->average('longitude') : -0.12775829999998223;
+        return view('homepage', compact( 'chargingstations', 'mapShops', 'latitude', 'longitude'));
 
     }
 }

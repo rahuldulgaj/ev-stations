@@ -42,7 +42,8 @@
             <div class="row">
                 <div class="col-md-10">
                     <div class="card">
-                        <form action="{{route('admin.modeltype.update',$modeltype->id)}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.modeltype.update',$modeltype->id)}}" method="post" class="form-horizontal"
+                         enctype="multipart/form-data">
                             @csrf
                             {{ method_field('PUT') }}
                          

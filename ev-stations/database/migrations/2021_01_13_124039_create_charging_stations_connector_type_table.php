@@ -15,15 +15,16 @@ class CreateChargingStationsConnectorTypeTable extends Migration
     {
         Schema::create('charging_stations_connector_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('charging_stations_id');
-            $table->integer('connector_type_id');
+            $table->bigInteger('charging_stations_id')->unsigned();
+            $table->bigInteger('connector_type_id')->unsigned();
             $table->bigInteger('price')->nullable();
             $table->bigInteger('kwatt')->nullable();
             $table->bigInteger('amps')->nullable();
-            $table->bigInteger('network_id')->nullable();
-            $table->bigInteger('rate_id')->nullable();
+            $table->bigInteger('brand_id')->unsigned();
+            $table->bigInteger('rate_id')->unsigned();
             $table->timestamps();
-            
+            $table->softDeletes();
+
         });
     }
 

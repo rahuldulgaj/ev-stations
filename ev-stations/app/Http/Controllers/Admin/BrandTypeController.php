@@ -37,8 +37,6 @@ class BrandTypeController extends Controller
      */
     public function create()
     {
-        //
-         //  $chargertypes = Chargertype::all();
          return view('admin.brand.create');
     }
 

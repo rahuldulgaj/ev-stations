@@ -15,13 +15,17 @@ class CreateNetworkTypesTable extends Migration
     {
         Schema::create('network_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('slug');
+            $table->string('name')->unique();
+            $table->string('slug')->unique();
+            $table->string('networkcode',128)->unique();
             $table->string('image')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
+
+
+        
     }
 
     /**

@@ -19,6 +19,8 @@ class CreateAmenitiesChargingstationsTable extends Migration
             $table->integer('charging_stations_id');
             $table->integer('amenities_id');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

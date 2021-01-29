@@ -48,8 +48,9 @@ class ChargingStationsController extends Controller
         $automatedstatus= AutomatedStatus::get();
         $chargingstations= ChargingStations::paginate(15);
        $connectortypes= ConnectorType::all();
-       $networktypeslist=NetworkTypes::all();
-        return view('admin.chargingstations.index',compact('chargingstations','automatedstatus','companylist','countrylist','statelist','amenities','connectortypes','networktypeslist'));
+     //  $networktypeslist=NetworkTypes::all();
+       $brandtypeslist= BrandType::all();
+        return view('admin.chargingstations.index',compact('chargingstations','automatedstatus','companylist','countrylist','statelist','amenities','connectortypes','brandtypeslist'));
     }
 
     /**
@@ -66,12 +67,12 @@ class ChargingStationsController extends Controller
         $citylist=City::all();
         $amenities=Amenities::get();
         $vehicletypes= VehicleType::all();
-        $brandtypes= BrandType::all();
+        $brandtypeslist= BrandType::all();
         $automatedstatus= AutomatedStatus::get();
         $chargertypes = Chargertype::all();
         $connectortypes= ConnectorType::all();
         $networktypeslist=NetworkTypes::all();
-        return view('admin.chargingstations.create',compact('vehicletypes','brandtypes','amenities','automatedstatus','countrylist','companylist','statelist','citylist','chargertypes','connectortypes','networktypeslist'));
+        return view('admin.chargingstations.create',compact('vehicletypes','brandtypeslist','amenities','automatedstatus','countrylist','companylist','statelist','citylist','chargertypes','connectortypes','networktypeslist'));
     }
 
     /**
@@ -99,7 +100,7 @@ class ChargingStationsController extends Controller
              //  'country_id'=> 'required',
              //   'state_id'=> 'required',
               //   'city_id'=> 'required',
-              // 'network_id'=>'required',
+              // 'brand_id'=>'required',
               // 'kwatt'=>'required',
               'image'     => 'required|image|mimes:jpeg,jpg,png',
               'numbers_of_ports'=>'required',
@@ -156,12 +157,12 @@ class ChargingStationsController extends Controller
         $prices = $request->input('price', []);
         $kwatts = $request->input('kwatt', []);
         $amps = $request->input('amps', []);
-        $networkids = $request->input('network_id', []);
+        $networkids = $request->input('brand_id', []);
         $rateids= $request->input('rate_id', []);
 
         for ($connectorType=0; $connectorType < count($connectorTypes); $connectorType++) {
             if ($connectorTypes[$connectorType] != '') {
-                $chargingstation->connector()->attach($connectorTypes[$connectorType],['price' => $prices[$connectorType],'kwatt' => $kwatts[$connectorType],'amps' => $amps[$connectorType],'network_id' => $networkids[$connectorType],'rate_id' => $rateids[$connectorType]]);
+                $chargingstation->connector()->attach($connectorTypes[$connectorType],['price' => $prices[$connectorType],'kwatt' => $kwatts[$connectorType],'amps' => $amps[$connectorType],'brand_id' => $networkids[$connectorType],'rate_id' => $rateids[$connectorType]]);
             }
         }
       

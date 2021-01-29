@@ -14,19 +14,19 @@
             </div>
     @endif
 
-     <!-- Begin Page Content -->
+    <!-- Begin Page Content -->
  <div class="container-fluid">
  <div class="header-body">
  <div class="card shadow mb-4">
- 
+
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
               <!-- <h6 class="h2 text-blue d-inline-block mb-0">Brand Management</h6> -->
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item active"><a href="{{route('admin.amenities.index')}}">Amenities</a></li>
-                  <li class="breadcrumb-item  active" aria-current="page">Amenities</li>
+                  <li class="breadcrumb-item active"><a href="{{route('admin.networktypes.index')}}">Networks</a></li>
+                  <li class="breadcrumb-item  active" aria-current="page">Networks</li>
                 </ol>
               </nav>
             </div>
@@ -35,10 +35,7 @@
               <a href="#" class="btn btn-sm btn-neutral">Filters</a>
             </div> -->
           </div>
-      
-        </div>
-
-
+        </div>  </div>
 
      
 
@@ -46,22 +43,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                        <form action="{{route('admin.amenities.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
+                        <form action="{{route('admin.networktypes.store')}}" method="post" class="form-horizontal" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <!-- <h4 class="card-title">Add Employee</h4> -->
                                 <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Amenities Name</label>
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Network Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Amenities Name">
+                                        <input type="text" name="name" class="form-control" id="name" placeholder="Enter Network Name">
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Brand Code</label>
+                                <div class="form-group row">
+                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Network Code</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="brandcode" class="form-control" id="brandcode" placeholder="Enter Brand Code">
+                                        <input type="text" name="networkcode" class="form-control" id="Network Code" placeholder="Enter Network Code">
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="form-group row">
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">File Upload</label>
                                     <div class="col-md-9">

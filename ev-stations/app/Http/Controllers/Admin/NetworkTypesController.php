@@ -34,7 +34,9 @@ class NetworkTypesController extends Controller
      */
     public function create()
     {
-        //
+    
+           return view('admin.networktype.create');
+
     }
 
     /**
@@ -46,6 +48,37 @@ class NetworkTypesController extends Controller
     public function store(Request $request)
     {
         //
+        $request -> validate([
+            'name' => 'required|unique:network_types|max:255',
+            'status' => 'required',
+            'networkcode' => 'required|unique:network_types|max:255',
+            'image'     => 'required|image|mimes:jpeg,jpg,png'
+    ]);
+    
+    $image = $request->file('image');
+                    if(isset($image)){
+                        $currentDate = Carbon::now()->toDateString();
+                        $imagebrand = 'networktype-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+
+                        if(!Storage::disk('public')->exists('networktype')){
+                            Storage::disk('public')->makeDirectory('networktype');
+                        }
+                        $brandimg = Image::make($image)->resize(150,150)->stream();
+                        Storage::disk('public')->put('networktype/'.$imagebrand, $brandimg);
+
+                    }else{
+                        $imagebrand = 'default.png';
+                    }
+      
+        $networktype = new NetworkTypes();
+        $networktype->name = $request->name; 
+        $networktype->status = $request->status;
+        $networktype->networkcode = $request->networkcode;
+        $networktype->slug= str_slug($request->name);
+        $networktype->image = $imagebrand;
+        $networktype-> save();
+        Toastr::success('Networktype successfully added!','Success');
+        return redirect()->route('admin.networktypes.index');
     }
 
     /**
@@ -54,9 +87,11 @@ class NetworkTypesController extends Controller
      * @param  \App\NetworkTypes  $networkTypes
      * @return \Illuminate\Http\Response
      */
-    public function show(NetworkTypes $networkTypes)
+    public function show(NetworkTypes $networkTypes,$id)
     {
         //
+        $networktypes = NetworkTypes::find($id);
+        return view('admin.networktypes.show',compact('networktypes'));
     }
 
     /**
@@ -65,9 +100,11 @@ class NetworkTypesController extends Controller
      * @param  \App\NetworkTypes  $networkTypes
      * @return \Illuminate\Http\Response
      */
-    public function edit(NetworkTypes $networkTypes)
+    public function edit(NetworkTypes $networkTypes,$id)
     {
         //
+        $networktypes =  NetworkTypes::find($id);
+        return view('admin.networktype.edit',compact('networktypes'));
     }
 
     /**
@@ -77,9 +114,43 @@ class NetworkTypesController extends Controller
      * @param  \App\NetworkTypes  $networkTypes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NetworkTypes $networkTypes)
+    public function update(Request $request, $id)
     {
         //
+        $request -> validate([
+            // 'name' => 'required|unique:brand_types|max:255|name:'.$request->name,
+             'status' => 'required',
+             'networkcode' => 'required|max:255',
+             'name' => 'required|max:255',
+           //  'image'     => 'required|image|mimes:jpeg,jpg,png'
+     ]);
+       
+       
+        $networktypes = NetworkTypes::find($id);
+        $image = $request->file('image');
+       //  dd($request);
+         if(isset($image)){
+             $currentDate = Carbon::now()->toDateString();
+             $imagecs = 'networktype-'.$currentDate.'-'.uniqid().'.'.$image->getClientOriginalExtension();
+ 
+             if(!Storage::disk('public')->exists('networktype')){
+                 Storage::disk('public')->makeDirectory('networktype');
+             }
+             $brandimg = Image::make($image)->resize(150,150)->stream();
+             Storage::disk('public')->put('networktype/'.$imagecs, $brandimg);
+ 
+         }else{
+             $imagecs = $networktypes->image;
+         }
+       
+         $networktypes->name = $request->name; 
+         $networktypes->status = $request->status;
+         $networktypes->networkcode = $request->networkcode;
+         $networktypes->slug= str_slug($request->name);
+         $networktypes->image = $imagecs;
+         $networktypes-> save();
+         Toastr::success('Network type Successfully Updated!','Success');
+         return redirect()->route('admin.networktypes.index');
     }
 
     /**
@@ -88,8 +159,25 @@ class NetworkTypesController extends Controller
      * @param  \App\NetworkTypes  $networkTypes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NetworkTypes $networkTypes)
+    public function destroy($id)
     {
         //
+        $networktypes = NetworkTypes::find($id);
+        if(Storage::disk('public')->exists('networktype/'.$networktypes->image)){
+            Storage::disk('public')->delete('networktype/'.$networktypes->image);
+        }
+        $networktypes -> delete();
+        Toastr::error('Network Types Successfully deleted!','Deleted');
+        return redirect()->route('admin.networktypes.index');
     }
+
+ #######SEARCH networktypes #
+ public function search(Request $request){
+    $networktypes =NetworkTypes::where('name', 'LIKE',"%{$request->search}%")
+    ->whereIn('status', [1, 2])->OrderBy('name','ASC')
+    ->paginate('10');
+    return view('admin.networktype.index',compact('networktypes'));
+}
+
+
 }

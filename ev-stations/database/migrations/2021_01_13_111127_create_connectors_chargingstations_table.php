@@ -14,10 +14,11 @@ class CreateConnectorsChargingstationsTable extends Migration
     public function up()
     {
         Schema::create('connectors_chargingstations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('charging_stations_id');
-            $table->integer('connector_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('charging_stations_id')->unsigned();
+            $table->bigInteger('connector_id')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

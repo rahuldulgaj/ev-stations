@@ -29,7 +29,7 @@ class CreateChargingStationsTable extends Migration
             $table->bigInteger('mobile')->unique();
             $table->bigInteger('alternatecontact');
             $table->bigInteger('usagetype_id')->unsigned()->nullable();
-            $table->bigInteger('automated_status_id');
+            $table->bigInteger('automated_status_id')->unsigned()->nullable();
             $table->bigInteger('country_id')->unsigned()->nullable();
             $table->bigInteger('state_id')->unsigned()->nullable();
             $table->bigInteger('city_id')->unsigned()->nullable();

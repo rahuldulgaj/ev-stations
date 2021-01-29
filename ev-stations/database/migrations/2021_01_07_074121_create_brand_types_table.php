@@ -15,7 +15,7 @@ class CreateBrandTypesTable extends Migration
     {
         Schema::create('brand_types', function (Blueprint $table) {
                 $table->bigIncrements('id');
-                $table->string('name');
+                $table->string('name')->unique();
                 $table->string('slug')->unique();
                 $table->string('brandcode',128)->unique();
                 $table->text('image')->nullable();
