@@ -228,9 +228,7 @@
                         </td>
                       
                  <td> <input type="number" name="kwatt[]" class="form-control" /> </td>
-
                  <td><input type="number" name="amps[]" class="form-control"  /> </td>
-
                  <td><label class="custom-toggle">
   <input  data-id="0" id="rate-enable"   type="checkbox"  class="rate-enable" />
   <span class="custom-toggle-slider rounded-circle"></span>

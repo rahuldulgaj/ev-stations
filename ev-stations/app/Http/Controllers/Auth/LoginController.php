@@ -37,7 +37,7 @@ class LoginController extends Controller
    
     protected function authenticated($request, $user)
     {
-      //  dd($user->hasRole());
+      
 //        $user = $request->user(); //getting the current logged in user
 // dd($user->hasRole('admin','editor'));
         if ($user->hasRole('Admin')) {

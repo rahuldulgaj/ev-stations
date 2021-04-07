@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
+
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
+
+
 class UserController extends Controller
 {
     /**

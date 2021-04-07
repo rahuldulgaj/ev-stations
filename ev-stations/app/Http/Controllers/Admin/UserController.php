@@ -124,7 +124,6 @@ class UserController extends Controller
         $user->state_id = $request->state_id;
         $user->country_id = $request->country_id;
         $user->company_id = $request->company_id;
-        $user->role_id = $request->role_id;
         $user->image    = $imagename;
         $user->status = $request->status;
         $user->password = bcrypt($request->password);

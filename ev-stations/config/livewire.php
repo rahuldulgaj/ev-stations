@@ -69,6 +69,7 @@ return [
 
     'middleware_group'  => 'web',
 
+    
     /*
     |--------------------------------------------------------------------------
     | Livewire Temporary File Uploads Endpoint Configuration
